@@ -1,5 +1,7 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Home, ArrowLeft } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -9,13 +11,27 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
-        <a href="/" className="text-primary underline hover:text-primary/90">
-          Return to Home
-        </a>
+    <div className="min-h-screen flex items-center justify-center hero-gradient px-4">
+      <div className="text-center max-w-md">
+        <h1 className="text-8xl font-heading font-bold gradient-text mb-4">404</h1>
+        <h2 className="text-2xl font-heading font-semibold text-primary-foreground mb-4">
+          Page Not Found
+        </h2>
+        <p className="text-primary-foreground/70 mb-8">
+          The page you're looking for doesn't exist or has been moved.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Button variant="hero" asChild>
+            <Link to="/">
+              <Home className="w-4 h-4 mr-2" />
+              Go Home
+            </Link>
+          </Button>
+          <Button variant="heroOutline" onClick={() => window.history.back()}>
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Go Back
+          </Button>
+        </div>
       </div>
     </div>
   );
