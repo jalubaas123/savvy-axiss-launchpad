@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { HeroSection } from '@/components/home/HeroSection';
-import { WhyChooseUs } from '@/components/home/WhyChooseUs';
+import { OurServices } from '@/components/home/OurServices';
 import { FeaturedCourses } from '@/components/home/FeaturedCourses';
 import { HowItWorks } from '@/components/home/HowItWorks';
 import { Testimonials } from '@/components/home/Testimonials';
@@ -11,20 +11,20 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Savvy Axiss - Live Training & Real-Time Internships | Transform Your Career</title>
+        <title>Savvy Axiss - Projects, Courses, Web Development & Internships</title>
         <meta 
           name="description" 
-          content="Master in-demand tech skills through live training and real-time internships. Get certified and hired with Savvy Axiss. 500+ students trained, 98% success rate." 
+          content="Savvy Axiss offers final year projects for college students, professional courses, website development for businesses, and internship programs. Get started today!" 
         />
-        <meta name="keywords" content="live training, internship, tech courses, full stack development, data science, digital marketing, UI/UX design, career transformation" />
-        <meta property="og:title" content="Savvy Axiss - Transform Your Career with Live Training" />
-        <meta property="og:description" content="Master in-demand tech skills through live training and real-time internships. Get certified and hired." />
+        <meta name="keywords" content="final year projects, college projects, web development, internship programs, tech courses, full stack development, data science" />
+        <meta property="og:title" content="Savvy Axiss - Projects, Courses, Web Development & Internships" />
+        <meta property="og:description" content="Complete solutions for students and businesses. Final year projects, professional courses, website development, and internship programs." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://savvyaxiss.com" />
       </Helmet>
 
       <HeroSection />
-      <WhyChooseUs />
+      <OurServices />
       <FeaturedCourses />
       <HowItWorks />
       <Testimonials />
