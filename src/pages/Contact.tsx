@@ -142,7 +142,7 @@ const Contact = () => {
                         required
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 93849 02501"
                         className="h-12"
                       />
                     </div>
@@ -215,8 +215,8 @@ const Contact = () => {
                   </div>
                   <h3 className="font-heading font-semibold text-foreground mb-2">Our Office</h3>
                   <p className="text-muted-foreground text-sm">
-                    123 Tech Hub, Innovation Street<br />
-                    Bangalore, Karnataka 560001<br />
+                    38 4th Block MMDA Colony<br />
+                  Maduravoyal, Chennai-600095<br />
                     India
                   </p>
                 </div>
@@ -235,10 +235,10 @@ const Contact = () => {
                   </a>
                   <br />
                   <a 
-                    href="mailto:admissions@savvyaxiss.com" 
+                    href="mailto:careers@savvyaxiss.com" 
                     className="text-secondary hover:underline text-sm"
                   >
-                    admissions@savvyaxiss.com
+                    careers@savvyaxiss.com
                   </a>
                 </div>
 
@@ -249,19 +249,19 @@ const Contact = () => {
                   </div>
                   <h3 className="font-heading font-semibold text-foreground mb-2">Call Us</h3>
                   <a 
-                    href="tel:+919876543210" 
+                    href="tel:+919384902501" 
                     className="text-secondary hover:underline text-sm"
                   >
-                    +91 98765 43210
+                    +91 9384902501
                   </a>
                   <p className="text-muted-foreground text-xs mt-1">
-                    Mon - Sat, 9:00 AM - 7:00 PM IST
+                    Mon - Sun, 24/7 Availability
                   </p>
                 </div>
 
                 {/* WhatsApp Card */}
                 <a
-                  href="https://wa.me/919876543210?text=Hi,%20I'm%20interested%20in%20learning%20more%20about%20Savvy%20Axiss%20courses!"
+                  href="https://wa.me/919384902501?text=Hi,%20I'm%20interested%20in%20learning%20more%20about%20Savvy%20Axiss%20courses!"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block bg-[hsl(142,70%,45%)] p-6 rounded-xl text-success-foreground hover:opacity-90 transition-opacity"
@@ -287,7 +287,7 @@ const Contact = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="rounded-2xl overflow-hidden border border-border h-[400px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.9856!2d77.5946!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU4JzE3LjgiTiA3N8KwMzUnNDAuNiJF!5e0!3m2!1sen!2sin!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.54459820474!2d80.17330571110568!3d13.06463398720622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52610d02b3babb%3A0x3f3d2bf95abd669d!2sSavvy%20Axiss%20Academy%20%26%20Project%20Center!5e0!3m2!1sen!2sin!4v1767163355157!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}

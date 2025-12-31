@@ -16,11 +16,7 @@ const footerLinks = {
     { name: 'UI/UX Design', href: '/courses/ui-ux-design' },
     { name: 'Cloud Computing', href: '/courses/cloud-computing' },
   ],
-  legal: [
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Refund Policy', href: '/refund' },
-  ],
+  
 };
 
 const socialLinks = [
@@ -108,8 +104,8 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
                 <span className="text-primary-foreground/70 text-sm">
-                  123 Tech Hub, Innovation Street<br />
-                  Bangalore, Karnataka 560001
+                  38 4th Block MMDA Colony<br />
+                  Maduravoyal, Chennai-600095<br /> 
                 </span>
               </li>
               <li>
@@ -123,11 +119,11 @@ export const Footer = () => {
               </li>
               <li>
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+919384902501"
                   className="flex items-center gap-3 text-primary-foreground/70 hover:text-secondary transition-colors duration-300"
                 >
                   <Phone className="w-5 h-5 text-secondary flex-shrink-0" />
-                  <span className="text-sm">+91 98765 43210</span>
+                  <span className="text-sm">+91 93849 02501</span>
                 </a>
               </li>
             </ul>
@@ -142,17 +138,6 @@ export const Footer = () => {
             <p className="text-primary-foreground/60 text-sm text-center md:text-left">
               © {new Date().getFullYear()} Savvy Axiss. All rights reserved.
             </p>
-            <div className="flex items-center gap-6">
-              {footerLinks.legal.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="text-primary-foreground/60 hover:text-secondary transition-colors duration-300 text-sm"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
           </div>
         </div>
       </div>

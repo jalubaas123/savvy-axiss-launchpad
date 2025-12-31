@@ -309,7 +309,7 @@ export default function Projects() {
                 <Link to="/contact">Share Your Requirements</Link>
               </Button>
               <Button variant="outline" size="lg" asChild className="border-white text-white hover:bg-white/10">
-                <a href="tel:+919999999999">Call Now: +91 99999 99999</a>
+                <a href="tel:+919999999999">Call Now: +91 93849 02501</a>
               </Button>
             </div>
           </motion.div>

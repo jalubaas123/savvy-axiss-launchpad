@@ -250,7 +250,7 @@ const Apply = () => {
                           type="tel"
                           value={formData.phone}
                           onChange={handleChange}
-                          placeholder="+91 98765 43210"
+                          placeholder="+91 93849 02501"
                           required
                           className="h-12"
                         />
@@ -491,7 +491,7 @@ const Apply = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button variant="hero" asChild>
                   <a
-                    href="https://wa.me/919876543210?text=Hi,%20I%20just%20submitted%20my%20application!"
+                    href="https://wa.me/919384902501?text=Hi,%20I%20just%20submitted%20my%20application!"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
