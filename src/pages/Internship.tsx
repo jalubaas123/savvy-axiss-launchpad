@@ -268,8 +268,13 @@ export default function Internship() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-background relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-transparent to-muted/20" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-orange-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div initial={{
           opacity: 0,
           y: 20
@@ -278,30 +283,80 @@ export default function Internship() {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-center mb-12">
-            <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
-              Process
+        }} className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-orange-500/10 to-amber-500/10 text-orange-600 dark:text-orange-400 text-sm font-medium mb-4 border border-orange-500/20">
+              Simple Process
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              How It Works
+              Your Journey to Success
             </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Follow these simple steps to kickstart your internship experience with us
+            </p>
           </motion.div>
 
+          {/* Desktop Timeline */}
           <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
           once: true
-        }} className="flex flex-col md:flex-row justify-center items-start gap-4 md:gap-0 max-w-4xl mx-auto">
-            {internshipProcess.map((item, index) => <motion.div key={item.step} variants={itemVariants} className="flex md:flex-col items-center md:items-center gap-4 md:gap-2 flex-1">
-                <div className="relative">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white font-bold">
-                    {item.step}
+        }} className="hidden md:block relative max-w-5xl mx-auto">
+            {/* Connecting Line */}
+            <div className="absolute top-16 left-[10%] right-[10%] h-1 bg-gradient-to-r from-orange-500/20 via-orange-500 to-orange-500/20 rounded-full" />
+            
+            <div className="grid grid-cols-5 gap-4">
+              {internshipProcess.map((item, index) => (
+                <motion.div 
+                  key={item.step} 
+                  variants={itemVariants} 
+                  className="flex flex-col items-center text-center group"
+                >
+                  {/* Step Number with Icon */}
+                  <div className="relative mb-6">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-orange-500/30 group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-orange-500/40 transition-all duration-300 rotate-3 group-hover:rotate-0">
+                      {item.step}
+                    </div>
+                    {/* Pulse effect */}
+                    <div className="absolute inset-0 rounded-2xl bg-orange-500/20 animate-ping opacity-0 group-hover:opacity-100" style={{ animationDuration: '1.5s' }} />
                   </div>
-                  {index < internshipProcess.length - 1 && <div className="hidden md:block absolute top-1/2 left-full w-full h-0.5 bg-gradient-to-r from-orange-500 to-orange-300" />}
-                </div>
-                <div className="md:text-center md:mt-4">
-                  <h3 className="font-semibold text-foreground">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground max-w-[150px]">{item.description}</p>
-                </div>
-              </motion.div>)}
+                  
+                  {/* Content Card */}
+                  <div className="bg-card border border-border rounded-xl p-4 shadow-sm group-hover:shadow-md group-hover:border-orange-500/30 transition-all duration-300 h-full w-full">
+                    <h3 className="font-semibold text-foreground mb-2 text-lg">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Mobile Timeline */}
+          <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} className="md:hidden relative">
+            {/* Vertical connecting line */}
+            <div className="absolute left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-orange-500 via-amber-500 to-orange-500/20" />
+            
+            <div className="space-y-6">
+              {internshipProcess.map((item, index) => (
+                <motion.div 
+                  key={item.step} 
+                  variants={itemVariants} 
+                  className="flex items-start gap-4 relative"
+                >
+                  {/* Step Number */}
+                  <div className="relative z-10 shrink-0">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-orange-500/30">
+                      {item.step}
+                    </div>
+                  </div>
+                  
+                  {/* Content Card */}
+                  <div className="flex-1 bg-card border border-border rounded-xl p-4 shadow-sm">
+                    <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
