@@ -57,8 +57,8 @@ const internshipProcess = [{
   description: 'Fill out the application form with your details and preferences'
 }, {
   step: 2,
-  title: 'Selection',
-  description: 'Complete a simple assessment to show your potential'
+  title: 'Quick Interview',
+  description: 'A brief conversation to understand your goals and potential'
 }, {
   step: 3,
   title: 'Onboarding',
@@ -299,8 +299,22 @@ export default function Internship() {
           <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
           once: true
         }} className="hidden md:block relative max-w-5xl mx-auto">
-            {/* Connecting Line */}
-            <div className="absolute top-16 left-[10%] right-[10%] h-1 bg-gradient-to-r from-orange-500/20 via-orange-500 to-orange-500/20 rounded-full" />
+            {/* Connecting Line Background */}
+            <div className="absolute top-16 left-[10%] right-[10%] h-1 bg-border rounded-full overflow-hidden">
+              {/* Animated flowing gradient */}
+              <motion.div 
+                className="h-full w-full bg-gradient-to-r from-transparent via-orange-500 to-transparent"
+                initial={{ x: '-100%' }}
+                animate={{ x: '100%' }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+            </div>
+            {/* Static gradient overlay */}
+            <div className="absolute top-16 left-[10%] right-[10%] h-1 bg-gradient-to-r from-orange-500/30 via-orange-500/60 to-orange-500/30 rounded-full" />
             
             <div className="grid grid-cols-5 gap-4">
               {internshipProcess.map((item, index) => (
@@ -333,7 +347,19 @@ export default function Internship() {
           once: true
         }} className="md:hidden relative">
             {/* Vertical connecting line */}
-            <div className="absolute left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-orange-500 via-amber-500 to-orange-500/20" />
+            <div className="absolute left-8 top-8 bottom-8 w-0.5 bg-border overflow-hidden">
+              <motion.div 
+                className="w-full h-full bg-gradient-to-b from-transparent via-orange-500 to-transparent"
+                initial={{ y: '-100%' }}
+                animate={{ y: '100%' }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+            </div>
+            <div className="absolute left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-orange-500/40 via-amber-500/60 to-orange-500/20" />
             
             <div className="space-y-6">
               {internshipProcess.map((item, index) => (
