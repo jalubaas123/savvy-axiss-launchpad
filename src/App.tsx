@@ -8,6 +8,7 @@ import { Layout } from "@/components/layout/Layout";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Courses from "./pages/Courses";
+import CourseDetail from "./pages/CourseDetail";
 import Contact from "./pages/Contact";
 import Apply from "./pages/Apply";
 import Projects from "./pages/Projects";
@@ -29,6 +30,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/courses" element={<Courses />} />
+              <Route path="/courses/:slug" element={<CourseDetail />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/web-development" element={<WebDevelopment />} />
               <Route path="/internship" element={<Internship />} />

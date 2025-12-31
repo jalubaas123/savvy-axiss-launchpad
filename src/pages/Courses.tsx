@@ -6,103 +6,178 @@ import { Search, Clock, Users, Star, Filter, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-const allCourses = [
-  {
-    id: 1,
-    slug: 'full-stack-development',
-    title: 'Full Stack Development',
-    description: 'Master frontend and backend development with React, Node.js, and MongoDB.',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=300&fit=crop',
-    duration: '12 Weeks',
-    mode: 'Live Online',
-    price: 49999,
-    originalPrice: 79999,
-    rating: 4.9,
-    reviews: 128,
-    badge: 'POPULAR',
-    category: 'Development',
-    level: 'Intermediate',
-  },
-  {
-    id: 2,
-    slug: 'data-science',
-    title: 'Data Science & Machine Learning',
-    description: 'Learn Python, ML algorithms, and data analysis with hands-on projects.',
-    image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=500&h=300&fit=crop',
-    duration: '16 Weeks',
-    mode: 'Live Online',
-    price: 59999,
-    originalPrice: 89999,
-    rating: 4.8,
-    reviews: 96,
-    badge: 'NEW',
-    category: 'Data',
-    level: 'Intermediate',
-  },
-  {
-    id: 3,
-    slug: 'digital-marketing',
-    title: 'Digital Marketing Mastery',
-    description: 'Master SEO, social media, PPC, and content marketing strategies.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop',
-    duration: '8 Weeks',
-    mode: 'Live Online',
-    price: 29999,
-    originalPrice: 49999,
-    rating: 4.7,
-    reviews: 84,
-    category: 'Marketing',
-    level: 'Beginner',
-  },
-  {
-    id: 4,
-    slug: 'ui-ux-design',
-    title: 'UI/UX Design Professional',
-    description: 'Create stunning user interfaces with Figma, design thinking, and prototyping.',
-    image: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&h=300&fit=crop',
-    duration: '10 Weeks',
-    mode: 'Live Online',
-    price: 39999,
-    originalPrice: 59999,
-    rating: 4.9,
-    reviews: 72,
-    badge: 'POPULAR',
-    category: 'Design',
-    level: 'Beginner',
-  },
-  {
-    id: 5,
-    slug: 'cloud-computing',
-    title: 'Cloud Computing & DevOps',
-    description: 'Master AWS, Docker, Kubernetes, and CI/CD pipelines.',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=300&fit=crop',
-    duration: '14 Weeks',
-    mode: 'Live Online',
-    price: 54999,
-    originalPrice: 84999,
-    rating: 4.8,
-    reviews: 64,
-    category: 'Cloud',
-    level: 'Advanced',
-  },
-  {
-    id: 6,
-    slug: 'python-programming',
-    title: 'Python Programming Fundamentals',
-    description: 'Learn Python from scratch with practical projects and exercises.',
-    image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=500&h=300&fit=crop',
-    duration: '6 Weeks',
-    mode: 'Live Online',
-    price: 19999,
-    originalPrice: 34999,
-    rating: 4.9,
-    reviews: 156,
-    category: 'Development',
-    level: 'Beginner',
-  },
+// Course image mapping - appropriate images for each course
+const courseImages: Record<string, string> = {
+  'C Programming': 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&h=500&fit=crop&q=80',
+  'C++ Programming': 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=500&fit=crop&q=80',
+  'Python Programming': 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=500&fit=crop&q=80',
+  'Java Programming': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&q=80',
+  'C# Programming': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&q=80',
+  'HTML': 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=500&fit=crop&q=80',
+  'CSS': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop&q=80',
+  'JavaScript': 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=500&fit=crop&q=80',
+  'ASP.NET': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&q=80',
+  'VB.NET': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&q=80',
+  'Word Document': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop&q=80',
+  'Excel': 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=800&h=500&fit=crop&q=80',
+  'PowerPoint': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop&q=80',
+  'Access': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop&q=80',
+  'SQL': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=500&fit=crop&q=80',
+  'MySQL': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=500&fit=crop&q=80',
+  'Sqlite': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=500&fit=crop&q=80',
+  'MongoDB': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop&q=80',
+  'Digital Marketing': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=80',
+};
+
+// Course data structure helper
+const createCourse = (
+  id: number,
+  name: string,
+  baseSlug: string,
+  category: string,
+  level: 'Beginner' | 'Intermediate' | 'Advanced',
+  rating: number,
+  duration: string,
+  price: number,
+  originalPrice: number,
+  description: string
+) => ({
+  id,
+  slug: `${baseSlug}${level === 'Beginner' ? 'b' : level === 'Intermediate' ? 'i' : 'a'}`,
+  title: `${name}${level === 'Beginner' ? ' - Beginner' : level === 'Intermediate' ? ' - Intermediate' : ' - Advanced'}`,
+  description,
+  image: courseImages[name] || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop',
+  duration,
+  mode: 'Live Online',
+  price,
+  originalPrice,
+  rating,
+  reviews: Math.floor(Math.random() * 100) + 20,
+  category,
+  level,
+});
+
+// Course descriptions
+const courseDescriptions: Record<string, string> = {
+  'C Programming': 'Learn the fundamentals of C programming language from scratch. Master variables, data types, control structures, functions, and pointers.',
+  'C++ Programming': 'Master object-oriented programming with C++. Learn classes, inheritance, polymorphism, and advanced C++ features.',
+  'Python Programming': 'Learn Python programming from basics to advanced. Master data structures, algorithms, and real-world applications.',
+  'Java Programming': 'Comprehensive Java programming course covering OOP concepts, collections, multithreading, and Java frameworks.',
+  'C# Programming': 'Learn C# programming and .NET framework. Master Windows applications, web services, and database connectivity.',
+  'HTML': 'Master HTML5 fundamentals. Learn semantic markup, forms, multimedia, and modern web development practices.',
+  'CSS': 'Learn CSS3 styling, layouts, animations, and responsive design. Create beautiful and modern web interfaces.',
+  'JavaScript': 'Master JavaScript programming. Learn ES6+, DOM manipulation, async programming, and modern JavaScript frameworks.',
+  'ASP.NET': 'Learn ASP.NET web development. Master MVC pattern, Razor pages, and building dynamic web applications.',
+  'VB.NET': 'Learn Visual Basic .NET programming. Master Windows Forms, web applications, and database connectivity.',
+  'Word Document': 'Master Microsoft Word. Learn document creation, formatting, templates, mail merge, and advanced features.',
+  'Excel': 'Master Microsoft Excel. Learn formulas, functions, data analysis, pivot tables, charts, and automation.',
+  'PowerPoint': 'Create stunning presentations with PowerPoint. Learn design principles, animations, transitions, and multimedia integration.',
+  'Access': 'Master Microsoft Access database management. Learn table design, queries, forms, reports, and database relationships.',
+  'SQL': 'Learn SQL database programming. Master queries, joins, subqueries, stored procedures, and database optimization.',
+  'MySQL': 'Master MySQL database management. Learn database design, administration, optimization, and advanced features.',
+  'Sqlite': 'Learn SQLite database programming. Master lightweight database management for applications and mobile development.',
+  'MongoDB': 'Master MongoDB NoSQL database. Learn document modeling, queries, aggregation, and database administration.',
+  'Digital Marketing': 'Master digital marketing strategies. Learn SEO, social media marketing, PPC advertising, content marketing, email marketing, and analytics.',
+};
+
+export const allCourses = [
+  // PROGRAMMING LANGUAGES - C Programming
+  createCourse(1, 'C Programming', 'c', 'Programming Languages', 'Beginner', 4.65, '4 Weeks', 999, 1499, courseDescriptions['C Programming']),
+  createCourse(2, 'C Programming', 'c', 'Programming Languages', 'Intermediate', 4.7, '8 Weeks', 1999, 2999, courseDescriptions['C Programming']),
+  createCourse(3, 'C Programming', 'c', 'Programming Languages', 'Advanced', 4.75, '12 Weeks', 2999, 3999, courseDescriptions['C Programming']),
+  
+  // C++ Programming
+  createCourse(4, 'C++ Programming', 'c++', 'Programming Languages', 'Beginner', 4.7, '4 Weeks', 999, 1499, courseDescriptions['C++ Programming']),
+  createCourse(5, 'C++ Programming', 'c++', 'Programming Languages', 'Intermediate', 4.75, '8 Weeks', 1999, 2999, courseDescriptions['C++ Programming']),
+  createCourse(6, 'C++ Programming', 'c++', 'Programming Languages', 'Advanced', 4.8, '12 Weeks', 2999, 3999, courseDescriptions['C++ Programming']),
+  
+  // Python Programming
+  createCourse(7, 'Python Programming', 'python', 'Programming Languages', 'Beginner', 4.8, '4 Weeks', 999, 1499, courseDescriptions['Python Programming']),
+  createCourse(8, 'Python Programming', 'python', 'Programming Languages', 'Intermediate', 4.85, '8 Weeks', 1999, 2999, courseDescriptions['Python Programming']),
+  createCourse(9, 'Python Programming', 'python', 'Programming Languages', 'Advanced', 5.0, '12 Weeks', 2999, 3999, courseDescriptions['Python Programming']),
+  
+  // Java Programming
+  createCourse(10, 'Java Programming', 'java', 'Programming Languages', 'Beginner', 4.75, '4 Weeks', 999, 1499, courseDescriptions['Java Programming']),
+  createCourse(11, 'Java Programming', 'java', 'Programming Languages', 'Intermediate', 4.8, '8 Weeks', 1999, 2999, courseDescriptions['Java Programming']),
+  createCourse(12, 'Java Programming', 'java', 'Programming Languages', 'Advanced', 4.85, '12 Weeks', 2999, 3999, courseDescriptions['Java Programming']),
+  
+  // C# Programming
+  createCourse(13, 'C# Programming', 'csharp', 'Programming Languages', 'Beginner', 4.6, '4 Weeks', 999, 1499, courseDescriptions['C# Programming']),
+  createCourse(14, 'C# Programming', 'csharp', 'Programming Languages', 'Intermediate', 4.65, '8 Weeks', 1999, 2999, courseDescriptions['C# Programming']),
+  createCourse(15, 'C# Programming', 'csharp', 'Programming Languages', 'Advanced', 4.7, '12 Weeks', 2999, 3999, courseDescriptions['C# Programming']),
+  
+  // WEB DEVELOPMENT - HTML
+  createCourse(16, 'HTML', 'html', 'Web Development', 'Beginner', 4.9, '4 Weeks', 999, 1499, courseDescriptions['HTML']),
+  createCourse(17, 'HTML', 'html', 'Web Development', 'Intermediate', 4.95, '8 Weeks', 1999, 2999, courseDescriptions['HTML']),
+  createCourse(18, 'HTML', 'html', 'Web Development', 'Advanced', 5.0, '12 Weeks', 2999, 3999, courseDescriptions['HTML']),
+  
+  // CSS
+  createCourse(19, 'CSS', 'css', 'Web Development', 'Beginner', 4.8, '4 Weeks', 999, 1499, courseDescriptions['CSS']),
+  createCourse(20, 'CSS', 'css', 'Web Development', 'Intermediate', 4.85, '8 Weeks', 1999, 2999, courseDescriptions['CSS']),
+  createCourse(21, 'CSS', 'css', 'Web Development', 'Advanced', 4.9, '12 Weeks', 2999, 3999, courseDescriptions['CSS']),
+  
+  // JavaScript
+  createCourse(22, 'JavaScript', 'javascript', 'Web Development', 'Beginner', 4.7, '4 Weeks', 999, 1499, courseDescriptions['JavaScript']),
+  createCourse(23, 'JavaScript', 'javascript', 'Web Development', 'Intermediate', 4.75, '8 Weeks', 1999, 2999, courseDescriptions['JavaScript']),
+  createCourse(24, 'JavaScript', 'javascript', 'Web Development', 'Advanced', 4.8, '12 Weeks', 2999, 3999, courseDescriptions['JavaScript']),
+  
+  // ASP.NET
+  createCourse(25, 'ASP.NET', 'asp', 'Web Development', 'Beginner', 4.5, '4 Weeks', 999, 1499, courseDescriptions['ASP.NET']),
+  createCourse(26, 'ASP.NET', 'asp', 'Web Development', 'Intermediate', 4.55, '8 Weeks', 1999, 2999, courseDescriptions['ASP.NET']),
+  createCourse(27, 'ASP.NET', 'asp', 'Web Development', 'Advanced', 4.6, '12 Weeks', 2999, 3999, courseDescriptions['ASP.NET']),
+  
+  // VB.NET
+  createCourse(28, 'VB.NET', 'vb', 'Web Development', 'Beginner', 4.6, '4 Weeks', 999, 1499, courseDescriptions['VB.NET']),
+  createCourse(29, 'VB.NET', 'vb', 'Web Development', 'Intermediate', 4.65, '8 Weeks', 1999, 2999, courseDescriptions['VB.NET']),
+  createCourse(30, 'VB.NET', 'vb', 'Web Development', 'Advanced', 4.7, '12 Weeks', 2999, 3999, courseDescriptions['VB.NET']),
+  
+  // MICROSOFT OFFICE - Word Document
+  createCourse(31, 'Word Document', 'word', 'Microsoft Office', 'Beginner', 4.8, '2 Weeks', 499, 799, courseDescriptions['Word Document']),
+  createCourse(32, 'Word Document', 'word', 'Microsoft Office', 'Intermediate', 4.85, '4 Weeks', 999, 1499, courseDescriptions['Word Document']),
+  createCourse(33, 'Word Document', 'word', 'Microsoft Office', 'Advanced', 4.9, '6 Weeks', 1499, 1999, courseDescriptions['Word Document']),
+  
+  // Excel
+  createCourse(34, 'Excel', 'excel', 'Microsoft Office', 'Beginner', 4.9, '2 Weeks', 499, 799, courseDescriptions['Excel']),
+  createCourse(35, 'Excel', 'excel', 'Microsoft Office', 'Intermediate', 4.95, '4 Weeks', 999, 1499, courseDescriptions['Excel']),
+  createCourse(36, 'Excel', 'excel', 'Microsoft Office', 'Advanced', 5.0, '6 Weeks', 1499, 1999, courseDescriptions['Excel']),
+  
+  // PowerPoint
+  createCourse(37, 'PowerPoint', 'ppt', 'Microsoft Office', 'Beginner', 4.7, '2 Weeks', 499, 799, courseDescriptions['PowerPoint']),
+  createCourse(38, 'PowerPoint', 'ppt', 'Microsoft Office', 'Intermediate', 4.75, '4 Weeks', 999, 1499, courseDescriptions['PowerPoint']),
+  createCourse(39, 'PowerPoint', 'ppt', 'Microsoft Office', 'Advanced', 4.8, '6 Weeks', 1499, 1999, courseDescriptions['PowerPoint']),
+  
+  // Access
+  createCourse(40, 'Access', 'access', 'Microsoft Office', 'Beginner', 4.6, '2 Weeks', 499, 799, courseDescriptions['Access']),
+  createCourse(41, 'Access', 'access', 'Microsoft Office', 'Intermediate', 4.65, '4 Weeks', 999, 1499, courseDescriptions['Access']),
+  createCourse(42, 'Access', 'access', 'Microsoft Office', 'Advanced', 4.7, '6 Weeks', 1499, 1999, courseDescriptions['Access']),
+  
+  // DATABASE - SQL
+  createCourse(43, 'SQL', 'sql', 'Database', 'Beginner', 4.8, '4 Weeks', 999, 1499, courseDescriptions['SQL']),
+  createCourse(44, 'SQL', 'sql', 'Database', 'Intermediate', 4.85, '8 Weeks', 1999, 2999, courseDescriptions['SQL']),
+  createCourse(45, 'SQL', 'sql', 'Database', 'Advanced', 4.9, '12 Weeks', 2999, 3999, courseDescriptions['SQL']),
+  
+  // MySQL
+  createCourse(46, 'MySQL', 'mysql', 'Database', 'Beginner', 4.7, '4 Weeks', 999, 1499, courseDescriptions['MySQL']),
+  createCourse(47, 'MySQL', 'mysql', 'Database', 'Intermediate', 4.75, '8 Weeks', 1999, 2999, courseDescriptions['MySQL']),
+  createCourse(48, 'MySQL', 'mysql', 'Database', 'Advanced', 4.8, '12 Weeks', 2999, 3999, courseDescriptions['MySQL']),
+  
+  // Sqlite
+  createCourse(49, 'Sqlite', 'sqlite', 'Database', 'Beginner', 4.6, '4 Weeks', 999, 1499, courseDescriptions['Sqlite']),
+  createCourse(50, 'Sqlite', 'sqlite', 'Database', 'Intermediate', 4.65, '8 Weeks', 1999, 2999, courseDescriptions['Sqlite']),
+  createCourse(51, 'Sqlite', 'sqlite', 'Database', 'Advanced', 4.7, '12 Weeks', 2999, 3999, courseDescriptions['Sqlite']),
+  
+  // MongoDB
+  createCourse(52, 'MongoDB', 'mongodb', 'Database', 'Beginner', 4.5, '4 Weeks', 999, 1499, courseDescriptions['MongoDB']),
+  createCourse(53, 'MongoDB', 'mongodb', 'Database', 'Intermediate', 4.55, '8 Weeks', 1999, 2999, courseDescriptions['MongoDB']),
+  createCourse(54, 'MongoDB', 'mongodb', 'Database', 'Advanced', 4.6, '12 Weeks', 2999, 3999, courseDescriptions['MongoDB']),
+  
+  // DIGITAL MARKETING
+  createCourse(55, 'Digital Marketing', 'digital-marketing', 'Marketing', 'Beginner', 4.7, '4 Weeks', 999, 1499, courseDescriptions['Digital Marketing']),
+  createCourse(56, 'Digital Marketing', 'digital-marketing', 'Marketing', 'Intermediate', 4.75, '8 Weeks', 1999, 2999, courseDescriptions['Digital Marketing']),
+  createCourse(57, 'Digital Marketing', 'digital-marketing', 'Marketing', 'Advanced', 4.8, '12 Weeks', 2999, 3999, courseDescriptions['Digital Marketing']),
 ];
 
-const categories = ['All', 'Development', 'Data', 'Marketing', 'Design', 'Cloud'];
+const categories = ['All', 'Programming Languages', 'Web Development', 'Microsoft Office', 'Database', 'Marketing'];
 const levels = ['All', 'Beginner', 'Intermediate', 'Advanced'];
 
 const formatPrice = (price: number) => {
