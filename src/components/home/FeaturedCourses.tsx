@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { Clock, Users, Star, ArrowRight } from 'lucide-react';
+import type { Swiper as SwiperType } from 'swiper';
+import { Clock, Users, Star, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const courses = [
@@ -90,6 +90,7 @@ const formatPrice = (price: number) => {
 
 export const FeaturedCourses = () => {
   const ref = useRef(null);
+  const swiperRef = useRef<SwiperType | null>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
@@ -132,7 +133,7 @@ export const FeaturedCourses = () => {
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={24}
             slidesPerView={1}
-            navigation
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
             pagination={{ clickable: true }}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             breakpoints={{
@@ -140,7 +141,7 @@ export const FeaturedCourses = () => {
               1024: { slidesPerView: 3 },
               1280: { slidesPerView: 3.5 },
             }}
-            className="!pb-14"
+            className="!pb-16"
           >
             {courses.map((course) => (
               <SwiperSlide key={course.id}>
@@ -219,6 +220,24 @@ export const FeaturedCourses = () => {
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Custom Navigation Buttons */}
+          <div className="flex items-center justify-center gap-4 mt-6">
+            <button
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="w-12 h-12 rounded-full border border-border bg-card hover:bg-secondary hover:border-secondary hover:text-secondary-foreground transition-all duration-300 flex items-center justify-center text-muted-foreground"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => swiperRef.current?.slideNext()}
+              className="w-12 h-12 rounded-full border border-border bg-card hover:bg-secondary hover:border-secondary hover:text-secondary-foreground transition-all duration-300 flex items-center justify-center text-muted-foreground"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>
