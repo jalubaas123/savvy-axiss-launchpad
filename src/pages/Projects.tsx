@@ -47,6 +47,22 @@ const whyChooseUs = [{
   icon: Clock,
   title: 'On-Time Delivery',
   description: 'We understand deadlines and deliver on schedule'
+}, {
+  icon: Shield,
+  title: 'Budget Friendly',
+  description: 'Affordable pricing with flexible payment options for students'
+}, {
+  icon: Code2,
+  title: 'Code Explanation',
+  description: 'Complete explanation for every line of code and documentation'
+}, {
+  icon: Smartphone,
+  title: 'Installation Support',
+  description: 'Full installation and setup assistance on your device'
+}, {
+  icon: Brain,
+  title: 'Viva Assistance',
+  description: 'Comprehensive viva preparation and practice sessions'
 }];
 const projectPackages = [{
   name: 'Basic',
