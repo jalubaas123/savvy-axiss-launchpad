@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { Search, Clock, Users, Star, Filter, X } from 'lucide-react';
+import { Search, Clock, Users, Star, Filter, X, Gift, Home, Headphones, Book, Award, DollarSign, MessageCircle, Network, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -220,8 +220,8 @@ const Courses = () => {
         />
       </Helmet>
 
-      {/* Hero */}
-      <section className="pt-32 pb-12 hero-gradient">
+      {/* Page Header */}
+      <section className="pt-32 pb-12" style={{ backgroundColor: '#004aad' }}>
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -229,10 +229,17 @@ const Courses = () => {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-6">
-              Explore Our <span className="gradient-text">Courses</span>
+            {/* Breadcrumb */}
+            <div className="flex items-center justify-center gap-2 text-white/70 text-sm mb-6">
+              <Link to="/" className="hover:text-white transition-colors">Home</Link>
+              <ChevronRight className="w-4 h-4" />
+              <span className="text-white">Course</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
+              Courses
             </h1>
-            <p className="text-lg text-primary-foreground/70 mb-8">
+            <p className="text-lg text-white/80 mb-8">
               Industry-relevant courses designed to make you job-ready from day one.
             </p>
             
@@ -244,10 +251,182 @@ const Courses = () => {
                 placeholder="Search courses..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 h-14 bg-card border-border text-foreground rounded-xl"
+                className="pl-12 h-14 bg-white border-border text-foreground rounded-xl"
               />
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Popular Topics Section */}
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+              Popular Topics to Explore
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+            {[
+              { name: 'Microsoft Excel', slug: 'excela', image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=400&h=300&fit=crop&q=80' },
+              { name: 'SQL', slug: 'sqla', image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=300&fit=crop&q=80' },
+              { name: 'Python', slug: 'pythona', image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=300&fit=crop&q=80' },
+              { name: 'Java', slug: 'javaa', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop&q=80' },
+              { name: 'Web Design', slug: 'cssa', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&q=80' },
+              { name: 'Web Development', slug: 'htmla', image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop&q=80' },
+              { name: 'MySQL', slug: 'mysqla', image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=300&fit=crop&q=80' },
+              { name: 'UI/UX Design', slug: 'javascripta', image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=300&fit=crop&q=80' },
+            ].map((topic, index) => (
+              <motion.div
+                key={topic.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Link to={`/courses/${topic.slug}`} className="block group">
+                  <div className="bg-card rounded-xl overflow-hidden border border-border hover:border-secondary/50 transition-all duration-300 card-hover">
+                    <div className="relative h-32 overflow-hidden">
+                      <img
+                        src={topic.image}
+                        alt={topic.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
+                    </div>
+                    <div className="p-4 text-center">
+                      <h3 className="font-heading font-semibold text-foreground group-hover:text-secondary transition-colors">
+                        {topic.name}
+                      </h3>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Perks & Benefits Section */}
+      <section className="py-12 bg-muted/30">
+        <div className="container mx-auto px-4 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+              Perks & Benefits
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: Gift, title: 'Referral Offers', description: 'Earn rewards by referring friends to our courses.' },
+              { icon: Home, title: 'Learn from Home', description: 'Learn Classes from anywhere at your convenience.' },
+              { icon: Headphones, title: '24/7 Assistance', description: 'Get your queries resolved anytime, day or night.' },
+              { icon: Clock, title: 'Flexible Learning Hours', description: 'Study at your own pace with flexible scheduling.' },
+              { icon: Book, title: 'Complete Notes Facility', description: 'Receive comprehensive notes for every course.' },
+              { icon: Award, title: 'Completion Certificate', description: 'Get a certificate upon course completion to boost your resume.' },
+              { icon: DollarSign, title: 'Installment Options', description: 'Flexible payment plans available to make courses affordable.' },
+              { icon: MessageCircle, title: 'Interactive Learning', description: 'Engage with instructors and peers through interactive sessions.' },
+              { icon: Network, title: 'Real-World Projects', description: 'Work on practical projects to apply your knowledge.' },
+            ].map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-card p-6 rounded-xl border border-border hover:border-secondary/50 transition-all duration-300 card-hover"
+              >
+                <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4">
+                  <benefit.icon className="w-6 h-6 text-secondary" />
+                </div>
+                <h3 className="text-lg font-heading font-semibold text-foreground mb-2">
+                  {benefit.title}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {benefit.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Courses Section */}
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+              Explore New and Trending Online Courses
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {[
+              { slug: 'pythona', title: 'Python Programming', image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=500&h=300&fit=crop&q=80', rating: 5.0, level: 'Advanced', duration: '12 Weeks', price: 2999 },
+              { slug: 'cssb', title: 'CSS', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=300&fit=crop&q=80', rating: 4.8, level: 'Beginner', duration: '4 Weeks', price: 999 },
+              { slug: 'htmla', title: 'HTML', image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500&h=300&fit=crop&q=80', rating: 5.0, level: 'Advanced', duration: '12 Weeks', price: 2999 },
+              { slug: 'aspi', title: 'ASP.NET', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=300&fit=crop&q=80', rating: 4.55, level: 'Intermediate', duration: '8 Weeks', price: 1999 },
+            ].map((course, index) => (
+              <motion.div
+                key={course.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Link to={`/courses/${course.slug}`} className="block group">
+                  <div className="bg-card rounded-2xl overflow-hidden border border-border hover:border-secondary/50 transition-all duration-300 card-hover h-full">
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={course.image}
+                        alt={course.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
+                      <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/80 backdrop-blur-sm text-primary-foreground text-xs font-medium">
+                        {course.level}
+                      </span>
+                    </div>
+                    <div className="p-5">
+                      <h3 className="text-lg font-heading font-semibold text-foreground mb-2 group-hover:text-secondary transition-colors">
+                        {course.title}
+                      </h3>
+                      <div className="flex items-center gap-2 mb-3">
+                        <Star className="w-4 h-4 fill-warning text-warning" />
+                        <span className="font-semibold text-foreground">{course.rating}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                        <Clock className="w-4 h-4" />
+                        <span>{course.duration}</span>
+                      </div>
+                      <div className="text-xl font-bold text-foreground">
+                        {formatPrice(course.price)}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

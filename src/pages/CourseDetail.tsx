@@ -181,7 +181,7 @@ const CourseDetail = () => {
                       </AccordionTrigger>
                       <AccordionContent>
                         <p className="text-muted-foreground pl-4">
-                          This week covers {item.topic.toLowerCase()}. You'll learn the fundamentals and practical applications through hands-on exercises and projects.
+                          {item.description}
                         </p>
                       </AccordionContent>
                     </AccordionItem>
