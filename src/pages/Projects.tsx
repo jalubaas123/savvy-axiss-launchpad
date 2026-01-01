@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FolderKanban, CheckCircle2, FileText, Users, Clock, Code2, Database, Globe, Smartphone, Brain, Shield, ArrowRight, MessageCircle } from 'lucide-react';
+import { FolderKanban, CheckCircle2, FileText, Users, Clock, Code2, Database, Globe, Smartphone, Brain, Shield, ArrowRight, MessageCircle, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { projects } from '@/data/projectsData';
 const projectDomains = [{
   icon: Code2,
   name: 'Web Development',
@@ -107,6 +108,14 @@ const itemVariants = {
     }
   }
 };
+
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    maximumFractionDigits: 0,
+  }).format(price);
+};
 export default function Projects() {
   return <>
       <Helmet>
@@ -192,6 +201,100 @@ export default function Projects() {
                 <h3 className="font-semibold text-foreground mb-1 text-sm">{domain.name}</h3>
                 <p className="text-xs text-muted-foreground">{domain.description}</p>
               </motion.div>)}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Browse Projects Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
+              Ready-Made Projects
+            </span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+              Browse Our Projects
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Choose from our collection of ready-made projects with complete source code and documentation.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          >
+            {projects.map((project) => {
+              const discountPercent = project.originalPrice
+                ? Math.round(((project.originalPrice - project.price) / project.originalPrice) * 100)
+                : 0;
+
+              return (
+                <motion.div key={project.id} variants={itemVariants}>
+                  <Card className="group overflow-hidden hover:border-secondary/50 transition-all duration-300 card-hover h-full flex flex-col">
+                    {/* Image */}
+                    <div className="relative aspect-video overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
+                      
+                      {/* Category Badge */}
+                      <Badge className="absolute top-3 left-3 bg-primary/80 backdrop-blur-sm text-primary-foreground">
+                        {project.category}
+                      </Badge>
+
+                      {/* Discount Badge */}
+                      {discountPercent > 0 && (
+                        <Badge className="absolute top-3 right-3 bg-success text-success-foreground">
+                          {discountPercent}% OFF
+                        </Badge>
+                      )}
+                    </div>
+
+                    {/* Content */}
+                    <CardContent className="p-5 flex-1 flex flex-col">
+                      <h3 className="font-semibold text-lg text-foreground mb-2 group-hover:text-secondary transition-colors line-clamp-1">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-1">
+                        {project.description}
+                      </p>
+
+                      {/* Price */}
+                      <div className="flex items-baseline gap-2 mb-4">
+                        <span className="text-xl font-bold text-foreground">
+                          {formatPrice(project.price)}
+                        </span>
+                        {project.originalPrice && (
+                          <span className="text-sm text-muted-foreground line-through">
+                            {formatPrice(project.originalPrice)}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* View Details Button */}
+                      <Button asChild className="w-full">
+                        <Link to={`/projects/${project.slug}`}>
+                          <Eye className="w-4 h-4 mr-2" />
+                          View Details
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>

@@ -559,15 +559,7 @@ const Courses = () => {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
                             
-                            {course.badge && (
-                              <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold ${
-                                course.badge === 'NEW' 
-                                  ? 'bg-success text-success-foreground' 
-                                  : 'bg-secondary text-secondary-foreground'
-                              }`}>
-                                {course.badge}
-                              </span>
-                            )}
+                            {/* Badge - currently not used */}
 
                             <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/80 backdrop-blur-sm text-primary-foreground text-xs font-medium">
                               {course.level}
