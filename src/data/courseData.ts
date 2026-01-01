@@ -341,22 +341,22 @@ export const courseDetails: Record<string, CourseDetail> = {
     },
     syllabus: {
       Beginner: [
-        { week: 1, topic: 'Introduction to Excel, Basic Navigation, Data Entry' },
-        { week: 2, topic: 'Basic Formulas, Functions, and Cell References' },
+        { week: 1, topic: 'Introduction to Excel, Basic Navigation, Data Entry', description: 'Learn Excel interface, workbook and worksheet navigation, entering and editing data, basic formatting, and saving files.' },
+        { week: 2, topic: 'Basic Formulas, Functions, and Cell References', description: 'Master SUM, AVERAGE, COUNT functions, understand relative and absolute cell references, and create basic calculations.' },
       ],
       Intermediate: [
-        { week: 1, topic: 'Advanced Formulas (VLOOKUP, HLOOKUP, INDEX, MATCH)' },
-        { week: 2, topic: 'Data Analysis Tools (Sorting, Filtering, Conditional Formatting)' },
-        { week: 3, topic: 'Charts and Graphs' },
-        { week: 4, topic: 'Pivot Tables and Pivot Charts' },
+        { week: 1, topic: 'Advanced Formulas (VLOOKUP, HLOOKUP, INDEX, MATCH)', description: 'Master lookup functions for data retrieval, combine INDEX and MATCH for powerful searches, and handle lookup errors.' },
+        { week: 2, topic: 'Data Analysis Tools (Sorting, Filtering, Conditional Formatting)', description: 'Sort data by multiple criteria, use advanced filters, and apply conditional formatting rules to highlight data patterns.' },
+        { week: 3, topic: 'Charts and Graphs', description: 'Create various chart types, customize chart elements, and design effective data visualizations for presentations.' },
+        { week: 4, topic: 'Pivot Tables and Pivot Charts', description: 'Build pivot tables for data summarization, create pivot charts, and use slicers for interactive data analysis.' },
       ],
       Advanced: [
-        { week: 1, topic: 'Advanced Functions and Array Formulas' },
-        { week: 2, topic: 'Data Validation and Protection' },
-        { week: 3, topic: 'Macros and VBA Basics' },
-        { week: 4, topic: 'Advanced Pivot Tables and Data Models' },
-        { week: 5, topic: 'Power Query and Power Pivot' },
-        { week: 6, topic: 'Advanced Automation and Dashboard Creation' },
+        { week: 1, topic: 'Advanced Functions and Array Formulas', description: 'Master array formulas, dynamic arrays, and advanced functions like SUMPRODUCT, INDIRECT, and OFFSET.' },
+        { week: 2, topic: 'Data Validation and Protection', description: 'Create data validation rules, protect worksheets and workbooks, and implement input controls for data integrity.' },
+        { week: 3, topic: 'Macros and VBA Basics', description: 'Record and edit macros, introduction to VBA programming, and automate repetitive tasks with code.' },
+        { week: 4, topic: 'Advanced Pivot Tables and Data Models', description: 'Create data models with relationships, use DAX formulas, and build advanced pivot table reports.' },
+        { week: 5, topic: 'Power Query and Power Pivot', description: 'Import and transform data with Power Query, create calculated columns and measures in Power Pivot.' },
+        { week: 6, topic: 'Advanced Automation and Dashboard Creation', description: 'Build interactive dashboards, combine charts and controls, and create automated reporting systems.' },
       ],
     },
   },
@@ -756,11 +756,14 @@ const generateDefaultSyllabus = (
       }));
     }
     // Old format with strings
-    return courseTopics.slice(0, weeks).map((topic, index) => ({ 
-      week: index + 1, 
-      topic: topic as string,
-      description: `Learn ${topic.toLowerCase()} concepts and practical applications. Gain hands-on experience through exercises and real-world examples.`
-    }));
+    return courseTopics.slice(0, weeks).map((topic, index) => {
+      const topicStr = typeof topic === 'string' ? topic : (topic as { topic: string }).topic;
+      return { 
+        week: index + 1, 
+        topic: topicStr,
+        description: `Learn ${topicStr.toLowerCase()} concepts and practical applications. Gain hands-on experience through exercises and real-world examples.`
+      };
+    });
   }
 
   // Generic fallback with descriptions

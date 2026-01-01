@@ -12,6 +12,7 @@ import CourseDetail from "./pages/CourseDetail";
 import Contact from "./pages/Contact";
 import Apply from "./pages/Apply";
 import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import WebDevelopment from "./pages/WebDevelopment";
 import Internship from "./pages/Internship";
 import NotFound from "./pages/NotFound";
@@ -32,6 +33,7 @@ const App = () => (
               <Route path="/courses" element={<Courses />} />
               <Route path="/courses/:slug" element={<CourseDetail />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/:slug" element={<ProjectDetail />} />
               <Route path="/web-development" element={<WebDevelopment />} />
               <Route path="/internship" element={<Internship />} />
               <Route path="/contact" element={<Contact />} />
