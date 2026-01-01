@@ -111,21 +111,18 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground mt-8">
                 <p>
-                  Savvy Axiss was founded in 2020 with a simple yet powerful vision: 
+                  Savvy Axiss was founded in 2022 with a simple yet powerful vision: 
                   to make quality tech education accessible and practical. We noticed 
                   a significant gap between what traditional education offers and what 
                   the industry demands.
                 </p>
                 <p>
-                  Our founders, with over 20 years of combined industry experience, 
-                  designed a curriculum that focuses on hands-on learning, real projects, 
-                  and industry mentorship. We don't just teach concepts – we prepare 
-                  you for real-world challenges.
+                  So we built Savvy Axiss as a hands-on learning space where you don’t just learn concepts, 
+                  you actually do the work. From real projects to guided mentorship, 
+                  we help learners build skills that matter and confidence that lasts.
                 </p>
                 <p>
-                  Today, we've trained over 500 students, with a 98% placement rate. 
-                  Our alumni work at top companies including TCS, Infosys, Flipkart, 
-                  Amazon, and many more.
+                  We’re a growing startup, learning and improving every day — just like our students.
                 </p>
               </div>
             </motion.div>
@@ -144,10 +141,7 @@ const About = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-xl shadow-xl border border-border max-w-xs">
-                <p className="text-4xl font-bold text-secondary mb-1">500+</p>
-                <p className="text-muted-foreground">Careers Transformed</p>
-              </div>
+              
             </motion.div>
           </div>
         </div>
