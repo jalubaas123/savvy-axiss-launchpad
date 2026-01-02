@@ -8,12 +8,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 const internshipDomains = [{
   icon: Code2,
   name: 'Web Development',
-  duration: '2-3 months',
+  duration: '1-3 months',
   description: 'React, Node.js, Full Stack'
 }, {
   icon: BarChart3,
   name: 'Data Science',
-  duration: '2-3 months',
+  duration: '1-3 months',
   description: 'Python, ML, Analytics'
 }, {
   icon: Palette,
@@ -23,7 +23,7 @@ const internshipDomains = [{
 }, {
   icon: Lightbulb,
   name: 'Digital Marketing',
-  duration: '2 months',
+  duration: '1-3 months',
   description: 'SEO, Social Media, Ads'
 }];
 const benefits = [{
@@ -74,19 +74,19 @@ const internshipProcess = [{
 }];
 const packages = [{
   name: 'Basic Internship',
-  price: '₹2,999',
+  price: '₹1,999',
   duration: '1 Month',
   features: ['Work on 1 real project', 'Weekly mentor sessions', 'Internship certificate', 'Basic project guidance', 'Community access'],
   popular: false
 }, {
   name: 'Standard Internship',
-  price: '₹5,999',
+  price: '₹2,999',
   duration: '2 Months',
   features: ['Work on 2-3 real projects', 'Bi-weekly 1-on-1 mentorship', 'Certificate + LOR', 'Resume building session', 'LinkedIn optimization', 'Priority community access'],
   popular: true
 }, {
   name: 'Premium Internship',
-  price: '₹9,999',
+  price: '₹3,999',
   duration: '3 Months',
   features: ['Work on 4+ real projects', 'Weekly 1-on-1 mentorship', 'Certificate + LOR + Recommendation', 'Job placement assistance', 'Mock interviews', 'Lifetime community access', 'Freelancing guidance'],
   popular: false
