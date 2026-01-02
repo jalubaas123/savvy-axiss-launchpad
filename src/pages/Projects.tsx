@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FolderKanban, CheckCircle2, FileText, Users, Clock, Code2, Database, Globe, Smartphone, Brain, Shield, ArrowRight, MessageCircle, Eye } from 'lucide-react';
+import { FolderKanban, CheckCircle2, FileText, Users, Clock, Code2, Database, Globe, Smartphone, Brain, Shield, ArrowRight, MessageCircle, Eye, GraduationCap, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { projects } from '@/data/projectsData';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { projects, researchPapers, mbaProjects, projectCategories } from '@/data/projectsData';
+
 const projectDomains = [{
   icon: Code2,
   name: 'Web Development',
@@ -32,6 +34,7 @@ const projectDomains = [{
   name: 'IoT Projects',
   description: 'Arduino, Raspberry Pi, Sensors'
 }];
+
 const whyChooseUs = [{
   icon: CheckCircle2,
   title: 'Original Projects',
@@ -65,6 +68,7 @@ const whyChooseUs = [{
   title: 'Viva Assistance',
   description: 'Comprehensive viva preparation and practice sessions'
 }];
+
 const projectPackages = [{
   name: 'Basic',
   price: '₹4,999',
@@ -84,6 +88,7 @@ const projectPackages = [{
   features: ['Advanced project implementation', 'Research paper guidance', 'Complete documentation set', 'Unlimited revisions', 'Viva preparation support', 'Priority 24/7 support', 'Certificate included'],
   popular: false
 }];
+
 const containerVariants = {
   hidden: {
     opacity: 0
@@ -95,6 +100,7 @@ const containerVariants = {
     }
   }
 };
+
 const itemVariants = {
   hidden: {
     opacity: 0,
@@ -116,7 +122,14 @@ const formatPrice = (price: number) => {
     maximumFractionDigits: 0,
   }).format(price);
 };
+
 export default function Projects() {
+  const [activeCategory, setActiveCategory] = useState('All');
+
+  const filteredProjects = activeCategory === 'All' 
+    ? projects 
+    : projects.filter(project => project.category === activeCategory);
+
   return <>
       <Helmet>
         <title>Final Year Projects for College Students | Savvy Axiss</title>
@@ -205,14 +218,14 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Browse Projects Section */}
+      {/* Browse Projects Section with Category Filter */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
             <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
               Ready-Made Projects
@@ -225,6 +238,28 @@ export default function Projects() {
             </p>
           </motion.div>
 
+          {/* Category Filter Tabs */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex justify-center mb-8"
+          >
+            <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full max-w-4xl">
+              <TabsList className="flex flex-wrap justify-center gap-2 h-auto bg-transparent p-0">
+                {projectCategories.map((category) => (
+                  <TabsTrigger
+                    key={category}
+                    value={category}
+                    className="px-4 py-2 rounded-full border border-border data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground data-[state=active]:border-secondary bg-card hover:bg-muted transition-all"
+                  >
+                    {category}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+          </motion.div>
+
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -232,13 +267,13 @@ export default function Projects() {
             viewport={{ once: true }}
             className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
           >
-            {projects.map((project) => {
+            {filteredProjects.map((project) => {
               const discountPercent = project.originalPrice
                 ? Math.round(((project.originalPrice - project.price) / project.originalPrice) * 100)
                 : 0;
 
               return (
-                <motion.div key={project.id} variants={itemVariants}>
+                <motion.div key={project.id} variants={itemVariants} layout>
                   <Card className="group overflow-hidden hover:border-secondary/50 transition-all duration-300 card-hover h-full flex flex-col">
                     {/* Image */}
                     <div className="relative aspect-video overflow-hidden">
@@ -296,11 +331,207 @@ export default function Projects() {
               );
             })}
           </motion.div>
+
+          {filteredProjects.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">No projects found in this category.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Research Papers Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block px-4 py-1 rounded-full bg-violet-500/10 text-violet-500 text-sm font-medium mb-4">
+              <BookOpen className="w-3 h-3 inline mr-1" />
+              Academic Research
+            </span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+              Research Papers
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Get well-researched, IEEE format papers with complete references and plagiarism reports.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {researchPapers.map((paper) => {
+              const discountPercent = paper.originalPrice
+                ? Math.round(((paper.originalPrice - paper.price) / paper.originalPrice) * 100)
+                : 0;
+
+              return (
+                <motion.div key={paper.id} variants={itemVariants}>
+                  <Card className="group overflow-hidden hover:border-violet-500/50 transition-all duration-300 card-hover h-full flex flex-col">
+                    <div className="relative aspect-video overflow-hidden">
+                      <img
+                        src={paper.image}
+                        alt={paper.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-violet-900/60 to-transparent" />
+                      <Badge className="absolute top-3 left-3 bg-violet-500/80 backdrop-blur-sm text-white">
+                        {paper.domain}
+                      </Badge>
+                      {discountPercent > 0 && (
+                        <Badge className="absolute top-3 right-3 bg-success text-success-foreground">
+                          {discountPercent}% OFF
+                        </Badge>
+                      )}
+                    </div>
+
+                    <CardContent className="p-5 flex-1 flex flex-col">
+                      <h3 className="font-semibold text-lg text-foreground mb-2 group-hover:text-violet-500 transition-colors line-clamp-2">
+                        {paper.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-1">
+                        {paper.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1 mb-4">
+                        {paper.features.slice(0, 3).map((feature) => (
+                          <Badge key={feature} variant="outline" className="text-xs">
+                            {feature}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      <div className="flex items-baseline gap-2 mb-4">
+                        <span className="text-xl font-bold text-foreground">
+                          {formatPrice(paper.price)}
+                        </span>
+                        {paper.originalPrice && (
+                          <span className="text-sm text-muted-foreground line-through">
+                            {formatPrice(paper.originalPrice)}
+                          </span>
+                        )}
+                      </div>
+
+                      <Button asChild className="w-full bg-violet-600 hover:bg-violet-700">
+                        <a href={`https://wa.me/919999999999?text=Hi, I'm interested in the research paper: ${paper.title}`} target="_blank" rel="noopener noreferrer">
+                          <MessageCircle className="w-4 h-4 mr-2" />
+                          Enquire Now
+                        </a>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* MBA Projects Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block px-4 py-1 rounded-full bg-amber-500/10 text-amber-600 text-sm font-medium mb-4">
+              <GraduationCap className="w-3 h-3 inline mr-1" />
+              MBA Projects
+            </span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+              MBA Project Reports
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Complete MBA projects with case studies, analysis, and presentations for all specializations.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {mbaProjects.map((project) => {
+              const discountPercent = project.originalPrice
+                ? Math.round(((project.originalPrice - project.price) / project.originalPrice) * 100)
+                : 0;
+
+              return (
+                <motion.div key={project.id} variants={itemVariants}>
+                  <Card className="group overflow-hidden hover:border-amber-500/50 transition-all duration-300 card-hover h-full flex flex-col">
+                    <div className="relative aspect-video overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 to-transparent" />
+                      <Badge className="absolute top-3 left-3 bg-amber-500/80 backdrop-blur-sm text-white">
+                        {project.specialization}
+                      </Badge>
+                      {discountPercent > 0 && (
+                        <Badge className="absolute top-3 right-3 bg-success text-success-foreground">
+                          {discountPercent}% OFF
+                        </Badge>
+                      )}
+                    </div>
+
+                    <CardContent className="p-5 flex-1 flex flex-col">
+                      <h3 className="font-semibold text-lg text-foreground mb-2 group-hover:text-amber-600 transition-colors line-clamp-2">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-1">
+                        {project.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1 mb-4">
+                        {project.features.slice(0, 3).map((feature) => (
+                          <Badge key={feature} variant="outline" className="text-xs">
+                            {feature}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      <div className="flex items-baseline gap-2 mb-4">
+                        <span className="text-xl font-bold text-foreground">
+                          {formatPrice(project.price)}
+                        </span>
+                        {project.originalPrice && (
+                          <span className="text-sm text-muted-foreground line-through">
+                            {formatPrice(project.originalPrice)}
+                          </span>
+                        )}
+                      </div>
+
+                      <Button asChild className="w-full bg-amber-600 hover:bg-amber-700">
+                        <a href={`https://wa.me/919999999999?text=Hi, I'm interested in the MBA project: ${project.title}`} target="_blank" rel="noopener noreferrer">
+                          <MessageCircle className="w-4 h-4 mr-2" />
+                          Enquire Now
+                        </a>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </motion.div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <motion.div initial={{
           opacity: 0,
@@ -331,7 +562,7 @@ export default function Projects() {
       </section>
 
       {/* Pricing Packages */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <motion.div initial={{
           opacity: 0,

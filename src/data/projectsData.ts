@@ -13,6 +13,30 @@ export interface Project {
   techStack: string[];
 }
 
+export interface ResearchPaper {
+  id: number;
+  slug: string;
+  title: string;
+  domain: string;
+  image: string;
+  price: number;
+  originalPrice?: number;
+  description: string;
+  features: string[];
+}
+
+export interface MBAProject {
+  id: number;
+  slug: string;
+  title: string;
+  specialization: string;
+  image: string;
+  price: number;
+  originalPrice?: number;
+  description: string;
+  features: string[];
+}
+
 export const projects: Project[] = [
   {
     id: 1,
@@ -200,6 +224,102 @@ export const projects: Project[] = [
   },
 ];
 
+export const researchPapers: ResearchPaper[] = [
+  {
+    id: 1,
+    slug: 'blockchain-supply-chain',
+    title: 'Blockchain in Supply Chain Management',
+    domain: 'Blockchain',
+    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=500&fit=crop&q=80',
+    price: 4999,
+    originalPrice: 7999,
+    description: 'Research paper on implementing blockchain technology for transparent supply chain tracking.',
+    features: ['IEEE Format', 'Plagiarism Report', 'Reference Papers', 'Implementation Guide'],
+  },
+  {
+    id: 2,
+    slug: 'ai-healthcare-diagnosis',
+    title: 'AI in Healthcare Diagnosis',
+    domain: 'Artificial Intelligence',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop&q=80',
+    price: 5499,
+    originalPrice: 8999,
+    description: 'Comprehensive study on AI-powered medical diagnosis systems and their accuracy.',
+    features: ['IEEE Format', 'Plagiarism Report', 'Dataset Access', 'Code Samples'],
+  },
+  {
+    id: 3,
+    slug: 'iot-smart-agriculture',
+    title: 'IoT-Based Smart Agriculture',
+    domain: 'Internet of Things',
+    image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=500&fit=crop&q=80',
+    price: 4499,
+    originalPrice: 6999,
+    description: 'Research on IoT sensors and automation in modern farming practices.',
+    features: ['IEEE Format', 'Plagiarism Report', 'Hardware Specs', 'Circuit Diagrams'],
+  },
+  {
+    id: 4,
+    slug: 'cybersecurity-ml',
+    title: 'Machine Learning for Cybersecurity',
+    domain: 'Cybersecurity',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=500&fit=crop&q=80',
+    price: 5999,
+    originalPrice: 9499,
+    description: 'Advanced research on using ML algorithms for threat detection and prevention.',
+    features: ['IEEE Format', 'Plagiarism Report', 'ML Models', 'Dataset Included'],
+  },
+];
+
+export const mbaProjects: MBAProject[] = [
+  {
+    id: 1,
+    slug: 'market-analysis-fintech',
+    title: 'Market Analysis of FinTech Startups',
+    specialization: 'Finance',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=80',
+    price: 6999,
+    originalPrice: 10999,
+    description: 'Comprehensive market analysis and investment potential study of Indian FinTech startups.',
+    features: ['Complete Report', 'PPT Presentation', 'Financial Models', 'Data Analysis'],
+  },
+  {
+    id: 2,
+    slug: 'hr-employee-retention',
+    title: 'Employee Retention Strategies',
+    specialization: 'Human Resources',
+    image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&h=500&fit=crop&q=80',
+    price: 5999,
+    originalPrice: 8999,
+    description: 'Study on effective HR strategies to improve employee retention in IT companies.',
+    features: ['Survey Data', 'Case Studies', 'PPT Presentation', 'Statistical Analysis'],
+  },
+  {
+    id: 3,
+    slug: 'digital-marketing-roi',
+    title: 'Digital Marketing ROI Analysis',
+    specialization: 'Marketing',
+    image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&h=500&fit=crop&q=80',
+    price: 5499,
+    originalPrice: 8499,
+    description: 'Analysis of digital marketing strategies and their return on investment for SMEs.',
+    features: ['Campaign Data', 'ROI Models', 'PPT Presentation', 'Recommendations'],
+  },
+  {
+    id: 4,
+    slug: 'supply-chain-optimization',
+    title: 'Supply Chain Optimization',
+    specialization: 'Operations',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=500&fit=crop&q=80',
+    price: 6499,
+    originalPrice: 9999,
+    description: 'Study on optimizing supply chain operations for manufacturing companies.',
+    features: ['Process Maps', 'Cost Analysis', 'PPT Presentation', 'Implementation Plan'],
+  },
+];
+
+export const projectCategories = ['All', 'Web Development', 'Mobile Apps', 'Machine Learning', 'Data Science', 'Cyber Security', 'IoT Projects'];
+
 export const getProjectBySlug = (slug: string): Project | undefined => {
   return projects.find((project) => project.slug === slug);
 };
@@ -208,4 +328,12 @@ export const getRelatedProjects = (currentSlug: string, category: string): Proje
   return projects
     .filter((project) => project.slug !== currentSlug && project.category === category)
     .slice(0, 3);
+};
+
+export const getResearchPaperBySlug = (slug: string): ResearchPaper | undefined => {
+  return researchPapers.find((paper) => paper.slug === slug);
+};
+
+export const getMBAProjectBySlug = (slug: string): MBAProject | undefined => {
+  return mbaProjects.find((project) => project.slug === slug);
 };
