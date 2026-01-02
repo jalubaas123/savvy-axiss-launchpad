@@ -118,7 +118,7 @@ const Apply = () => {
     try {
       // Prepare form data for formsubmit.co
       const formDataToSubmit = new FormData();
-      formDataToSubmit.append('_to', 'career@savvyaxiss.com');
+      formDataToSubmit.append('_to', 'careers@savvyaxiss.com');
       formDataToSubmit.append('_subject', 'New Application Submission');
       formDataToSubmit.append('_template', 'table');
       formDataToSubmit.append('_captcha', 'false');
@@ -137,7 +137,7 @@ const Apply = () => {
       formDataToSubmit.append('Message', formData.message);
 
       // Submit to formsubmit.co
-      const response = await fetch('https://formsubmit.co/career@savvyaxiss.com', {
+      const response = await fetch('https://formsubmit.co/careers@savvyaxiss.com', {
         method: 'POST',
         body: formDataToSubmit,
         headers: {
@@ -160,7 +160,7 @@ const Apply = () => {
       console.error('Application submission error:', error);
       toast({
         title: "Error",
-        description: "There was an error submitting your application. Please try again or contact us directly at career@savvyaxiss.com",
+        description: "There was an error submitting your application. Please try again or contact us directly at careers@savvyaxiss.com",
         variant: 'destructive',
       });
       setIsSubmitting(false);

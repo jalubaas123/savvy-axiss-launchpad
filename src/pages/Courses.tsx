@@ -165,8 +165,8 @@ const Courses = () => {
       </Helmet>
 
       {/* Page Header */}
-      <section className="pt-32 pb-12" style={{ backgroundColor: '#004aad' }}>
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="pt-24 sm:pt-32 pb-8 sm:pb-12" style={{ backgroundColor: '#004aad' }}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -203,8 +203,8 @@ const Courses = () => {
       </section>
 
       {/* Popular Topics Section */}
-      <section className="py-12 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-8 sm:py-12 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -212,12 +212,12 @@ const Courses = () => {
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
               Popular Topics to Explore
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               { name: 'Microsoft Excel', slug: 'excela', image: '/msexcel.png' },
               { name: 'Python', slug: 'pythona', image: '/python.png' },
@@ -238,7 +238,7 @@ const Courses = () => {
               >
                 <Link to={`/courses/${topic.slug}`} className="block group">
                   <div className="bg-card rounded-xl overflow-hidden border border-border hover:border-secondary/50 transition-all duration-300 card-hover">
-                    <div className="relative h-32 overflow-hidden">
+                    <div className="relative h-24 sm:h-32 overflow-hidden">
                       <img
                         src={topic.image}
                         alt={topic.name}
@@ -246,7 +246,7 @@ const Courses = () => {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
                     </div>
-                    <div className="p-4 text-center">
+                    <div className="p-3 sm:p-4 text-center">
                       <h3 className="font-heading font-semibold text-foreground group-hover:text-secondary transition-colors">
                         {topic.name}
                       </h3>

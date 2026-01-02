@@ -123,11 +123,11 @@ export default function Internship() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-orange-900/50" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyek0zNiAyNHYySDI0di0yaDEyeiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div initial={{
           opacity: 0,
           y: 30
@@ -201,7 +201,7 @@ export default function Internship() {
 
       {/* Internship Domains */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{
           opacity: 0,
           y: 20
@@ -236,7 +236,7 @@ export default function Internship() {
 
       {/* Benefits */}
       <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{
           opacity: 0,
           y: 20
@@ -377,7 +377,7 @@ export default function Internship() {
 
       {/* Pricing */}
       <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{
           opacity: 0,
           y: 20

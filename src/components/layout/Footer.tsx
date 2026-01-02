@@ -58,15 +58,15 @@ const socialLinks = [{
 export const Footer = () => {
   return <footer className="bg-primary text-primary-foreground">
       {/* Main Footer */}
-      <div className="container mx-auto px-4 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center mb-6">
+            <Link to="/" className="flex items-center mb-4 sm:mb-6">
               <img 
                 src="/logo.png" 
                 alt="Savvy Axiss Logo" 
-                className="h-12 w-auto object-contain"
+                className="h-10 sm:h-12 w-auto object-contain"
               />
             </Link>
             <p className="text-primary-foreground/70 text-sm mb-6 leading-relaxed">
@@ -82,7 +82,7 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-heading font-semibold mb-6">Quick Links</h4>
+            <h4 className="text-base sm:text-lg font-heading font-semibold mb-4 sm:mb-6">Quick Links</h4>
             <ul className="space-y-3">
               {footerLinks.quickLinks.map(link => <li key={link.name}>
                   <Link to={link.href} className="text-primary-foreground/70 hover:text-secondary transition-colors duration-300 text-sm">
@@ -94,7 +94,7 @@ export const Footer = () => {
 
           {/* Courses */}
           <div>
-            <h4 className="text-lg font-heading font-semibold mb-6">Popular Courses</h4>
+            <h4 className="text-base sm:text-lg font-heading font-semibold mb-4 sm:mb-6">Popular Courses</h4>
             <ul className="space-y-3">
               {footerLinks.courses.map(link => <li key={link.name}>
                   <Link to={link.href} className="text-primary-foreground/70 hover:text-secondary transition-colors duration-300 text-sm">
@@ -106,7 +106,7 @@ export const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-heading font-semibold mb-6">Contact Us</h4>
+            <h4 className="text-base sm:text-lg font-heading font-semibold mb-4 sm:mb-6">Contact Us</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
@@ -134,7 +134,7 @@ export const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-primary-foreground/10">
-        <div className="container mx-auto px-4 lg:px-8 py-6">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-primary-foreground/60 text-sm text-center md:text-left">
               © {new Date().getFullYear()} Savvy Axiss. All rights reserved.

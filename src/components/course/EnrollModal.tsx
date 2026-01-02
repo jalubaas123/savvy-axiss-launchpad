@@ -156,7 +156,7 @@ export const EnrollModal = ({
     try {
       // Prepare form data for formsubmit.co
       const formDataToSubmit = new FormData();
-      formDataToSubmit.append('_to', 'career@savvyaxiss.com');
+      formDataToSubmit.append('_to', 'careers@savvyaxiss.com');
       formDataToSubmit.append('_subject', `Course Enrollment: ${courseTitle} - ${courseLevel}`);
       formDataToSubmit.append('_template', 'table');
       formDataToSubmit.append('_captcha', 'false');
@@ -187,7 +187,7 @@ export const EnrollModal = ({
       formDataToSubmit.append('Message', formData.message || 'No additional message');
 
       // Submit to formsubmit.co
-      const response = await fetch('https://formsubmit.co/career@savvyaxiss.com', {
+      const response = await fetch('https://formsubmit.co/careers@savvyaxiss.com', {
         method: 'POST',
         body: formDataToSubmit,
         headers: {
@@ -215,7 +215,7 @@ export const EnrollModal = ({
       console.error('Enrollment submission error:', error);
       toast({
         title: 'Error',
-        description: 'There was an error submitting your enrollment. Please try again or contact us directly at career@savvyaxiss.com',
+        description: 'There was an error submitting your enrollment. Please try again or contact us directly at careers@savvyaxiss.com',
         variant: 'destructive',
         duration: 5000,
       });
@@ -226,7 +226,7 @@ export const EnrollModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0 w-[95vw] sm:w-full">
         <AnimatePresence>
           {isSuccess ? (
             <motion.div

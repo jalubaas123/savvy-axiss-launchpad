@@ -59,8 +59,8 @@ export const Testimonials = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-20 lg:py-28 bg-primary overflow-hidden">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section className="py-12 sm:py-20 lg:py-28 bg-primary overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           ref={ref}

@@ -28,11 +28,11 @@ export const HowItWorks = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-20 lg:py-28 bg-background relative overflow-hidden">
+    <section className="py-12 sm:py-20 lg:py-28 bg-background relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-px bg-gradient-to-r from-transparent via-secondary/30 to-transparent" />
       
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           ref={ref}

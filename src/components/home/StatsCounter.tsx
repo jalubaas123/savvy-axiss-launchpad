@@ -65,7 +65,7 @@ export const StatsCounter = () => {
     once: true,
     margin: '-100px'
   });
-  return <section className="py-20 lg:py-24 bg-gradient-to-r from-secondary to-accent relative overflow-hidden">
+  return <section className="py-12 sm:py-20 lg:py-24 bg-gradient-to-r from-secondary to-accent relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -73,7 +73,7 @@ export const StatsCounter = () => {
       }} />
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div ref={ref} initial={{
         opacity: 0,
         y: 20

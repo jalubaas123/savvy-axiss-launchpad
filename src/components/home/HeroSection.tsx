@@ -29,7 +29,7 @@ export const HeroSection = () => {
       }} />
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 pt-24 pb-16 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-12 sm:pb-16 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           {/* Badge */}
           <motion.div initial={{
@@ -40,12 +40,12 @@ export const HeroSection = () => {
           y: 0
         }} transition={{
           duration: 0.5
-        }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary mb-8">
+        }} className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary mb-6 sm:mb-8">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary" />
             </span>
-            <span className="text-sm font-medium">Now Enrolling for January 2026 Batch</span>
+            <span className="text-xs sm:text-sm font-medium">Now Enrolling for January 2026 Batch</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -58,7 +58,7 @@ export const HeroSection = () => {
         }} transition={{
           duration: 0.5,
           delay: 0.1
-        }} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-primary-foreground leading-tight mb-6">
+        }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-primary-foreground leading-tight mb-4 sm:mb-6 px-2">
             Transform Your Career with{' '}
             <span className="gradient-text">Live Training</span> &{' '}
             <span className="gradient-text">Real-Time Internships</span>
@@ -74,7 +74,7 @@ export const HeroSection = () => {
         }} transition={{
           duration: 0.5,
           delay: 0.2
-        }} className="text-lg md:text-xl text-primary-foreground/70 max-w-3xl mx-auto mb-10">
+        }} className="text-base sm:text-lg md:text-xl text-primary-foreground/70 max-w-3xl mx-auto mb-8 sm:mb-10 px-4">
             Master in-demand tech skills through hands-on projects with industry experts. 
             Get certified. Get hired. Start your journey today.
           </motion.p>
@@ -89,7 +89,7 @@ export const HeroSection = () => {
         }} transition={{
           duration: 0.5,
           delay: 0.3
-        }} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        }} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-16 px-4">
             <Button variant="hero" size="xl" asChild>
               <Link to="/courses">
                 Explore Courses
@@ -114,7 +114,7 @@ export const HeroSection = () => {
         }} transition={{
           duration: 0.5,
           delay: 0.4
-        }} className="flex flex-wrap items-center justify-center gap-6 md:gap-12">
+        }} className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-12 px-4">
             {stats.map((stat, index) => <div key={stat.label} className="flex items-center gap-3 text-primary-foreground/80">
                 <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
                   <stat.icon className="w-5 h-5 text-secondary" />

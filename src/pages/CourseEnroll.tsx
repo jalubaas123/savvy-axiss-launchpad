@@ -133,7 +133,7 @@ const CourseEnroll = () => {
     try {
       // Prepare form data for formsubmit.co
       const formDataToSubmit = new FormData();
-      formDataToSubmit.append('_to', 'career@savvyaxiss.com');
+      formDataToSubmit.append('_to', 'careers@savvyaxiss.com');
       formDataToSubmit.append('_subject', `Course Enrollment: ${courseTitle} - ${courseLevel}`);
       formDataToSubmit.append('_template', 'table');
       formDataToSubmit.append('_captcha', 'false');
@@ -164,7 +164,7 @@ const CourseEnroll = () => {
       formDataToSubmit.append('Message', formData.message || 'No additional message');
 
       // Submit to formsubmit.co
-      const response = await fetch('https://formsubmit.co/career@savvyaxiss.com', {
+      const response = await fetch('https://formsubmit.co/careers@savvyaxiss.com', {
         method: 'POST',
         body: formDataToSubmit,
         headers: {
@@ -186,7 +186,7 @@ const CourseEnroll = () => {
       console.error('Enrollment submission error:', error);
       toast({
         title: 'Error',
-        description: 'There was an error submitting your enrollment. Please try again or contact us directly at career@savvyaxiss.com',
+        description: 'There was an error submitting your enrollment. Please try again or contact us directly at careers@savvyaxiss.com',
         variant: 'destructive',
         duration: 5000,
       });
@@ -206,8 +206,8 @@ const CourseEnroll = () => {
       </Helmet>
 
       {/* Hero */}
-      <section className="pt-32 pb-12 hero-gradient">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="pt-24 sm:pt-32 pb-8 sm:pb-12 hero-gradient">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -239,8 +239,8 @@ const CourseEnroll = () => {
       </section>
 
       {/* Enrollment Form */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-12 sm:py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <AnimatePresence>
               {isSuccess ? (

@@ -32,7 +32,7 @@ const Contact = () => {
     try {
       // Prepare form data for formsubmit.co
       const formDataToSubmit = new FormData();
-      formDataToSubmit.append('_to', 'career@savvyaxiss.com');
+      formDataToSubmit.append('_to', 'careers@savvyaxiss.com');
       formDataToSubmit.append('_subject', formData.subject || 'Contact Form Submission');
       formDataToSubmit.append('_template', 'table');
       formDataToSubmit.append('_captcha', 'false');
@@ -44,7 +44,7 @@ const Contact = () => {
       formDataToSubmit.append('Message', formData.message);
 
       // Submit to formsubmit.co
-      const response = await fetch('https://formsubmit.co/career@savvyaxiss.com', {
+      const response = await fetch('https://formsubmit.co/careers@savvyaxiss.com', {
         method: 'POST',
         body: formDataToSubmit,
         headers: {
@@ -72,7 +72,7 @@ const Contact = () => {
       console.error('Contact form submission error:', error);
       toast({
         title: "Error",
-        description: "There was an error sending your message. Please try again or contact us directly at career@savvyaxiss.com",
+        description: "There was an error sending your message. Please try again or contact us directly at careers@savvyaxiss.com",
         variant: 'destructive',
       });
     } finally {
@@ -91,8 +91,8 @@ const Contact = () => {
       </Helmet>
 
       {/* Hero */}
-      <section className="pt-32 pb-12 hero-gradient">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="pt-24 sm:pt-32 pb-8 sm:pb-12 hero-gradient">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -114,9 +114,9 @@ const Contact = () => {
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+      <section className="py-12 sm:py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}

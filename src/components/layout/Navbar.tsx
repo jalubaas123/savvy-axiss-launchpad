@@ -46,38 +46,38 @@ export const Navbar = () => {
       y: 0
     }} transition={{
       duration: 0.5
-    }} className="">
-        <nav className="container mx-auto px-4 lg:px-8 bg-primary-foreground">
-          <div className="flex items-center justify-between h-24 lg:h-32">
+    }} className="sticky top-0 z-50 bg-primary-foreground shadow-sm">
+        <nav className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 bg-primary-foreground">
+          <div className="flex items-center justify-between h-16 sm:h-20 md:h-24 lg:h-28">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group">
+            <Link to="/" className="flex items-center gap-1.5 sm:gap-2 md:gap-3 group flex-shrink-0 min-w-0">
               <img 
                 src="/logo.png" 
                 alt="Savvy Axiss Logo" 
-                className="h-20 lg:h-28 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                className="h-10 sm:h-14 md:h-16 lg:h-20 xl:h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-300 flex-shrink-0"
               />
-              <span className="text-xl lg:text-2xl font-heading font-bold text-blue-900">
+              <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-heading font-bold text-blue-900 hidden sm:inline-block truncate">
                 Savvy<span className="text-orange-600">Axiss</span>
               </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
-              {navLinks.map(link => <Link key={link.name} to={link.href} className={`text-sm font-medium transition-colors duration-300 link-underline ${location.pathname === link.href ? 'text-secondary' : 'text-foreground/80 hover:text-secondary'}`}>
+            <div className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8">
+              {navLinks.map(link => <Link key={link.name} to={link.href} className={`text-xs xl:text-sm font-medium transition-colors duration-300 link-underline whitespace-nowrap ${location.pathname === link.href ? 'text-secondary' : 'text-foreground/80 hover:text-secondary'}`}>
                   {link.name}
                 </Link>)}
             </div>
 
             {/* CTA Button */}
-            <div className="hidden lg:flex items-center gap-4">
-              <Button variant="hero" size="default" asChild>
+            <div className="hidden lg:flex items-center gap-2 xl:gap-4">
+              <Button variant="hero" size="default" className="text-xs xl:text-sm px-3 xl:px-4 h-8 xl:h-10" asChild>
                 <Link to="/apply">Apply Now</Link>
               </Button>
             </div>
 
             {/* Mobile Menu Button */}
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-2 text-foreground hover:text-secondary transition-colors" aria-label="Toggle menu">
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-1.5 sm:p-2 text-foreground hover:text-secondary transition-colors flex-shrink-0" aria-label="Toggle menu">
+              {isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
         </nav>
@@ -97,9 +97,9 @@ export const Navbar = () => {
       }} transition={{
         duration: 0.3,
         ease: 'easeInOut'
-      }} className="fixed inset-0 z-40 lg:hidden">
+      }} className="fixed inset-0 z-50 lg:hidden">
             <div className="absolute inset-0 bg-primary/50 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
-            <motion.div className="absolute right-0 top-0 h-full w-80 max-w-full bg-card shadow-2xl" initial={{
+            <motion.div className="absolute right-0 top-0 h-full w-[85vw] sm:w-80 max-w-sm bg-card shadow-2xl overflow-y-auto" initial={{
           x: '100%'
         }} animate={{
           x: 0
@@ -108,8 +108,8 @@ export const Navbar = () => {
         }} transition={{
           duration: 0.3
         }}>
-              <div className="flex flex-col h-full pt-20 px-6 pb-8">
-                <nav className="flex flex-col gap-2">
+              <div className="flex flex-col h-full pt-16 sm:pt-20 px-4 sm:px-6 pb-6 sm:pb-8">
+                <nav className="flex flex-col gap-1 sm:gap-2">
                   {navLinks.map((link, index) => <motion.div key={link.name} initial={{
                 opacity: 0,
                 x: 20
@@ -119,14 +119,14 @@ export const Navbar = () => {
               }} transition={{
                 delay: index * 0.1
               }}>
-                      <Link to={link.href} className={`block py-3 px-4 rounded-lg text-lg font-medium transition-all duration-300 ${location.pathname === link.href ? 'bg-secondary/10 text-secondary' : 'text-foreground hover:bg-muted hover:text-secondary'}`}>
+                      <Link to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg text-base sm:text-lg font-medium transition-all duration-300 ${location.pathname === link.href ? 'bg-secondary/10 text-secondary' : 'text-foreground hover:bg-muted hover:text-secondary'}`}>
                         {link.name}
                       </Link>
                     </motion.div>)}
                 </nav>
-                <div className="mt-8">
-                  <Button variant="hero" size="lg" className="w-full" asChild>
-                    <Link to="/apply">Apply Now</Link>
+                <div className="mt-6 sm:mt-8">
+                  <Button variant="hero" size="default" className="w-full text-sm sm:text-base" asChild>
+                    <Link to="/apply" onClick={() => setIsMobileMenuOpen(false)}>Apply Now</Link>
                   </Button>
                 </div>
               </div>

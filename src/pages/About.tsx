@@ -70,8 +70,8 @@ const About = () => {
       </Helmet>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 hero-gradient">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 hero-gradient">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -94,9 +94,9 @@ const About = () => {
       </section>
 
       {/* Our Story */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <section className="py-12 sm:py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -148,8 +148,8 @@ const About = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-12 sm:py-20 bg-muted/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -191,8 +191,8 @@ const About = () => {
       </section>
 
       {/* Our Values */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-12 sm:py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -236,8 +236,8 @@ const About = () => {
       </section>
 
       {/* Team */}
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-12 sm:py-20 bg-muted/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
