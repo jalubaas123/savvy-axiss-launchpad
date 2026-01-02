@@ -92,7 +92,7 @@ export const FeaturedCourses = () => {
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
         >
           <div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground section-title">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4 section-title">
               Featured Courses
             </h2>
             <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">

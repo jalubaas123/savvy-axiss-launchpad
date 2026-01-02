@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useToast } from '@/hooks/use-toast';
 import {
   Dialog,
@@ -51,6 +52,20 @@ const sources = [
   'Other',
 ];
 
+// Function to get current and next month names
+const getBatchOptions = () => {
+  const now = new Date();
+  const currentMonth = now.toLocaleString('en-US', { month: 'long' });
+  
+  const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+  const nextMonthName = nextMonth.toLocaleString('en-US', { month: 'long' });
+  
+  return {
+    current: currentMonth,
+    next: nextMonthName,
+  };
+};
+
 export const EnrollModal = ({
   isOpen,
   onClose,
@@ -63,6 +78,7 @@ export const EnrollModal = ({
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const batchOptions = getBatchOptions();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -75,7 +91,7 @@ export const EnrollModal = ({
     yearOfPassing: '',
     source: '',
     message: '',
-    preferredBatch: '',
+    selectedBatch: '',
   });
 
   useEffect(() => {
@@ -94,7 +110,7 @@ export const EnrollModal = ({
           yearOfPassing: '',
           source: '',
           message: '',
-          preferredBatch: '',
+          selectedBatch: '',
         });
         setIsSuccess(false);
       }, 300);
@@ -115,6 +131,14 @@ export const EnrollModal = ({
       toast({
         title: 'Invalid Name',
         description: 'Please enter your full name (at least 3 characters)',
+        variant: 'destructive',
+      });
+      return false;
+    }
+    if (!formData.selectedBatch) {
+      toast({
+        title: 'Batch Selection Required',
+        description: 'Please select a batch (current month or next month)',
         variant: 'destructive',
       });
       return false;
@@ -183,7 +207,7 @@ export const EnrollModal = ({
       
       // Additional Information
       formDataToSubmit.append('How did you hear about us', formData.source || 'Not provided');
-      formDataToSubmit.append('Preferred Batch', formData.preferredBatch || 'Not provided');
+      formDataToSubmit.append('Selected Batch', formData.selectedBatch || 'Not provided');
       formDataToSubmit.append('Message', formData.message || 'No additional message');
 
       // Submit to formsubmit.co
@@ -361,16 +385,26 @@ export const EnrollModal = ({
                         className="mt-1"
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="preferredBatch">Preferred Batch</Label>
-                      <Input
-                        id="preferredBatch"
-                        name="preferredBatch"
-                        value={formData.preferredBatch}
-                        onChange={handleChange}
-                        placeholder="e.g., Morning, Evening, Weekend"
-                        className="mt-1"
-                      />
+                    <div className="md:col-span-2">
+                      <Label htmlFor="selectedBatch" className="mb-3 block">Select Batch *</Label>
+                      <RadioGroup
+                        value={formData.selectedBatch}
+                        onValueChange={(value) => handleSelectChange('selectedBatch', value)}
+                        className="flex flex-col sm:flex-row gap-4"
+                      >
+                        <div className="flex items-center space-x-2 p-3 border border-border rounded-lg hover:border-secondary/50 transition-colors cursor-pointer">
+                          <RadioGroupItem value={batchOptions.current} id={`batch-${batchOptions.current}`} />
+                          <Label htmlFor={`batch-${batchOptions.current}`} className="font-medium cursor-pointer flex-1">
+                            {batchOptions.current}
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2 p-3 border border-border rounded-lg hover:border-secondary/50 transition-colors cursor-pointer">
+                          <RadioGroupItem value={batchOptions.next} id={`batch-${batchOptions.next}`} />
+                          <Label htmlFor={`batch-${batchOptions.next}`} className="font-medium cursor-pointer flex-1">
+                            {batchOptions.next}
+                          </Label>
+                        </div>
+                      </RadioGroup>
                     </div>
                   </div>
                 </div>

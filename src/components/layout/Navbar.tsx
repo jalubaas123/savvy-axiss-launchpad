@@ -49,36 +49,41 @@ export const Navbar = () => {
     }} className="sticky top-0 z-50 bg-primary-foreground shadow-sm">
         <nav className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 bg-primary-foreground">
           <div className="flex items-center justify-between h-16 sm:h-20 md:h-24 lg:h-28">
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-1.5 sm:gap-2 md:gap-3 group flex-shrink-0 min-w-0">
-              <img 
-                src="/logo.png" 
-                alt="Savvy Axiss Logo" 
-                className="h-10 sm:h-14 md:h-16 lg:h-20 xl:h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-300 flex-shrink-0"
-              />
-              <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-heading font-bold text-blue-900 hidden sm:inline-block truncate">
-                Savvy<span className="text-orange-600">Axiss</span>
-              </span>
-            </Link>
+            {/* Left Section: Logo + Text (close together) */}
+            <div className="flex items-center flex-shrink-0">
+              <Link to="/" className="flex items-center gap-1 sm:gap-1.5 md:gap-2 group">
+                <img 
+                  src="/logo.png" 
+                  alt="Savvy Axiss Logo" 
+                  className="h-10 sm:h-14 md:h-16 lg:h-20 xl:h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-300 flex-shrink-0"
+                />
+                <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-heading font-bold text-blue-900 hidden sm:inline-block">
+                  Savvy<span className="text-orange-600">Axiss</span>
+                </span>
+              </Link>
+            </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8">
-              {navLinks.map(link => <Link key={link.name} to={link.href} className={`text-xs xl:text-sm font-medium transition-colors duration-300 link-underline whitespace-nowrap ${location.pathname === link.href ? 'text-secondary' : 'text-foreground/80 hover:text-secondary'}`}>
+            {/* Center Section: Navigation Menu (perfectly centered) */}
+            <nav className="hidden lg:flex items-center gap-3 xl:gap-4 absolute left-1/2 -translate-x-1/2">
+              {navLinks.map(link => <Link key={link.name} to={link.href} className={`text-sm xl:text-base font-medium transition-colors duration-300 link-underline whitespace-nowrap ${location.pathname === link.href ? 'text-secondary' : 'text-foreground/80 hover:text-secondary'}`}>
                   {link.name}
                 </Link>)}
-            </div>
+            </nav>
 
-            {/* CTA Button */}
-            <div className="hidden lg:flex items-center gap-2 xl:gap-4">
-              <Button variant="hero" size="default" className="text-xs xl:text-sm px-3 xl:px-4 h-8 xl:h-10" asChild>
-                <Link to="/apply">Apply Now</Link>
-              </Button>
-            </div>
+            {/* Right Section: CTA Button / Mobile Menu */}
+            <div className="flex items-center gap-3 flex-shrink-0">
+              {/* Desktop CTA Button */}
+              <div className="hidden lg:flex items-center">
+                <Button variant="hero" size="default" className="text-xs xl:text-sm px-4 xl:px-5 h-9 xl:h-10" asChild>
+                  <Link to="/apply">Apply Now</Link>
+                </Button>
+              </div>
 
-            {/* Mobile Menu Button */}
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-1.5 sm:p-2 text-foreground hover:text-secondary transition-colors flex-shrink-0" aria-label="Toggle menu">
-              {isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
-            </button>
+              {/* Mobile Menu Button */}
+              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-1.5 sm:p-2 text-foreground hover:text-secondary transition-colors" aria-label="Toggle menu">
+                {isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
+              </button>
+            </div>
           </div>
         </nav>
       </motion.header>
