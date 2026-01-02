@@ -68,21 +68,21 @@ const whyChooseUs = [{
 }];
 const projectPackages = [{
   name: 'Basic',
-  price: '₹4,999',
+  price: '₹2,499',
   description: 'Perfect for mini projects',
-  features: ['Working project code', 'Basic documentation', 'Project demo video', '1 revision included', 'Email support'],
+  features: ['Working project code', 'Basic documentation', 'Project demo video', 'Complete explanation', 'Viva assistance','Certificate included'],
   popular: false
 }, {
   name: 'Standard',
-  price: '₹9,999',
+  price: '₹3,999',
   description: 'Ideal for final year projects',
-  features: ['Complete project with code', 'IEEE format documentation', 'Synopsis & PPT presentation', 'Project explanation session', '3 revisions included', 'WhatsApp support'],
+  features: ['Complete project with code', 'Complete documentation' ,'Project explanation session', 'Viva assistance ', 'Certificate included'],
   popular: true
 }, {
   name: 'Premium',
-  price: '₹19,999',
+  price: '₹7,999',
   description: 'For complex & research projects',
-  features: ['Advanced project implementation', 'Research paper guidance', 'Complete documentation set', 'Unlimited revisions', 'Viva preparation support', 'Priority 24/7 support', 'Certificate included'],
+  features: ['Advanced project implementation','Working project code', 'Research paper guidance', 'Complete documentation set', 'Unlimited Doubt clearing sessions', 'Viva preparation support', 'Priority 24/7 support', 'Certificate included'],
   popular: false
 }];
 const containerVariants = {
