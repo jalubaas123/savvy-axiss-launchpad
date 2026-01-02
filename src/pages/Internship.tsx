@@ -191,7 +191,7 @@ export default function Internship() {
                   <stat.icon className="w-5 h-5 text-orange-400" />
                   <div>
                     <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                    <p className="text-sm text-muted-foreground">{stat.label}</p>
+                    <p className="text-sm text-orange-600">{stat.label}</p>
                   </div>
                 </div>)}
             </motion.div>
@@ -302,34 +302,30 @@ export default function Internship() {
             {/* Connecting Line Background */}
             <div className="absolute top-16 left-[10%] right-[10%] h-1 bg-border rounded-full overflow-hidden">
               {/* Animated flowing gradient */}
-              <motion.div 
-                className="h-full w-full bg-gradient-to-r from-transparent via-orange-500 to-transparent"
-                initial={{ x: '-100%' }}
-                animate={{ x: '100%' }}
-                transition={{ 
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
+              <motion.div className="h-full w-full bg-gradient-to-r from-transparent via-orange-500 to-transparent" initial={{
+              x: '-100%'
+            }} animate={{
+              x: '100%'
+            }} transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear"
+            }} />
             </div>
             {/* Static gradient overlay */}
             <div className="absolute top-16 left-[10%] right-[10%] h-1 bg-gradient-to-r from-orange-500/30 via-orange-500/60 to-orange-500/30 rounded-full" />
             
             <div className="grid grid-cols-5 gap-4">
-              {internshipProcess.map((item, index) => (
-                <motion.div 
-                  key={item.step} 
-                  variants={itemVariants} 
-                  className="flex flex-col items-center text-center group"
-                >
+              {internshipProcess.map((item, index) => <motion.div key={item.step} variants={itemVariants} className="flex flex-col items-center text-center group">
                   {/* Step Number with Icon */}
                   <div className="relative mb-6">
                     <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-orange-500/30 group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-orange-500/40 transition-all duration-300 rotate-3 group-hover:rotate-0">
                       {item.step}
                     </div>
                     {/* Pulse effect */}
-                    <div className="absolute inset-0 rounded-2xl bg-orange-500/20 animate-ping opacity-0 group-hover:opacity-100" style={{ animationDuration: '1.5s' }} />
+                    <div className="absolute inset-0 rounded-2xl bg-orange-500/20 animate-ping opacity-0 group-hover:opacity-100" style={{
+                  animationDuration: '1.5s'
+                }} />
                   </div>
                   
                   {/* Content Card */}
@@ -337,8 +333,7 @@ export default function Internship() {
                     <h3 className="font-semibold text-foreground mb-2 text-lg">{item.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                   </div>
-                </motion.div>
-              ))}
+                </motion.div>)}
             </div>
           </motion.div>
 
@@ -348,26 +343,20 @@ export default function Internship() {
         }} className="md:hidden relative">
             {/* Vertical connecting line */}
             <div className="absolute left-8 top-8 bottom-8 w-0.5 bg-border overflow-hidden">
-              <motion.div 
-                className="w-full h-full bg-gradient-to-b from-transparent via-orange-500 to-transparent"
-                initial={{ y: '-100%' }}
-                animate={{ y: '100%' }}
-                transition={{ 
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
+              <motion.div className="w-full h-full bg-gradient-to-b from-transparent via-orange-500 to-transparent" initial={{
+              y: '-100%'
+            }} animate={{
+              y: '100%'
+            }} transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear"
+            }} />
             </div>
             <div className="absolute left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-orange-500/40 via-amber-500/60 to-orange-500/20" />
             
             <div className="space-y-6">
-              {internshipProcess.map((item, index) => (
-                <motion.div 
-                  key={item.step} 
-                  variants={itemVariants} 
-                  className="flex items-start gap-4 relative"
-                >
+              {internshipProcess.map((item, index) => <motion.div key={item.step} variants={itemVariants} className="flex items-start gap-4 relative">
                   {/* Step Number */}
                   <div className="relative z-10 shrink-0">
                     <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-orange-500/30">
@@ -380,8 +369,7 @@ export default function Internship() {
                     <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
                     <p className="text-sm text-muted-foreground">{item.description}</p>
                   </div>
-                </motion.div>
-              ))}
+                </motion.div>)}
             </div>
           </motion.div>
         </div>
