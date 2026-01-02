@@ -8,17 +8,18 @@ import { Input } from '@/components/ui/input';
 
 // Course image mapping - appropriate images for each course
 const courseImages: Record<string, string> = {
-  'Python Programming': 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=500&fit=crop&q=80',
-  'Java Programming': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&q=80',
-  'HTML': 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=500&fit=crop&q=80',
-  'CSS': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop&q=80',
-  'JavaScript': 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=500&fit=crop&q=80',
-  'Excel': 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=800&h=500&fit=crop&q=80',
-  'SQL': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=500&fit=crop&q=80',
-  'MySQL': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=500&fit=crop&q=80',
-  'Sqlite': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=500&fit=crop&q=80',
-  'MongoDB': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop&q=80',
-  'Digital Marketing': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=80',
+  'Python Programming': '/python.png',
+  'Java Programming': '/java.png',
+  'HTML': '/html.png',
+  'CSS': '/css.png',
+  'JavaScript': '/javascript.png',
+  'React': '/webdevelopment.png',
+  'Excel': '/msexcel.png',
+  'SQL': '/mysql.png',
+  'MySQL': '/mysql.png',
+  'Sqlite': '/sqlite.png',
+  'MongoDB': '/mongodb.png',
+  'Digital Marketing': '/digital-marketing.png',
 };
 
 // Course data structure helper
@@ -38,7 +39,7 @@ const createCourse = (
   slug: `${baseSlug}${level === 'Beginner' ? 'b' : level === 'Intermediate' ? 'i' : 'a'}`,
   title: `${name}${level === 'Beginner' ? ' - Beginner' : level === 'Intermediate' ? ' - Intermediate' : ' - Advanced'}`,
   description,
-  image: courseImages[name] || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop',
+  image: courseImages[name] || '/placeholder.svg',
   duration,
   mode: 'Live Online',
   price,
@@ -56,6 +57,7 @@ const courseDescriptions: Record<string, string> = {
   'HTML': 'Master HTML5 fundamentals. Learn semantic markup, forms, multimedia, and modern web development practices.',
   'CSS': 'Learn CSS3 styling, layouts, animations, and responsive design. Create beautiful and modern web interfaces.',
   'JavaScript': 'Master JavaScript programming. Learn ES6+, DOM manipulation, async programming, and modern JavaScript frameworks.',
+  'React': 'Master React.js framework. Learn components, hooks, state management, routing, and build modern single-page applications.',
   'Excel': 'Master Microsoft Excel. Learn formulas, functions, data analysis, pivot tables, charts, and automation.',
   'SQL': 'Learn SQL database programming. Master queries, joins, subqueries, stored procedures, and database optimization.',
   'MySQL': 'Master MySQL database management. Learn database design, administration, optimization, and advanced features.',
@@ -91,6 +93,11 @@ export const allCourses = [
   createCourse(22, 'JavaScript', 'javascript', 'Web Development', 'Beginner', 4.7, '4 Weeks', 999, 1499, courseDescriptions['JavaScript']),
   createCourse(23, 'JavaScript', 'javascript', 'Web Development', 'Intermediate', 4.75, '8 Weeks', 1999, 2999, courseDescriptions['JavaScript']),
   createCourse(24, 'JavaScript', 'javascript', 'Web Development', 'Advanced', 4.8, '12 Weeks', 2999, 3999, courseDescriptions['JavaScript']),
+  
+  // React
+  createCourse(25, 'React', 'react', 'Web Development', 'Beginner', 4.8, '4 Weeks', 999, 1499, courseDescriptions['React']),
+  createCourse(26, 'React', 'react', 'Web Development', 'Intermediate', 4.85, '8 Weeks', 1999, 2999, courseDescriptions['React']),
+  createCourse(27, 'React', 'react', 'Web Development', 'Advanced', 4.9, '12 Weeks', 2999, 3999, courseDescriptions['React']),
   
   
   // Excel
@@ -222,14 +229,17 @@ const Courses = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
             {[
-              { name: 'Microsoft Excel', slug: 'excela', image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=400&h=300&fit=crop&q=80' },
-              { name: 'SQL', slug: 'sqla', image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=300&fit=crop&q=80' },
-              { name: 'Python', slug: 'pythona', image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=300&fit=crop&q=80' },
-              { name: 'Java', slug: 'javaa', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop&q=80' },
-              { name: 'Web Design', slug: 'cssa', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&q=80' },
-              { name: 'Web Development', slug: 'htmla', image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop&q=80' },
-              { name: 'MySQL', slug: 'mysqla', image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=300&fit=crop&q=80' },
-              { name: 'UI/UX Design', slug: 'javascripta', image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=300&fit=crop&q=80' },
+              { name: 'Microsoft Excel', slug: 'excela', image: '/msexcel.png' },
+              { name: 'SQL', slug: 'sqla', image: '/mysql.png' },
+              { name: 'Python', slug: 'pythona', image: '/python.png' },
+              { name: 'Java', slug: 'javaa', image: '/java.png' },
+              { name: 'Web Design', slug: 'cssa', image: '/webdesign.png' },
+              { name: 'Web Development', slug: 'htmla', image: '/webdevelopment.png' },
+              { name: 'MySQL', slug: 'mysqla', image: '/mysql.png' },
+              { name: 'JavaScript', slug: 'javascripta', image: '/javascript.png' },
+              { name: 'React', slug: 'reacta', image: '/webdevelopment.png' },
+              { name: 'Digital Marketing', slug: 'digital-marketinga', image: '/digital-marketing.png' },
+              { name: 'SQLite', slug: 'sqlitea', image: '/sqlite.png' },
             ].map((topic, index) => (
               <motion.div
                 key={topic.slug}
@@ -328,9 +338,9 @@ const Courses = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
-              { slug: 'pythona', title: 'Python Programming', image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=500&h=300&fit=crop&q=80', rating: 5.0, level: 'Advanced', duration: '12 Weeks', price: 2999 },
-              { slug: 'cssb', title: 'CSS', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=300&fit=crop&q=80', rating: 4.8, level: 'Beginner', duration: '4 Weeks', price: 999 },
-              { slug: 'htmla', title: 'HTML', image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500&h=300&fit=crop&q=80', rating: 5.0, level: 'Advanced', duration: '12 Weeks', price: 2999 },
+              { slug: 'pythona', title: 'Python Programming', image: '/python.png', rating: 5.0, level: 'Advanced', duration: '12 Weeks', price: 2999 },
+              { slug: 'cssb', title: 'CSS', image: '/css.png', rating: 4.8, level: 'Beginner', duration: '4 Weeks', price: 999 },
+              { slug: 'htmla', title: 'HTML', image: '/html.png', rating: 5.0, level: 'Advanced', duration: '12 Weeks', price: 2999 },
             ].map((course, index) => (
               <motion.div
                 key={course.slug}
