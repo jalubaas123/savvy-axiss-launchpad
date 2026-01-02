@@ -178,11 +178,11 @@ export default function Internship() {
               {[{
               icon: Users,
               label: 'Interns Trained',
-              value: '500+'
+              value: '50+'
             }, {
               icon: Briefcase,
               label: 'Projects Completed',
-              value: '200+'
+              value: '320+'
             }, {
               icon: Trophy,
               label: 'Placed Successfully',
