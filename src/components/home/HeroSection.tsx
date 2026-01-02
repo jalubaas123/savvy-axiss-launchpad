@@ -4,11 +4,11 @@ import { ArrowRight, Play, Users, Award, TrendingUp, ChevronDown } from 'lucide-
 import { Button } from '@/components/ui/button';
 const stats = [{
   label: 'Students Trained',
-  value: '500+',
+  value: '450+',
   icon: Users
 }, {
-  label: 'Success Rate',
-  value: '98%',
+  label: 'Experience',
+  value: '3+',
   icon: TrendingUp
 }, {
   label: 'Industry Recognized',
