@@ -20,11 +20,11 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
+  { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61565001458875', label: 'Facebook' },
   { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
   { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-  { icon: Youtube, href: 'https://youtube.com', label: 'YouTube' },
+  { icon: Instagram, href: 'https://www.instagram.com/savvy.axiss/', label: 'Instagram' },
+  { icon: Youtube, href: 'https://www.youtube.com/@savvyaxiss', label: 'YouTube' },
 ];
 
 export const Footer = () => {
