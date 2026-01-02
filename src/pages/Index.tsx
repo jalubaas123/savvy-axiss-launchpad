@@ -20,6 +20,9 @@ const Index = () => {
         <meta property="og:title" content="Savvy Axiss - Projects, Courses, Web Development & Internships" />
         <meta property="og:description" content="Complete solutions for students and businesses. Final year projects, professional courses, website development, and internship programs." />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="/logo.png" />
         <link rel="canonical" href="https://savvyaxiss.com" />
       </Helmet>
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, GraduationCap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 const navLinks = [{
   name: 'Home',
@@ -48,13 +48,15 @@ export const Navbar = () => {
       duration: 0.5
     }} className="">
         <nav className="container mx-auto px-4 lg:px-8 bg-primary-foreground">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+          <div className="flex items-center justify-between h-24 lg:h-32">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform duration-300">
-                <GraduationCap className="w-6 h-6 text-secondary-foreground" />
-              </div>
-              <span className="text-xl font-heading font-bold text-blue-900">
+            <Link to="/" className="flex items-center gap-3 group">
+              <img 
+                src="/logo.png" 
+                alt="Savvy Axiss Logo" 
+                className="h-20 lg:h-28 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+              <span className="text-xl lg:text-2xl font-heading font-bold text-blue-900">
                 Savvy<span className="text-orange-600">Axiss</span>
               </span>
             </Link>

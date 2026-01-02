@@ -29,22 +29,55 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Prepare form data for formsubmit.co
+      const formDataToSubmit = new FormData();
+      formDataToSubmit.append('_to', 'career@savvyaxiss.com');
+      formDataToSubmit.append('_subject', formData.subject || 'Contact Form Submission');
+      formDataToSubmit.append('_template', 'table');
+      formDataToSubmit.append('_captcha', 'false');
+      
+      formDataToSubmit.append('Name', formData.name);
+      formDataToSubmit.append('Email', formData.email);
+      formDataToSubmit.append('Phone', formData.phone);
+      formDataToSubmit.append('Subject', formData.subject);
+      formDataToSubmit.append('Message', formData.message);
 
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
+      // Submit to formsubmit.co
+      const response = await fetch('https://formsubmit.co/career@savvyaxiss.com', {
+        method: 'POST',
+        body: formDataToSubmit,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
 
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    });
-    setIsSubmitting(false);
+      if (response.ok) {
+        toast({
+          title: "Message Sent!",
+          description: "We'll get back to you within 24 hours.",
+        });
+
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Contact form submission error:', error);
+      toast({
+        title: "Error",
+        description: "There was an error sending your message. Please try again or contact us directly at career@savvyaxiss.com",
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

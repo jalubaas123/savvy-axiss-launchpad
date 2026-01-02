@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { GraduationCap, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
 const footerLinks = {
   quickLinks: [{
     name: 'About Us',
@@ -62,13 +62,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-secondary-foreground" />
-              </div>
-              <span className="text-xl font-heading font-bold text-[#1e3b8a]">
-                Savvy<span className="text-[#e9590c]">Axiss</span>
-              </span>
+            <Link to="/" className="flex items-center mb-6">
+              <img 
+                src="/logo.png" 
+                alt="Savvy Axiss Logo" 
+                className="h-12 w-auto object-contain"
+              />
             </Link>
             <p className="text-primary-foreground/70 text-sm mb-6 leading-relaxed">
               Empowering the next generation of tech professionals through live training, 

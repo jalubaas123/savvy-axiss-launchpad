@@ -69,12 +69,12 @@ export const Testimonials = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1 rounded-full bg-secondary/20 text-secondary text-sm font-medium mb-4">
-            Success Stories
-          </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary-foreground mb-4">
-            What Our Students Say
+            Success Stories
           </h2>
+          <h3 className="text-2xl md:text-3xl font-heading font-semibold text-primary-foreground mb-4">
+            What Our Students Say
+          </h3>
           <p className="text-primary-foreground/70 max-w-2xl mx-auto mt-6">
             Real stories from real students who transformed their careers with us
           </p>

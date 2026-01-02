@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -118,7 +118,18 @@ const formatPrice = (price: number) => {
 };
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const filteredProjects = activeCategory === 'All' ? projects : projects.filter(project => project.category === activeCategory);
+  
+  const filteredItems = useMemo(() => {
+    if (activeCategory === 'All') {
+      return projects;
+    }
+    if (activeCategory === 'Research Papers') {
+      return researchPapers;
+    }
+    return projects.filter(project => project.category === activeCategory);
+  }, [activeCategory]);
+  
+  const isResearchPaper = activeCategory === 'Research Papers';
   return <>
       <Helmet>
         <title>Final Year Projects for College Students | Savvy Axiss</title>
@@ -159,7 +170,7 @@ export default function Projects() {
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" asChild className="border-foreground/20 hover:bg-foreground/10">
+              <Button size="lg" asChild className="bg-[#25D366] hover:bg-[#20BA5A] text-white border-0">
                 <a href="https://wa.me/+919384902501?text=Hi, I need help with my final year project" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-4 h-4 mr-2" />
                   WhatsApp Us
@@ -182,12 +193,12 @@ export default function Projects() {
         }} viewport={{
           once: true
         }} className="text-center mb-12">
-            <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
-              All Domains
-            </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Projects in Every Technology
+              All Domains
             </h2>
+            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+              Projects in Every Technology
+            </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Whatever your specialization, we've got you covered with expert project support.
             </p>
@@ -219,12 +230,12 @@ export default function Projects() {
         }} viewport={{
           once: true
         }} className="text-center mb-8">
-            <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
-              Ready-Made Projects
-            </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Browse Our Projects
+              Ready-Made Projects
             </h2>
+            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+              Browse Our Projects
+            </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Choose from our collection of ready-made projects with complete source code and documentation.
             </p>
@@ -249,21 +260,25 @@ export default function Projects() {
             </Tabs>
           </motion.div>
 
-          <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
-          once: true
-        }} className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredProjects.map(project => {
-            const discountPercent = project.originalPrice ? Math.round((project.originalPrice - project.price) / project.originalPrice * 100) : 0;
-            return <motion.div key={project.id} variants={itemVariants} layout>
-                  <Card className="group overflow-hidden hover:border-secondary/50 transition-all duration-300 card-hover h-full flex flex-col">
+          <motion.div 
+            key={activeCategory}
+            variants={containerVariants} 
+            initial="hidden" 
+            animate="visible"
+            className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredItems.map((item: any) => {
+            const discountPercent = item.originalPrice ? Math.round((item.originalPrice - item.price) / item.originalPrice * 100) : 0;
+            const categoryLabel = isResearchPaper ? item.domain : item.category;
+            return <motion.div key={item.id} variants={itemVariants} layout>
+                  <Card className={`group overflow-hidden transition-all duration-300 card-hover h-full flex flex-col ${isResearchPaper ? 'hover:border-violet-500/50' : 'hover:border-secondary/50'}`}>
                     {/* Image */}
                     <div className="relative aspect-video overflow-hidden">
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
+                      <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <div className={`absolute inset-0 bg-gradient-to-t ${isResearchPaper ? 'from-violet-900/60' : 'from-primary/60'} to-transparent`} />
                       
-                      {/* Category Badge */}
-                      <Badge className="absolute top-3 left-3 bg-primary/80 backdrop-blur-sm text-primary-foreground">
-                        {project.category}
+                      {/* Category/Domain Badge */}
+                      <Badge className={`absolute top-3 left-3 backdrop-blur-sm ${isResearchPaper ? 'bg-violet-500/80 text-white' : 'bg-primary/80 text-primary-foreground'}`}>
+                        {categoryLabel}
                       </Badge>
 
                       {/* Discount Badge */}
@@ -274,38 +289,58 @@ export default function Projects() {
 
                     {/* Content */}
                     <CardContent className="p-5 flex-1 flex flex-col">
-                      <h3 className="font-semibold text-lg text-foreground mb-2 group-hover:text-secondary transition-colors line-clamp-1">
-                        {project.title}
+                      <h3 className={`font-semibold text-lg text-foreground mb-2 transition-colors ${isResearchPaper ? 'line-clamp-2 group-hover:text-violet-500' : 'line-clamp-1 group-hover:text-secondary'}`}>
+                        {item.title}
                       </h3>
                       <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-1">
-                        {project.description}
+                        {item.description}
                       </p>
+
+                      {/* Features for Research Papers */}
+                      {isResearchPaper && item.features && (
+                        <div className="flex flex-wrap gap-1 mb-4">
+                          {item.features.slice(0, 3).map((feature: string) => (
+                            <Badge key={feature} variant="outline" className="text-xs">
+                              {feature}
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
 
                       {/* Price */}
                       <div className="flex items-baseline gap-2 mb-4">
                         <span className="text-xl font-bold text-foreground">
-                          {formatPrice(project.price)}
+                          {formatPrice(item.price)}
                         </span>
-                        {project.originalPrice && <span className="text-sm text-muted-foreground line-through">
-                            {formatPrice(project.originalPrice)}
+                        {item.originalPrice && <span className="text-sm text-muted-foreground line-through">
+                            {formatPrice(item.originalPrice)}
                           </span>}
                       </div>
 
-                      {/* View Details Button */}
-                      <Button asChild className="w-full">
-                        <Link to={`/projects/${project.slug}`}>
-                          <Eye className="w-4 h-4 mr-2" />
-                          View Details
-                        </Link>
-                      </Button>
+                      {/* Action Button */}
+                      {isResearchPaper ? (
+                        <Button asChild className={`w-full ${isResearchPaper ? 'bg-violet-600 hover:bg-violet-700' : ''}`}>
+                          <a href={`https://wa.me/+919384902501?text=Hi, I'm interested in the research paper: ${item.title}`} target="_blank" rel="noopener noreferrer">
+                            <MessageCircle className="w-4 h-4 mr-2" />
+                            Enquire Now
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button asChild className="w-full">
+                          <Link to={`/projects/${item.slug}`}>
+                            <Eye className="w-4 h-4 mr-2" />
+                            View Details
+                          </Link>
+                        </Button>
+                      )}
                     </CardContent>
                   </Card>
                 </motion.div>;
           })}
           </motion.div>
 
-          {filteredProjects.length === 0 && <div className="text-center py-12">
-              <p className="text-muted-foreground">No projects found in this category.</p>
+          {filteredItems.length === 0 && <div className="text-center py-12">
+              <p className="text-muted-foreground">No {isResearchPaper ? 'research papers' : 'projects'} found in this category.</p>
             </div>}
         </div>
       </section>
@@ -322,13 +357,12 @@ export default function Projects() {
         }} viewport={{
           once: true
         }} className="text-center mb-12">
-            <span className="inline-block px-4 py-1 rounded-full bg-violet-500/10 text-violet-500 text-sm font-medium mb-4">
-              <BookOpen className="w-3 h-3 inline mr-1" />
-              Academic Research
-            </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Research Papers
+              Academic Research
             </h2>
+            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+              Research Papers
+            </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Get well-researched, IEEE format papers with complete references and plagiarism reports.
             </p>
@@ -401,13 +435,12 @@ export default function Projects() {
         }} viewport={{
           once: true
         }} className="text-center mb-12">
-            <span className="inline-block px-4 py-1 rounded-full bg-amber-500/10 text-amber-600 text-sm font-medium mb-4">
-              <GraduationCap className="w-3 h-3 inline mr-1" />
-              MBA Projects
-            </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              MBA Project Reports
+              MBA Projects
             </h2>
+            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+              MBA Project Reports
+            </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Complete MBA projects with case studies, analysis, and presentations for all specializations.
             </p>
@@ -511,12 +544,12 @@ export default function Projects() {
         }} viewport={{
           once: true
         }} className="text-center mb-12">
-            <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
-              Pricing
-            </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Choose Your Package
+              Pricing
             </h2>
+            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+              Choose Your Package
+            </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Flexible packages designed to meet your project requirements and budget.
             </p>

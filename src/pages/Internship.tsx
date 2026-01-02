@@ -156,7 +156,7 @@ export default function Internship() {
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" asChild className="border-foreground/20 hover:bg-foreground/10">
+              <Button size="lg" asChild className="bg-[#25D366] hover:bg-[#20BA5A] text-white border-0">
                 <a href="https://wa.me/+919384902501?text=Hi, I want to know more about internship programs" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-4 h-4 mr-2" />
                   Ask Questions
@@ -211,12 +211,12 @@ export default function Internship() {
         }} viewport={{
           once: true
         }} className="text-center mb-12">
-            <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
-              Domains
-            </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Choose Your Internship Domain
+              Domains
             </h2>
+            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+              Choose Your Internship Domain
+            </h3>
           </motion.div>
 
           <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
@@ -387,12 +387,12 @@ export default function Internship() {
         }} viewport={{
           once: true
         }} className="text-center mb-12">
-            <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
-              Pricing
-            </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Internship Packages
+              Pricing
             </h2>
+            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+              Internship Packages
+            </h3>
           </motion.div>
 
           <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{

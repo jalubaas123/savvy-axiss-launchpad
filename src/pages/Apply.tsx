@@ -114,15 +114,57 @@ const Apply = () => {
     }
 
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    toast({
-      title: "Application Submitted!",
-      description: "We'll contact you within 24 hours. Check your email for confirmation.",
-    });
+    try {
+      // Prepare form data for formsubmit.co
+      const formDataToSubmit = new FormData();
+      formDataToSubmit.append('_to', 'career@savvyaxiss.com');
+      formDataToSubmit.append('_subject', 'New Application Submission');
+      formDataToSubmit.append('_template', 'table');
+      formDataToSubmit.append('_captcha', 'false');
+      
+      formDataToSubmit.append('Full Name', formData.fullName);
+      formDataToSubmit.append('Email', formData.email);
+      formDataToSubmit.append('Phone', formData.phone);
+      formDataToSubmit.append('City', formData.city);
+      formDataToSubmit.append('Education', formData.education);
+      formDataToSubmit.append('College', formData.college);
+      formDataToSubmit.append('Year of Passing', formData.yearOfPassing);
+      formDataToSubmit.append('Current Status', formData.currentStatus);
+      formDataToSubmit.append('Course', formData.course);
+      formDataToSubmit.append('Preferred Start Date', formData.preferredStartDate);
+      formDataToSubmit.append('Source', formData.source);
+      formDataToSubmit.append('Message', formData.message);
 
-    setIsSubmitting(false);
-    setCurrentStep(5); // Success state
+      // Submit to formsubmit.co
+      const response = await fetch('https://formsubmit.co/career@savvyaxiss.com', {
+        method: 'POST',
+        body: formDataToSubmit,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Application Submitted!",
+          description: "We'll contact you within 24 hours. Check your email for confirmation.",
+        });
+
+        setIsSubmitting(false);
+        setCurrentStep(5); // Success state
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Application submission error:', error);
+      toast({
+        title: "Error",
+        description: "There was an error submitting your application. Please try again or contact us directly at career@savvyaxiss.com",
+        variant: 'destructive',
+      });
+      setIsSubmitting(false);
+    }
   };
 
   const steps = [

@@ -103,12 +103,12 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
-                Our Story
-              </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6 section-title">
-                From Vision to Reality
+                Our Story
               </h2>
+              <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+                From Vision to Reality
+              </h3>
               <div className="space-y-4 text-muted-foreground mt-8">
                 <p>
                   Savvy Axiss was founded in 2022 with a simple yet powerful vision: 
@@ -199,12 +199,15 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4 section-title">
               Our Values
-            </span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground section-title">
-              What We Stand For
             </h2>
+            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+              What We Stand For
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto mt-6">
+              These core values guide everything we do and shape how we serve our students and community.
+            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -241,12 +244,12 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
-              Our Team
-            </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground section-title">
-              Meet the Leaders
+              Our Team
             </h2>
+            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+              Meet the Leaders
+            </h3>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">

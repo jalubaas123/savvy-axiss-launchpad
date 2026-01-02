@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -6,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { getCourseBySlug } from '@/data/courseData';
 import { allCourses } from '@/pages/Courses';
+import { EnrollModal } from '@/components/course/EnrollModal';
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('en-IN', {
@@ -34,9 +36,10 @@ const CourseDetail = () => {
 
   const { course, level } = courseData;
   const syllabus = course.syllabus[level];
+  const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
 
   const handleEnroll = () => {
-    window.open('https://forms.gle/EVsUEJZAVeyAUmxx9', '_blank');
+    setIsEnrollModalOpen(true);
   };
 
   const handleShare = () => {
@@ -337,6 +340,17 @@ const CourseDetail = () => {
           </div>
         </div>
       </section>
+
+      {/* Enrollment Modal */}
+      <EnrollModal
+        isOpen={isEnrollModalOpen}
+        onClose={() => setIsEnrollModalOpen(false)}
+        courseTitle={courseInfo.title}
+        courseSlug={courseInfo.slug}
+        courseLevel={level}
+        coursePrice={courseInfo.price}
+        courseDuration={courseInfo.duration}
+      />
     </>
   );
 };

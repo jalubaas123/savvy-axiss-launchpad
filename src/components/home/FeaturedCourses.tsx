@@ -92,12 +92,12 @@ export const FeaturedCourses = () => {
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
         >
           <div>
-            <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
-              Featured Courses
-            </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground section-title">
-              Start Your Learning Journey
+              Featured Courses
             </h2>
+            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+              Start Your Learning Journey
+            </h3>
             <p className="text-muted-foreground max-w-xl mt-6">
               Industry-relevant courses designed to make you job-ready from day one.
             </p>
