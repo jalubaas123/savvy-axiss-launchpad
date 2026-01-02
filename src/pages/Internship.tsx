@@ -157,7 +157,7 @@ export default function Internship() {
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild className="border-foreground/20 hover:bg-foreground/10">
-                <a href="https://wa.me/919999999999?text=Hi, I want to know more about internship programs" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/+919384902501?text=Hi, I want to know more about internship programs" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-4 h-4 mr-2" />
                   Ask Questions
                 </a>
@@ -452,7 +452,7 @@ export default function Internship() {
                 <Link to="/apply">Apply for Internship</Link>
               </Button>
               <Button variant="outline" size="lg" asChild className="border-white text-white hover:bg-white/10">
-                <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/+919384902501" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-4 h-4 mr-2" />
                   Chat with Us
                 </a>

@@ -160,7 +160,7 @@ export default function Projects() {
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild className="border-foreground/20 hover:bg-foreground/10">
-                <a href="https://wa.me/919999999999?text=Hi, I need help with my final year project" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/+919384902501?text=Hi, I need help with my final year project" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-4 h-4 mr-2" />
                   WhatsApp Us
                 </a>
@@ -376,7 +376,7 @@ export default function Projects() {
                       </div>
 
                       <Button asChild className="w-full bg-violet-600 hover:bg-violet-700">
-                        <a href={`https://wa.me/919999999999?text=Hi, I'm interested in the research paper: ${paper.title}`} target="_blank" rel="noopener noreferrer">
+                        <a href={`https://wa.me/+919384902501?text=Hi, I'm interested in the research paper: ${paper.title}`} target="_blank" rel="noopener noreferrer">
                           <MessageCircle className="w-4 h-4 mr-2" />
                           Enquire Now
                         </a>
@@ -455,7 +455,7 @@ export default function Projects() {
                       </div>
 
                       <Button asChild className="w-full bg-amber-600 hover:bg-amber-700">
-                        <a href={`https://wa.me/919999999999?text=Hi, I'm interested in the MBA project: ${project.title}`} target="_blank" rel="noopener noreferrer">
+                        <a href={`https://wa.me/+919384902501?text=Hi, I'm interested in the MBA project: ${project.title}`} target="_blank" rel="noopener noreferrer">
                           <MessageCircle className="w-4 h-4 mr-2" />
                           Enquire Now
                         </a>
@@ -581,7 +581,7 @@ export default function Projects() {
                 <Link to="/contact">Share Your Requirements</Link>
               </Button>
               <Button variant="outline" size="lg" asChild className="border-white text-white hover:bg-white/10">
-                <a href="tel:+919999999999">Call Now: +91 93849 02501</a>
+                <a href="tel:++919384902501">Call Now: +91 93849 02501</a>
               </Button>
             </div>
           </motion.div>

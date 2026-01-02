@@ -140,7 +140,7 @@ export default function WebDevelopment() {
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild className="border-foreground/20 hover:bg-foreground/10">
-                <a href="https://wa.me/919999999999?text=Hi, I need a website for my business" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/+919384902501?text=Hi, I need a website for my business" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-4 h-4 mr-2" />
                   WhatsApp Us
                 </a>
@@ -327,7 +327,7 @@ export default function WebDevelopment() {
                 <Link to="/contact">Request Free Quote</Link>
               </Button>
               <Button variant="outline" size="lg" asChild className="border-white text-white hover:bg-white/10">
-                <a href="tel:+919999999999">Call: +91 93849 02501</a>
+                <a href="tel:++919384902501">Call: +91 93849 02501</a>
               </Button>
             </div>
           </motion.div>
