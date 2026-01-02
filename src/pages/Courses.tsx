@@ -15,7 +15,6 @@ const courseImages: Record<string, string> = {
   'JavaScript': '/javascript.png',
   'React': '/webdevelopment.png',
   'Excel': '/msexcel.png',
-  'SQL': '/mysql.png',
   'MySQL': '/mysql.png',
   'Sqlite': '/sqlite.png',
   'MongoDB': '/mongodb.png',
@@ -59,7 +58,6 @@ const courseDescriptions: Record<string, string> = {
   'JavaScript': 'Master JavaScript programming. Learn ES6+, DOM manipulation, async programming, and modern JavaScript frameworks.',
   'React': 'Master React.js framework. Learn components, hooks, state management, routing, and build modern single-page applications.',
   'Excel': 'Master Microsoft Excel. Learn formulas, functions, data analysis, pivot tables, charts, and automation.',
-  'SQL': 'Learn SQL database programming. Master queries, joins, subqueries, stored procedures, and database optimization.',
   'MySQL': 'Master MySQL database management. Learn database design, administration, optimization, and advanced features.',
   'Sqlite': 'Learn SQLite database programming. Master lightweight database management for applications and mobile development.',
   'MongoDB': 'Master MongoDB NoSQL database. Learn document modeling, queries, aggregation, and database administration.',
@@ -105,20 +103,12 @@ export const allCourses = [
   createCourse(35, 'Excel', 'excel', 'Microsoft Office', 'Intermediate', 4.95, '4 Weeks', 999, 1499, courseDescriptions['Excel']),
   createCourse(36, 'Excel', 'excel', 'Microsoft Office', 'Advanced', 5.0, '6 Weeks', 1499, 1999, courseDescriptions['Excel']),
   
-  // DATABASE - SQL
-  createCourse(43, 'SQL', 'sql', 'Database', 'Beginner', 4.8, '4 Weeks', 999, 1499, courseDescriptions['SQL']),
-  createCourse(44, 'SQL', 'sql', 'Database', 'Intermediate', 4.85, '8 Weeks', 1999, 2999, courseDescriptions['SQL']),
-  createCourse(45, 'SQL', 'sql', 'Database', 'Advanced', 4.9, '12 Weeks', 2999, 3999, courseDescriptions['SQL']),
   
   // MySQL
   createCourse(46, 'MySQL', 'mysql', 'Database', 'Beginner', 4.7, '4 Weeks', 999, 1499, courseDescriptions['MySQL']),
   createCourse(47, 'MySQL', 'mysql', 'Database', 'Intermediate', 4.75, '8 Weeks', 1999, 2999, courseDescriptions['MySQL']),
   createCourse(48, 'MySQL', 'mysql', 'Database', 'Advanced', 4.8, '12 Weeks', 2999, 3999, courseDescriptions['MySQL']),
   
-  // Sqlite
-  createCourse(49, 'Sqlite', 'sqlite', 'Database', 'Beginner', 4.6, '4 Weeks', 999, 1499, courseDescriptions['Sqlite']),
-  createCourse(50, 'Sqlite', 'sqlite', 'Database', 'Intermediate', 4.65, '8 Weeks', 1999, 2999, courseDescriptions['Sqlite']),
-  createCourse(51, 'Sqlite', 'sqlite', 'Database', 'Advanced', 4.7, '12 Weeks', 2999, 3999, courseDescriptions['Sqlite']),
   
   // MongoDB
   createCourse(52, 'MongoDB', 'mongodb', 'Database', 'Beginner', 4.5, '4 Weeks', 999, 1499, courseDescriptions['MongoDB']),
@@ -230,7 +220,6 @@ const Courses = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
             {[
               { name: 'Microsoft Excel', slug: 'excela', image: '/msexcel.png' },
-              { name: 'SQL', slug: 'sqla', image: '/mysql.png' },
               { name: 'Python', slug: 'pythona', image: '/python.png' },
               { name: 'Java', slug: 'javaa', image: '/java.png' },
               { name: 'Web Design', slug: 'cssa', image: '/webdesign.png' },
@@ -239,7 +228,6 @@ const Courses = () => {
               { name: 'JavaScript', slug: 'javascripta', image: '/javascript.png' },
               { name: 'React', slug: 'reacta', image: '/webdevelopment.png' },
               { name: 'Digital Marketing', slug: 'digital-marketinga', image: '/digital-marketing.png' },
-              { name: 'SQLite', slug: 'sqlitea', image: '/sqlite.png' },
             ].map((topic, index) => (
               <motion.div
                 key={topic.slug}
