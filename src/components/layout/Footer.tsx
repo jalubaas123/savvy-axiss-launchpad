@@ -1,35 +1,62 @@
 import { Link } from 'react-router-dom';
 import { GraduationCap, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
-
 const footerLinks = {
-  quickLinks: [
-    { name: 'About Us', href: '/about' },
-    { name: 'Courses', href: '/courses' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'Apply Now', href: '/apply' },
-  ],
-  courses: [
-    { name: 'Full Stack Development', href: '/courses/full-stack-development' },
-    { name: 'Data Science', href: '/courses/data-science' },
-    { name: 'Digital Marketing', href: '/courses/digital-marketing' },
-    { name: 'UI/UX Design', href: '/courses/ui-ux-design' },
-    { name: 'Cloud Computing', href: '/courses/cloud-computing' },
-  ],
-  
+  quickLinks: [{
+    name: 'About Us',
+    href: '/about'
+  }, {
+    name: 'Courses',
+    href: '/courses'
+  }, {
+    name: 'Blog',
+    href: '/blog'
+  }, {
+    name: 'Contact',
+    href: '/contact'
+  }, {
+    name: 'Apply Now',
+    href: '/apply'
+  }],
+  courses: [{
+    name: 'Full Stack Development',
+    href: '/courses/full-stack-development'
+  }, {
+    name: 'Data Science',
+    href: '/courses/data-science'
+  }, {
+    name: 'Digital Marketing',
+    href: '/courses/digital-marketing'
+  }, {
+    name: 'UI/UX Design',
+    href: '/courses/ui-ux-design'
+  }, {
+    name: 'Cloud Computing',
+    href: '/courses/cloud-computing'
+  }]
 };
-
-const socialLinks = [
-  { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61565001458875', label: 'Facebook' },
-  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Instagram, href: 'https://www.instagram.com/savvy.axiss/', label: 'Instagram' },
-  { icon: Youtube, href: 'https://www.youtube.com/@savvyaxiss', label: 'YouTube' },
-];
-
+const socialLinks = [{
+  icon: Facebook,
+  href: 'https://www.facebook.com/profile.php?id=61565001458875',
+  label: 'Facebook'
+}, {
+  icon: Twitter,
+  href: 'https://twitter.com',
+  label: 'Twitter'
+}, {
+  icon: Linkedin,
+  href: 'https://linkedin.com',
+  label: 'LinkedIn'
+}, {
+  icon: Instagram,
+  href: 'https://www.instagram.com/savvy.axiss/',
+  label: 'Instagram'
+}, {
+  icon: Youtube,
+  href: 'https://www.youtube.com/@savvyaxiss',
+  label: 'YouTube'
+}];
 export const Footer = () => {
-  return (
-    <footer className="bg-primary text-primary-foreground">
+  return <footer className="bg-primary text-primary-foreground">
       {/* Main Footer */}
       <div className="container mx-auto px-4 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
@@ -39,7 +66,7 @@ export const Footer = () => {
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center">
                 <GraduationCap className="w-6 h-6 text-secondary-foreground" />
               </div>
-              <span className="text-xl font-heading font-bold">
+              <span className="text-xl font-heading font-bold text-[#1e3b8a]">
                 Savvy<span className="text-secondary">Axiss</span>
               </span>
             </Link>
@@ -48,18 +75,9 @@ export const Footer = () => {
               real-time internships, and industry-recognized certifications.
             </p>
             <div className="flex items-center gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
-                  aria-label={social.label}
-                >
+              {socialLinks.map(social => <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-all duration-300" aria-label={social.label}>
                   <social.icon className="w-5 h-5" />
-                </a>
-              ))}
+                </a>)}
             </div>
           </div>
 
@@ -67,16 +85,11 @@ export const Footer = () => {
           <div>
             <h4 className="text-lg font-heading font-semibold mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              {footerLinks.quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-primary-foreground/70 hover:text-secondary transition-colors duration-300 text-sm"
-                  >
+              {footerLinks.quickLinks.map(link => <li key={link.name}>
+                  <Link to={link.href} className="text-primary-foreground/70 hover:text-secondary transition-colors duration-300 text-sm">
                     {link.name}
                   </Link>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
@@ -84,16 +97,11 @@ export const Footer = () => {
           <div>
             <h4 className="text-lg font-heading font-semibold mb-6">Popular Courses</h4>
             <ul className="space-y-3">
-              {footerLinks.courses.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-primary-foreground/70 hover:text-secondary transition-colors duration-300 text-sm"
-                  >
+              {footerLinks.courses.map(link => <li key={link.name}>
+                  <Link to={link.href} className="text-primary-foreground/70 hover:text-secondary transition-colors duration-300 text-sm">
                     {link.name}
                   </Link>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
@@ -109,19 +117,13 @@ export const Footer = () => {
                 </span>
               </li>
               <li>
-                <a
-                  href="mailto:info@savvyaxiss.com"
-                  className="flex items-center gap-3 text-primary-foreground/70 hover:text-secondary transition-colors duration-300"
-                >
+                <a href="mailto:info@savvyaxiss.com" className="flex items-center gap-3 text-primary-foreground/70 hover:text-secondary transition-colors duration-300">
                   <Mail className="w-5 h-5 text-secondary flex-shrink-0" />
                   <span className="text-sm">info@savvyaxiss.com</span>
                 </a>
               </li>
               <li>
-                <a
-                  href="tel:+919384902501"
-                  className="flex items-center gap-3 text-primary-foreground/70 hover:text-secondary transition-colors duration-300"
-                >
+                <a href="tel:+919384902501" className="flex items-center gap-3 text-primary-foreground/70 hover:text-secondary transition-colors duration-300">
                   <Phone className="w-5 h-5 text-secondary flex-shrink-0" />
                   <span className="text-sm">+91 93849 02501</span>
                 </a>
@@ -141,6 +143,5 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
