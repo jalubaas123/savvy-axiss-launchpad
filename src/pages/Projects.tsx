@@ -8,7 +8,6 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { projects, researchPapers, mbaProjects, projectCategories } from '@/data/projectsData';
-
 const projectDomains = [{
   icon: Code2,
   name: 'Web Development',
@@ -34,7 +33,6 @@ const projectDomains = [{
   name: 'IoT Projects',
   description: 'Arduino, Raspberry Pi, Sensors'
 }];
-
 const whyChooseUs = [{
   icon: CheckCircle2,
   title: 'Original Projects',
@@ -68,7 +66,6 @@ const whyChooseUs = [{
   title: 'Viva Assistance',
   description: 'Comprehensive viva preparation and practice sessions'
 }];
-
 const projectPackages = [{
   name: 'Basic',
   price: '₹4,999',
@@ -88,7 +85,6 @@ const projectPackages = [{
   features: ['Advanced project implementation', 'Research paper guidance', 'Complete documentation set', 'Unlimited revisions', 'Viva preparation support', 'Priority 24/7 support', 'Certificate included'],
   popular: false
 }];
-
 const containerVariants = {
   hidden: {
     opacity: 0
@@ -100,7 +96,6 @@ const containerVariants = {
     }
   }
 };
-
 const itemVariants = {
   hidden: {
     opacity: 0,
@@ -114,22 +109,16 @@ const itemVariants = {
     }
   }
 };
-
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 0
   }).format(price);
 };
-
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
-
-  const filteredProjects = activeCategory === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory);
-
+  const filteredProjects = activeCategory === 'All' ? projects : projects.filter(project => project.category === activeCategory);
   return <>
       <Helmet>
         <title>Final Year Projects for College Students | Savvy Axiss</title>
@@ -221,12 +210,15 @@ export default function Projects() {
       {/* Browse Projects Section with Category Filter */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-8"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} className="text-center mb-8">
             <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
               Ready-Made Projects
             </span>
@@ -239,49 +231,34 @@ export default function Projects() {
           </motion.div>
 
           {/* Category Filter Tabs */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex justify-center mb-8"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 10
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} className="flex justify-center mb-8">
             <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full max-w-4xl">
               <TabsList className="flex flex-wrap justify-center gap-2 h-auto bg-transparent p-0">
-                {projectCategories.map((category) => (
-                  <TabsTrigger
-                    key={category}
-                    value={category}
-                    className="px-4 py-2 rounded-full border border-border data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground data-[state=active]:border-secondary bg-card hover:bg-muted transition-all"
-                  >
+                {projectCategories.map(category => <TabsTrigger key={category} value={category} className="px-4 py-2 rounded-full border border-border data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground data-[state=active]:border-secondary bg-card hover:bg-muted transition-all">
                     {category}
-                  </TabsTrigger>
-                ))}
+                  </TabsTrigger>)}
               </TabsList>
             </Tabs>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-          >
-            {filteredProjects.map((project) => {
-              const discountPercent = project.originalPrice
-                ? Math.round(((project.originalPrice - project.price) / project.originalPrice) * 100)
-                : 0;
-
-              return (
-                <motion.div key={project.id} variants={itemVariants} layout>
+          <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredProjects.map(project => {
+            const discountPercent = project.originalPrice ? Math.round((project.originalPrice - project.price) / project.originalPrice * 100) : 0;
+            return <motion.div key={project.id} variants={itemVariants} layout>
                   <Card className="group overflow-hidden hover:border-secondary/50 transition-all duration-300 card-hover h-full flex flex-col">
                     {/* Image */}
                     <div className="relative aspect-video overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
+                      <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
                       
                       {/* Category Badge */}
@@ -290,11 +267,9 @@ export default function Projects() {
                       </Badge>
 
                       {/* Discount Badge */}
-                      {discountPercent > 0 && (
-                        <Badge className="absolute top-3 right-3 bg-success text-success-foreground">
+                      {discountPercent > 0 && <Badge className="absolute top-3 right-3 bg-success text-success-foreground">
                           {discountPercent}% OFF
-                        </Badge>
-                      )}
+                        </Badge>}
                     </div>
 
                     {/* Content */}
@@ -311,11 +286,9 @@ export default function Projects() {
                         <span className="text-xl font-bold text-foreground">
                           {formatPrice(project.price)}
                         </span>
-                        {project.originalPrice && (
-                          <span className="text-sm text-muted-foreground line-through">
+                        {project.originalPrice && <span className="text-sm text-muted-foreground line-through">
                             {formatPrice(project.originalPrice)}
-                          </span>
-                        )}
+                          </span>}
                       </div>
 
                       {/* View Details Button */}
@@ -327,28 +300,28 @@ export default function Projects() {
                       </Button>
                     </CardContent>
                   </Card>
-                </motion.div>
-              );
-            })}
+                </motion.div>;
+          })}
           </motion.div>
 
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-12">
+          {filteredProjects.length === 0 && <div className="text-center py-12">
               <p className="text-muted-foreground">No projects found in this category.</p>
-            </div>
-          )}
+            </div>}
         </div>
       </section>
 
       {/* Research Papers Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} className="text-center mb-12">
             <span className="inline-block px-4 py-1 rounded-full bg-violet-500/10 text-violet-500 text-sm font-medium mb-4">
               <BookOpen className="w-3 h-3 inline mr-1" />
               Academic Research
@@ -361,36 +334,22 @@ export default function Projects() {
             </p>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {researchPapers.map((paper) => {
-              const discountPercent = paper.originalPrice
-                ? Math.round(((paper.originalPrice - paper.price) / paper.originalPrice) * 100)
-                : 0;
-
-              return (
-                <motion.div key={paper.id} variants={itemVariants}>
+          <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {researchPapers.map(paper => {
+            const discountPercent = paper.originalPrice ? Math.round((paper.originalPrice - paper.price) / paper.originalPrice * 100) : 0;
+            return <motion.div key={paper.id} variants={itemVariants}>
                   <Card className="group overflow-hidden hover:border-violet-500/50 transition-all duration-300 card-hover h-full flex flex-col">
                     <div className="relative aspect-video overflow-hidden">
-                      <img
-                        src={paper.image}
-                        alt={paper.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
+                      <img src={paper.image} alt={paper.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-gradient-to-t from-violet-900/60 to-transparent" />
                       <Badge className="absolute top-3 left-3 bg-violet-500/80 backdrop-blur-sm text-white">
                         {paper.domain}
                       </Badge>
-                      {discountPercent > 0 && (
-                        <Badge className="absolute top-3 right-3 bg-success text-success-foreground">
+                      {discountPercent > 0 && <Badge className="absolute top-3 right-3 bg-success text-success-foreground">
                           {discountPercent}% OFF
-                        </Badge>
-                      )}
+                        </Badge>}
                     </div>
 
                     <CardContent className="p-5 flex-1 flex flex-col">
@@ -402,22 +361,18 @@ export default function Projects() {
                       </p>
 
                       <div className="flex flex-wrap gap-1 mb-4">
-                        {paper.features.slice(0, 3).map((feature) => (
-                          <Badge key={feature} variant="outline" className="text-xs">
+                        {paper.features.slice(0, 3).map(feature => <Badge key={feature} variant="outline" className="text-xs">
                             {feature}
-                          </Badge>
-                        ))}
+                          </Badge>)}
                       </div>
 
                       <div className="flex items-baseline gap-2 mb-4">
                         <span className="text-xl font-bold text-foreground">
                           {formatPrice(paper.price)}
                         </span>
-                        {paper.originalPrice && (
-                          <span className="text-sm text-muted-foreground line-through">
+                        {paper.originalPrice && <span className="text-sm text-muted-foreground line-through">
                             {formatPrice(paper.originalPrice)}
-                          </span>
-                        )}
+                          </span>}
                       </div>
 
                       <Button asChild className="w-full bg-violet-600 hover:bg-violet-700">
@@ -428,9 +383,8 @@ export default function Projects() {
                       </Button>
                     </CardContent>
                   </Card>
-                </motion.div>
-              );
-            })}
+                </motion.div>;
+          })}
           </motion.div>
         </div>
       </section>
@@ -438,12 +392,15 @@ export default function Projects() {
       {/* MBA Projects Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} className="text-center mb-12">
             <span className="inline-block px-4 py-1 rounded-full bg-amber-500/10 text-amber-600 text-sm font-medium mb-4">
               <GraduationCap className="w-3 h-3 inline mr-1" />
               MBA Projects
@@ -456,36 +413,22 @@ export default function Projects() {
             </p>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {mbaProjects.map((project) => {
-              const discountPercent = project.originalPrice
-                ? Math.round(((project.originalPrice - project.price) / project.originalPrice) * 100)
-                : 0;
-
-              return (
-                <motion.div key={project.id} variants={itemVariants}>
+          <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {mbaProjects.map(project => {
+            const discountPercent = project.originalPrice ? Math.round((project.originalPrice - project.price) / project.originalPrice * 100) : 0;
+            return <motion.div key={project.id} variants={itemVariants}>
                   <Card className="group overflow-hidden hover:border-amber-500/50 transition-all duration-300 card-hover h-full flex flex-col">
                     <div className="relative aspect-video overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
+                      <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 to-transparent" />
                       <Badge className="absolute top-3 left-3 bg-amber-500/80 backdrop-blur-sm text-white">
                         {project.specialization}
                       </Badge>
-                      {discountPercent > 0 && (
-                        <Badge className="absolute top-3 right-3 bg-success text-success-foreground">
+                      {discountPercent > 0 && <Badge className="absolute top-3 right-3 bg-success text-success-foreground">
                           {discountPercent}% OFF
-                        </Badge>
-                      )}
+                        </Badge>}
                     </div>
 
                     <CardContent className="p-5 flex-1 flex flex-col">
@@ -497,22 +440,18 @@ export default function Projects() {
                       </p>
 
                       <div className="flex flex-wrap gap-1 mb-4">
-                        {project.features.slice(0, 3).map((feature) => (
-                          <Badge key={feature} variant="outline" className="text-xs">
+                        {project.features.slice(0, 3).map(feature => <Badge key={feature} variant="outline" className="text-xs">
                             {feature}
-                          </Badge>
-                        ))}
+                          </Badge>)}
                       </div>
 
                       <div className="flex items-baseline gap-2 mb-4">
                         <span className="text-xl font-bold text-foreground">
                           {formatPrice(project.price)}
                         </span>
-                        {project.originalPrice && (
-                          <span className="text-sm text-muted-foreground line-through">
+                        {project.originalPrice && <span className="text-sm text-muted-foreground line-through">
                             {formatPrice(project.originalPrice)}
-                          </span>
-                        )}
+                          </span>}
                       </div>
 
                       <Button asChild className="w-full bg-amber-600 hover:bg-amber-700">
@@ -523,9 +462,8 @@ export default function Projects() {
                       </Button>
                     </CardContent>
                   </Card>
-                </motion.div>
-              );
-            })}
+                </motion.div>;
+          })}
           </motion.div>
         </div>
       </section>
@@ -632,7 +570,7 @@ export default function Projects() {
           duration: 0.6
         }}>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Need Help with Your Project?
+              Already Have a Project Title in Mind?
             </h2>
             <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
               Share your project requirements with us and get a free consultation. 
