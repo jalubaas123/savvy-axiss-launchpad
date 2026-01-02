@@ -3,19 +3,19 @@ import { motion, useInView } from 'framer-motion';
 import { Users, Briefcase, TrendingUp, Star, Target } from 'lucide-react';
 const stats = [{
   icon: Users,
-  value: 500,
+  value: 450,
   suffix: '+',
   label: 'Students Trained'
 }, {
   icon: Briefcase,
-  value: 50,
+  value: 320,
   suffix: '+',
-  label: 'Live Projects'
+  label: 'Projects Completed'
 }, {
   icon: TrendingUp,
-  value: 98,
-  suffix: '%',
-  label: 'Placement Rate'
+  value: 3,
+  suffix: '+',
+  label: 'Years of Experience'
 }, {
   icon: Star,
   value: 4.8,
