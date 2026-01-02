@@ -67,7 +67,7 @@ export const Footer = () => {
                 <GraduationCap className="w-6 h-6 text-secondary-foreground" />
               </div>
               <span className="text-xl font-heading font-bold text-[#1e3b8a]">
-                Savvy<span className="text-secondary">Axiss</span>
+                Savvy<span className="text-[#e9590c]">Axiss</span>
               </span>
             </Link>
             <p className="text-primary-foreground/70 text-sm mb-6 leading-relaxed">
