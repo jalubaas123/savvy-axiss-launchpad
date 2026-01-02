@@ -188,7 +188,7 @@ export default function Internship() {
               label: 'Placed Successfully',
               value: '85%'
             }].map(stat => <div key={stat.label} className="flex items-center gap-3 bg-card/50 backdrop-blur-sm px-6 py-3 rounded-xl border border-border/50">
-                  <stat.icon className="w-5 h-5 text-orange-400" />
+                  <stat.icon className="w-5 h-5 text-orange-700" />
                   <div>
                     <p className="text-2xl font-bold text-foreground">{stat.value}</p>
                     <p className="text-sm text-orange-600">{stat.label}</p>
