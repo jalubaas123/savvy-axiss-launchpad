@@ -115,7 +115,7 @@ export const projects: Project[] = [
     image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=500&fit=crop&q=80',
     price: 4999,
     originalPrice: 7999,
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/',
     description: 'Complete hospital management solution with patient records and appointment system.',
     longDescription: 'A comprehensive hospital management system that handles patient registration, appointment scheduling, medical records, billing, pharmacy management, and staff management. Designed for small to medium healthcare facilities.',
     features: [
