@@ -103,9 +103,14 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6 section-title">
-                Our Story
-              </h2>
+              <div className="flex justify-start mb-4">
+                <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-secondary/10 text-secondary border border-secondary/20">
+                  Our Story
+                </span>
+              </div>
+              <div className="flex justify-start mb-4">
+                <div className="w-16 h-0.5 bg-gradient-to-r from-secondary to-accent rounded-full" />
+              </div>
               <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
                 From Vision to Reality
               </h3>
@@ -199,9 +204,14 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4 section-title">
-              Our Values
-            </h2>
+            <div className="flex justify-center mb-4">
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-secondary/10 text-secondary border border-secondary/20">
+                Our Values
+              </span>
+            </div>
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-0.5 bg-gradient-to-r from-secondary to-accent rounded-full" />
+            </div>
             <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
               What We Stand For
             </h3>
@@ -244,9 +254,14 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground section-title">
-              Our Team
-            </h2>
+            <div className="flex justify-center mb-4">
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-secondary/10 text-secondary border border-secondary/20">
+                Our Team
+              </span>
+            </div>
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-0.5 bg-gradient-to-r from-secondary to-accent rounded-full" />
+            </div>
             <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
               Meet the Leaders
             </h3>
