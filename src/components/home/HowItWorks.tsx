@@ -41,9 +41,11 @@ export const HowItWorks = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4 section-title">
-            Simple Process
-          </h2>
+          <div className="flex justify-center mb-4">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-secondary/10 text-secondary border border-secondary/20">
+              Simple Process
+            </span>
+          </div>
           <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
             How It Works
           </h3>
