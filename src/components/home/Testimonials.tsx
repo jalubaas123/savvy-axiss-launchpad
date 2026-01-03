@@ -69,9 +69,14 @@ export const Testimonials = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary-foreground mb-4">
-            Success Stories
-          </h2>
+          <div className="flex justify-center mb-4">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-secondary/20 text-secondary border border-secondary/30">
+              Success Stories
+            </span>
+          </div>
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-0.5 bg-gradient-to-r from-secondary to-accent rounded-full" />
+          </div>
           <h3 className="text-2xl md:text-3xl font-heading font-semibold text-primary-foreground mb-4">
             What Our Students Say
           </h3>
