@@ -1,7 +1,8 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, ShoppingCart, MessageCircle, ChevronRight, Play } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, ShoppingCart, ChevronRight, Play } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -205,7 +206,7 @@ export default function ProjectDetail() {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <MessageCircle className="w-5 h-5 mr-2" />
+                          <WhatsAppIcon className="w-5 h-5 mr-2" />
                           WhatsApp Inquiry
                         </a>
                       </Button>

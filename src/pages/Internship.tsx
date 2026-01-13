@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Briefcase, CheckCircle2, Users, Trophy, Clock, FileCheck, Lightbulb, Rocket, ArrowRight, MessageCircle, GraduationCap, Code2, BarChart3, Palette } from 'lucide-react';
+import { Briefcase, CheckCircle2, Users, Trophy, Clock, FileCheck, Lightbulb, Rocket, ArrowRight, GraduationCap, Code2, BarChart3, Palette } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -158,7 +159,7 @@ export default function Internship() {
               </Button>
               <Button size="lg" asChild className="bg-[#25D366] hover:bg-[#20BA5A] text-white border-0">
                 <a href="https://wa.me/+919384902501?text=Hi, I want to know more about internship programs" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-4 h-4 mr-2" />
+                  <WhatsAppIcon className="w-4 h-4 mr-2" />
                   Ask Questions
                 </a>
               </Button>
@@ -453,7 +454,7 @@ export default function Internship() {
               </Button>
               <Button variant="outline" size="lg" asChild className="border-white text-white hover:bg-white/10">
                 <a href="https://wa.me/+919384902501" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-4 h-4 mr-2" />
+                  <WhatsAppIcon className="w-4 h-4 mr-2" />
                   Chat with Us
                 </a>
               </Button>

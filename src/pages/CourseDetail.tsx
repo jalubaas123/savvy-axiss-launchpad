@@ -8,6 +8,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { getCourseBySlug } from '@/data/courseData';
 import { allCourses } from '@/pages/Courses';
 import { EnrollModal } from '@/components/course/EnrollModal';
+import { InstructorAvatar } from '@/components/ui/instructor-avatar';
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('en-IN', {
@@ -110,7 +111,7 @@ const CourseDetail = () => {
                   </div>
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Award className="w-5 h-5" />
-                    <span>{level} Course</span>
+                    <span>{course.baseSlug === 'vibe-coding' ? 'Complete Course (Beginner to Pro)' : `${level} Course`}</span>
                   </div>
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Clock className="w-5 h-5" />
@@ -145,11 +146,37 @@ const CourseDetail = () => {
                 </p>
               </motion.div>
 
+              {/* Learning Path for Vibe Coding */}
+              {course.baseSlug === 'vibe-coding' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.35 }}
+                  className="bg-card p-6 rounded-xl border border-border mb-8"
+                >
+                  <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Learning Path</h2>
+                  <div className="space-y-4">
+                    <div className="p-4 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-lg border border-secondary/20">
+                      <h3 className="font-semibold text-foreground mb-2">Level 1 – Beginner</h3>
+                      <p className="text-sm text-muted-foreground">Understanding AI, prompts, tools, and basic coding concepts</p>
+                    </div>
+                    <div className="p-4 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-lg border border-secondary/20">
+                      <h3 className="font-semibold text-foreground mb-2">Level 2 – Intermediate</h3>
+                      <p className="text-sm text-muted-foreground">Building frontend, backend, and full-stack apps with AI assistance</p>
+                    </div>
+                    <div className="p-4 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-lg border border-secondary/20">
+                      <h3 className="font-semibold text-foreground mb-2">Level 3 – Pro</h3>
+                      <p className="text-sm text-muted-foreground">Shipping products, real-world projects, deployment & freelancing readiness</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
               {/* Skills You'll Gain */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
+                transition={{ duration: 0.5, delay: course.baseSlug === 'vibe-coding' ? 0.4 : 0.4 }}
                 className="bg-card p-6 rounded-xl border border-border mb-8"
               >
                 <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Skills you'll gain</h2>
@@ -172,13 +199,17 @@ const CourseDetail = () => {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="bg-card p-6 rounded-xl border border-border mb-8"
               >
-                <h2 className="text-2xl font-heading font-bold text-foreground mb-6">Syllabus</h2>
+                <h2 className="text-2xl font-heading font-bold text-foreground mb-6">
+                  {course.baseSlug === 'vibe-coding' ? 'Course Modules' : 'Syllabus'}
+                </h2>
                 <Accordion type="single" collapsible className="w-full">
                   {syllabus.map((item, index) => (
                     <AccordionItem key={index} value={`week-${item.week}`}>
                       <AccordionTrigger className="text-left">
                         <div className="flex items-center gap-4">
-                          <span className="font-semibold text-secondary">Week {item.week}</span>
+                          <span className="font-semibold text-secondary">
+                            {course.baseSlug === 'vibe-coding' ? `Module ${item.week}` : `Week ${item.week}`}
+                          </span>
                           <span className="text-muted-foreground">{item.topic}</span>
                         </div>
                       </AccordionTrigger>
@@ -192,24 +223,58 @@ const CourseDetail = () => {
                 </Accordion>
               </motion.div>
 
+              {/* Course Outcomes for Vibe Coding */}
+              {course.baseSlug === 'vibe-coding' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.55 }}
+                  className="bg-card p-6 rounded-xl border border-border mb-8"
+                >
+                  <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Course Outcomes</h2>
+                  <p className="text-muted-foreground mb-4">
+                    By the end of this <strong>Beginner-to-Pro</strong> course, you will:
+                  </p>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li className="flex items-start gap-3">
+                      <span className="text-secondary mt-1">✓</span>
+                      <span>Go from zero coding knowledge to building real applications</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-secondary mt-1">✓</span>
+                      <span>Use AI tools confidently for frontend, backend, and full-stack development</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-secondary mt-1">✓</span>
+                      <span>Debug, refactor, and optimize code with AI assistance</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-secondary mt-1">✓</span>
+                      <span>Deploy and ship real-world projects</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-secondary mt-1">✓</span>
+                      <span>Think like a modern AI-powered developer</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-secondary mt-1">✓</span>
+                      <span>Build products, MVPs, and freelance-ready projects with confidence</span>
+                    </li>
+                  </ul>
+                </motion.div>
+              )}
+
               {/* Instructor */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
+                transition={{ duration: 0.5, delay: course.baseSlug === 'vibe-coding' ? 0.6 : 0.6 }}
                 className="bg-card p-6 rounded-xl border border-border"
               >
                 <h2 className="text-2xl font-heading font-bold text-foreground mb-6">About the Instructor</h2>
                 <div className="flex flex-col md:flex-row gap-6">
-                  <div className="w-24 h-24 rounded-full bg-muted overflow-hidden flex-shrink-0">
-                    <img
-                      src={course.instructor.image}
-                      alt={course.instructor.name}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop';
-                      }}
-                    />
+                  <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
+                    <InstructorAvatar gender={course.instructor.gender} />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-heading font-semibold text-foreground mb-1">
@@ -309,8 +374,8 @@ const CourseDetail = () => {
                   <div className="flex items-center gap-3 text-sm">
                     <Award className="w-5 h-5 text-muted-foreground" />
                     <div>
-                      <span className="text-muted-foreground">Skill Level: </span>
-                      <span className="font-medium text-foreground">{level}</span>
+                      <span className="text-muted-foreground">Course Type: </span>
+                      <span className="font-medium text-foreground">{course.baseSlug === 'vibe-coding' ? 'Complete Course (Beginner to Pro)' : level}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 text-sm">

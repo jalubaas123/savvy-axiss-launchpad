@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 
 const courses = [
   'Full Stack Development',
@@ -132,7 +133,7 @@ const Apply = () => {
       formDataToSubmit.append('Year of Passing', formData.yearOfPassing);
       formDataToSubmit.append('Current Status', formData.currentStatus);
       formDataToSubmit.append('Course', formData.course);
-      formDataToSubmit.append('Preferred Start Date', formData.preferredStartDate);
+      formDataToSubmit.append('Selected Batch', formData.preferredStartDate);
       formDataToSubmit.append('Source', formData.source);
       formDataToSubmit.append('Message', formData.message);
 
@@ -408,15 +409,31 @@ const Apply = () => {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">
-                          Preferred Start Date (Optional)
+                          Select Batch (Month) *
                         </label>
-                        <Input
+                        <select
                           name="preferredStartDate"
-                          type="date"
                           value={formData.preferredStartDate}
                           onChange={handleChange}
-                          className="h-12"
-                        />
+                          required
+                          className="w-full h-12 px-4 rounded-lg border border-input bg-background text-foreground"
+                        >
+                          <option value="">Select a batch</option>
+                          {(() => {
+                            const months = [];
+                            const currentDate = new Date();
+                            for (let i = 0; i < 12; i++) {
+                              const date = new Date(currentDate.getFullYear(), currentDate.getMonth() + i, 1);
+                              const monthName = date.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+                              months.push(
+                                <option key={i} value={monthName}>
+                                  {monthName} Batch
+                                </option>
+                              );
+                            }
+                            return months;
+                          })()}
+                        </select>
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">
@@ -531,12 +548,13 @@ const Apply = () => {
                 application and contact you within 24 hours.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button variant="hero" asChild>
+                <Button variant="hero" asChild className="bg-[#25D366] hover:bg-[#20BA5A] text-white border-0">
                   <a
                     href="https://wa.me/919384902501?text=Hi,%20I%20just%20submitted%20my%20application!"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+                    <WhatsAppIcon className="w-4 h-4 mr-2" />
                     Chat on WhatsApp
                   </a>
                 </Button>

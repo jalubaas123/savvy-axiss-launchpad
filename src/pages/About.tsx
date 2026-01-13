@@ -37,24 +37,22 @@ const values = [
 
 const team = [
   {
-    name: 'Rajesh Kumar',
+    name: 'Shalini Baskaran',
     role: 'Founder & CEO',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face',
+    image: '/images/img2.png',
+    bio: 'Shalini Baskaran is the Founder and CEO of Savvy Axiss with extensive expertise in business development, Microsoft Office applications, and digital marketing strategies.',
   },
   {
-    name: 'Priya Sharma',
-    role: 'Head of Academics',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face',
+    name: 'Varsha Sekar',
+    role: 'Director & Instructor',
+    image: '/images/img1.png',
+    bio: 'Varsha Sekar serves as the Director and Lead Instructor at Savvy Axiss and is a Professor at Jeppiaar Engineering College. With expertise in Machine Learning, Deep Learning, and Python programming.',
   },
   {
-    name: 'Amit Patel',
-    role: 'Technical Director',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
-  },
-  {
-    name: 'Sneha Reddy',
-    role: 'Student Success Lead',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face',
+    name: 'Rajalakshmi Venkatesan',
+    role: 'Co-Director & Trainer',
+    image: '/images/raji.png',
+    bio: 'Rajalakshmi Venkatesan serves as Co-Director and Trainer at Savvy Axiss with extensive expertise in web development, frontend technologies, React, and full-stack development.',
   },
 ];
 
@@ -288,7 +286,10 @@ const About = () => {
                 <h3 className="text-lg font-heading font-semibold text-foreground">
                   {member.name}
                 </h3>
-                <p className="text-muted-foreground text-sm">{member.role}</p>
+                <p className="text-muted-foreground text-sm mb-2">{member.role}</p>
+                {member.bio && (
+                  <p className="text-xs text-muted-foreground line-clamp-3">{member.bio}</p>
+                )}
               </motion.div>
             ))}
           </div>

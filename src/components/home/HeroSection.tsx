@@ -45,7 +45,7 @@ export const HeroSection = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary" />
             </span>
-            <span className="text-xs sm:text-sm font-medium">Now Enrolling for January 2026 Batch</span>
+            <span className="text-xs sm:text-sm font-medium">Now Enrolling for {new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' })} Batch</span>
           </motion.div>
 
           {/* Main Headline */}

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { Search, Clock, Users, Star, Filter, X, Gift, Home, Headphones, Book, Award, DollarSign, MessageCircle, Network, ChevronRight } from 'lucide-react';
+import { Search, Clock, Users, Star, Filter, X, Gift, Home, Headphones, Book, Award, DollarSign, MessageCircle, Network, ChevronRight, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -19,6 +19,9 @@ const courseImages: Record<string, string> = {
   'Sqlite': '/sqlite.png',
   'MongoDB': '/mongodb.png',
   'Digital Marketing': '/digital-marketing.png',
+  'MERN Full Stack': '/webdevelopment.png',
+  'Python Full Stack': '/python-fullstack.png',
+  'Vibe Coding': '/vibecoding.png',
 };
 
 // Course data structure helper
@@ -62,6 +65,9 @@ const courseDescriptions: Record<string, string> = {
   'Sqlite': 'Learn SQLite database programming. Master lightweight database management for applications and mobile development.',
   'MongoDB': 'Master MongoDB NoSQL database. Learn document modeling, queries, aggregation, and database administration.',
   'Digital Marketing': 'Master digital marketing strategies. Learn SEO, social media marketing, PPC advertising, content marketing, email marketing, and analytics.',
+  'MERN Full Stack': 'Master the complete MERN stack (MongoDB, Express.js, React, Node.js) to build full-stack web applications with modern development practices.',
+  'Python Full Stack': 'Master Python full-stack development with Django/Flask, React, and PostgreSQL. Build scalable web applications using Python backend.',
+  'Vibe Coding': 'A complete end-to-end program from absolute beginner to confident AI-powered developer. Learn to build real-world applications using AI tools like Cursor, ChatGPT, and GitHub Copilot. Focus on thinking, building, debugging, and shipping - not memorizing syntax.',
 };
 
 export const allCourses = [
@@ -119,6 +125,19 @@ export const allCourses = [
   createCourse(55, 'Digital Marketing', 'digital-marketing', 'Marketing', 'Beginner', 4.7, '4 Weeks', 999, 1499, courseDescriptions['Digital Marketing']),
   createCourse(56, 'Digital Marketing', 'digital-marketing', 'Marketing', 'Intermediate', 4.75, '8 Weeks', 1999, 2999, courseDescriptions['Digital Marketing']),
   createCourse(57, 'Digital Marketing', 'digital-marketing', 'Marketing', 'Advanced', 4.8, '12 Weeks', 2999, 3999, courseDescriptions['Digital Marketing']),
+  
+  // MERN FULL STACK
+  createCourse(58, 'MERN Full Stack', 'mern-fullstack', 'Web Development', 'Beginner', 4.85, '4 Weeks', 1999, 2999, courseDescriptions['MERN Full Stack']),
+  createCourse(59, 'MERN Full Stack', 'mern-fullstack', 'Web Development', 'Intermediate', 4.9, '8 Weeks', 3999, 5999, courseDescriptions['MERN Full Stack']),
+  createCourse(60, 'MERN Full Stack', 'mern-fullstack', 'Web Development', 'Advanced', 4.95, '12 Weeks', 5999, 8999, courseDescriptions['MERN Full Stack']),
+  
+  // PYTHON FULL STACK
+  createCourse(61, 'Python Full Stack', 'python-fullstack', 'Web Development', 'Beginner', 4.8, '4 Weeks', 1999, 2999, courseDescriptions['Python Full Stack']),
+  createCourse(62, 'Python Full Stack', 'python-fullstack', 'Web Development', 'Intermediate', 4.85, '8 Weeks', 3999, 5999, courseDescriptions['Python Full Stack']),
+  createCourse(63, 'Python Full Stack', 'python-fullstack', 'Web Development', 'Advanced', 4.9, '12 Weeks', 5999, 8999, courseDescriptions['Python Full Stack']),
+  
+  // VIBE CODING - Single level course/workshop
+  createCourse(64, 'Vibe Coding', 'vibe-coding', 'Programming Languages', 'Beginner', 4.9, '12 Weeks', 2499, 3499, courseDescriptions['Vibe Coding']),
 ];
 
 const categories = ['All', 'Programming Languages', 'Web Development', 'Microsoft Office', 'Database', 'Marketing'];
@@ -347,7 +366,7 @@ const Courses = () => {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
                       <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/80 backdrop-blur-sm text-primary-foreground text-xs font-medium">
-                        {course.level}
+                        {course.slug === 'vibe-coding' ? 'Complete Course' : course.level}
                       </span>
                     </div>
                     <div className="p-5">
@@ -506,7 +525,7 @@ const Courses = () => {
                             {/* Badge - currently not used */}
 
                             <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/80 backdrop-blur-sm text-primary-foreground text-xs font-medium">
-                              {course.level}
+                              {course.slug === 'vibe-coding' ? 'Complete Course' : course.level}
                             </span>
                           </div>
 
@@ -541,13 +560,37 @@ const Courses = () => {
                               </span>
                             </div>
 
-                            <div className="flex items-center gap-3">
-                              <span className="text-xl font-bold text-foreground">
-                                {formatPrice(course.price)}
-                              </span>
-                              <span className="text-sm text-muted-foreground line-through">
-                                {formatPrice(course.originalPrice)}
-                              </span>
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-3">
+                                <span className="text-xl font-bold text-foreground">
+                                  {formatPrice(course.price)}
+                                </span>
+                                <span className="text-sm text-muted-foreground line-through">
+                                  {formatPrice(course.originalPrice)}
+                                </span>
+                              </div>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  const url = `${window.location.origin}/courses/${course.slug}`;
+                                  if (navigator.share) {
+                                    navigator.share({
+                                      title: course.title,
+                                      text: course.description,
+                                      url: url,
+                                    });
+                                  } else {
+                                    navigator.clipboard.writeText(url);
+                                    alert('Course link copied to clipboard!');
+                                  }
+                                }}
+                              >
+                                <Share2 className="w-4 h-4" />
+                              </Button>
                             </div>
                           </div>
                         </div>

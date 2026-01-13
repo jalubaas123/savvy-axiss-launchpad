@@ -2,11 +2,15 @@ import { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FolderKanban, CheckCircle2, FileText, Users, Clock, Code2, Database, Globe, Smartphone, Brain, Shield, ArrowRight, MessageCircle, Eye, GraduationCap, BookOpen } from 'lucide-react';
+import { FolderKanban, CheckCircle2, FileText, Users, Clock, Code2, Database, Globe, Smartphone, Brain, Shield, ArrowRight, Eye, GraduationCap, BookOpen, Send } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
 import { projects, researchPapers, mbaProjects, projectCategories } from '@/data/projectsData';
 const projectDomains = [{
   icon: Code2,
@@ -172,7 +176,7 @@ export default function Projects() {
               </Button>
               <Button size="lg" asChild className="bg-[#25D366] hover:bg-[#20BA5A] text-white border-0">
                 <a href="https://wa.me/+919384902501?text=Hi, I need help with my final year project" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-4 h-4 mr-2" />
+                  <WhatsAppIcon className="w-4 h-4 mr-2" />
                   WhatsApp Us
                 </a>
               </Button>
@@ -321,7 +325,7 @@ export default function Projects() {
                       {isResearchPaper ? (
                         <Button asChild className={`w-full ${isResearchPaper ? 'bg-violet-600 hover:bg-violet-700' : ''}`}>
                           <a href={`https://wa.me/+919384902501?text=Hi, I'm interested in the research paper: ${item.title}`} target="_blank" rel="noopener noreferrer">
-                            <MessageCircle className="w-4 h-4 mr-2" />
+                            <WhatsAppIcon className="w-4 h-4 mr-2" />
                             Enquire Now
                           </a>
                         </Button>
@@ -411,7 +415,7 @@ export default function Projects() {
 
                       <Button asChild className="w-full bg-violet-600 hover:bg-violet-700">
                         <a href={`https://wa.me/+919384902501?text=Hi, I'm interested in the research paper: ${paper.title}`} target="_blank" rel="noopener noreferrer">
-                          <MessageCircle className="w-4 h-4 mr-2" />
+                          <WhatsAppIcon className="w-4 h-4 mr-2" />
                           Enquire Now
                         </a>
                       </Button>
@@ -489,7 +493,7 @@ export default function Projects() {
 
                       <Button asChild className="w-full bg-amber-600 hover:bg-amber-700">
                         <a href={`https://wa.me/+919384902501?text=Hi, I'm interested in the MBA project: ${project.title}`} target="_blank" rel="noopener noreferrer">
-                          <MessageCircle className="w-4 h-4 mr-2" />
+                          <WhatsAppIcon className="w-4 h-4 mr-2" />
                           Enquire Now
                         </a>
                       </Button>
@@ -588,9 +592,9 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Custom Project Requirements Form Section */}
       <section className="py-20 bg-gradient-to-r from-violet-600 to-purple-600">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4">
           <motion.div initial={{
           opacity: 0,
           y: 20
@@ -601,21 +605,194 @@ export default function Projects() {
           once: true
         }} transition={{
           duration: 0.6
-        }}>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Already Have a Project Title in Mind?
-            </h2>
-            <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
-              Share your project requirements with us and get a free consultation. 
-              We'll help you understand the scope, timeline, and cost.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" asChild className="bg-white text-violet-600 hover:bg-white/90">
-                <Link to="/contact">Share Your Requirements</Link>
-              </Button>
-              <Button variant="outline" size="lg" asChild className="border-white text-white hover:bg-white/10">
-                <a href="tel:++919384902501">Call Now: +91 93849 02501</a>
-              </Button>
+        }} className="max-w-3xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+                Have Your Own Project Idea?
+              </h2>
+              <p className="text-white/80 text-lg mb-8">
+                Share your project requirements with us. Fill out the form below and we'll get back to you with a customized quote and payment options.
+              </p>
+            </div>
+
+            <div className="bg-card rounded-2xl p-6 md:p-8 border border-border">
+              <form id="custom-project-form" className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Your Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      className="w-full h-12 px-4 rounded-lg border border-input bg-background text-foreground"
+                      placeholder="Enter your name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      className="w-full h-12 px-4 rounded-lg border border-input bg-background text-foreground"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      className="w-full h-12 px-4 rounded-lg border border-input bg-background text-foreground"
+                      placeholder="+91 93849 02501"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Project Domain *
+                    </label>
+                    <select
+                      name="domain"
+                      required
+                      className="w-full h-12 px-4 rounded-lg border border-input bg-background text-foreground"
+                    >
+                      <option value="">Select Domain</option>
+                      <option value="Web Development">Web Development</option>
+                      <option value="Mobile Apps">Mobile Apps</option>
+                      <option value="Machine Learning">Machine Learning</option>
+                      <option value="Data Science">Data Science</option>
+                      <option value="Cyber Security">Cyber Security</option>
+                      <option value="IoT Projects">IoT Projects</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Project Title / Idea *
+                  </label>
+                  <input
+                    type="text"
+                    name="projectTitle"
+                    required
+                    className="w-full h-12 px-4 rounded-lg border border-input bg-background text-foreground"
+                    placeholder="e.g., E-commerce Platform with Payment Gateway"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Project Requirements / Description *
+                  </label>
+                  <textarea
+                    name="requirements"
+                    required
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground resize-none"
+                    placeholder="Describe your project requirements, features needed, technologies preferred, timeline, etc."
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Preferred Timeline
+                    </label>
+                    <select
+                      name="timeline"
+                      className="w-full h-12 px-4 rounded-lg border border-input bg-background text-foreground"
+                    >
+                      <option value="">Select Timeline</option>
+                      <option value="1-2 weeks">1-2 weeks</option>
+                      <option value="3-4 weeks">3-4 weeks</option>
+                      <option value="1-2 months">1-2 months</option>
+                      <option value="2-3 months">2-3 months</option>
+                      <option value="3+ months">3+ months</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Budget Range (Optional)
+                    </label>
+                    <select
+                      name="budget"
+                      className="w-full h-12 px-4 rounded-lg border border-input bg-background text-foreground"
+                    >
+                      <option value="">Select Budget</option>
+                      <option value="Under ₹5,000">Under ₹5,000</option>
+                      <option value="₹5,000 - ₹10,000">₹5,000 - ₹10,000</option>
+                      <option value="₹10,000 - ₹20,000">₹10,000 - ₹20,000</option>
+                      <option value="₹20,000 - ₹50,000">₹20,000 - ₹50,000</option>
+                      <option value="Above ₹50,000">Above ₹50,000</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="consent"
+                    name="consent"
+                    required
+                    className="mt-1"
+                  />
+                  <label htmlFor="consent" className="text-sm text-muted-foreground">
+                    I agree to receive project quotes and payment information via WhatsApp and email. 
+                    I understand that payment can be made securely via WhatsApp payment link.
+                  </label>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="flex-1 bg-violet-600 hover:bg-violet-700 text-white"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const form = document.getElementById('custom-project-form') as HTMLFormElement;
+                      const formData = new FormData(form);
+                      
+                      // Build WhatsApp message
+                      const message = `Hi, I need help with my project:\n\n` +
+                        `Name: ${formData.get('name')}\n` +
+                        `Email: ${formData.get('email')}\n` +
+                        `Phone: ${formData.get('phone')}\n` +
+                        `Domain: ${formData.get('domain')}\n` +
+                        `Project Title: ${formData.get('projectTitle')}\n` +
+                        `Requirements: ${formData.get('requirements')}\n` +
+                        `Timeline: ${formData.get('timeline') || 'Not specified'}\n` +
+                        `Budget: ${formData.get('budget') || 'Not specified'}\n\n` +
+                        `Please share the quote and payment details.`;
+                      
+                      const whatsappUrl = `https://wa.me/919384902501?text=${encodeURIComponent(message)}`;
+                      window.open(whatsappUrl, '_blank');
+                    }}
+                  >
+                    <WhatsAppIcon className="w-4 h-4 mr-2" />
+                    Submit & Get Quote via WhatsApp
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="lg"
+                    asChild
+                    className="flex-1 border-white text-white hover:bg-white/10"
+                  >
+                    <a href="tel:+919384902501">Call: +91 93849 02501</a>
+                  </Button>
+                </div>
+              </form>
             </div>
           </motion.div>
         </div>

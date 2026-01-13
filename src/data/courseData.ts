@@ -17,6 +17,7 @@ export interface CourseDetail {
     name: string;
     role: string;
     image: string;
+    gender: 'male' | 'female';
     rating: number;
     students: number;
     bio: string;
@@ -42,6 +43,7 @@ export const courseDetails: Record<string, CourseDetail> = {
       name: 'Varsha Sekar',
       role: 'Director & Instructor',
       image: '/images/img1.png',
+      gender: 'female',
       rating: 4.95,
       students: 100,
       bio: 'Varsha Sekar serves as the Director and Lead Instructor at Savvy Axiss and is a Professor at Jeppiaar Engineering College. With a robust background in Machine Learning and Deep Learning, she has contributed extensively to the field through multiple research publications.',
@@ -91,6 +93,7 @@ export const courseDetails: Record<string, CourseDetail> = {
       name: 'Varsha Sekar',
       role: 'Director & Instructor',
       image: '/images/img1.png',
+      gender: 'female',
       rating: 4.95,
       students: 120,
       bio: 'Varsha Sekar serves as the Director and Lead Instructor at Savvy Axiss with extensive experience in Java and enterprise application development.',
@@ -140,6 +143,7 @@ export const courseDetails: Record<string, CourseDetail> = {
       name: 'Rajalakshmi Venkatesan',
       role: 'Co-Director & Trainer',
       image: '/images/raji.png',
+      gender: 'female',
       rating: 4.9,
       students: 200,
       bio: 'Rajalakshmi Venkatesan serves as Co-Director and Trainer at Savvy Axiss with expertise in web development and frontend technologies.',
@@ -189,6 +193,7 @@ export const courseDetails: Record<string, CourseDetail> = {
       name: 'Rajalakshmi Venkatesan',
       role: 'Co-Director & Trainer',
       image: '/images/raji.png',
+      gender: 'female',
       rating: 4.9,
       students: 180,
       bio: 'Rajalakshmi Venkatesan specializes in CSS and frontend design with extensive experience in creating beautiful user interfaces.',
@@ -238,6 +243,7 @@ export const courseDetails: Record<string, CourseDetail> = {
       name: 'Rajalakshmi Venkatesan',
       role: 'Co-Director & Trainer',
       image: '/images/raji.png',
+      gender: 'female',
       rating: 4.9,
       students: 250,
       bio: 'Rajalakshmi Venkatesan is an expert in JavaScript and modern web development with extensive experience in building interactive applications.',
@@ -287,6 +293,7 @@ export const courseDetails: Record<string, CourseDetail> = {
       name: 'Rajalakshmi Venkatesan',
       role: 'Co-Director & Trainer',
       image: '/images/raji.png',
+      gender: 'female',
       rating: 4.9,
       students: 280,
       bio: 'Rajalakshmi Venkatesan is an expert in React.js and modern frontend development with extensive experience in building scalable web applications.',
@@ -336,6 +343,7 @@ export const courseDetails: Record<string, CourseDetail> = {
       name: 'Shalini Baskaran',
       role: 'Founder & CEO',
       image: '/images/img2.png',
+      gender: 'female',
       rating: 4.95,
       students: 300,
       bio: 'Shalini Baskaran is the Founder and CEO of Savvy Axiss with extensive expertise in Microsoft Office applications and business analytics.',
@@ -373,6 +381,7 @@ export const courseDetails: Record<string, CourseDetail> = {
       name: 'Shalini Baskaran',
       role: 'Founder & CEO',
       image: '/images/img2.png',
+      gender: 'female',
       rating: 4.95,
       students: 180,
       bio: 'Shalini Baskaran has extensive experience in digital marketing and business growth strategies.',
@@ -408,6 +417,142 @@ export const courseDetails: Record<string, CourseDetail> = {
         { week: 11, topic: 'Marketing Technology Stack', description: 'Evaluate and integrate marketing technology tools. Build marketing tech stacks, ensure tool integration, and optimize marketing operations.' },
         { week: 12, topic: 'Final Project - Comprehensive Marketing Strategy', description: 'Develop and present a complete digital marketing strategy for a business. Include all channels, budgets, timelines, and expected ROI.' },
       ],
+    },
+  },
+  'MERN Full Stack': {
+    name: 'MERN Full Stack',
+    baseSlug: 'mern-fullstack',
+    category: 'Web Development',
+    image: '/webdevelopment.png',
+    description: 'Master the complete MERN stack (MongoDB, Express.js, React, Node.js) to build full-stack web applications. Learn modern development practices, deployment, and real-world project implementation.',
+    objective: 'To master the complete MERN stack development, enabling you to build scalable, production-ready full-stack web applications with modern tools and best practices.',
+    skills: ['MongoDB Database Design', 'Express.js Backend Development', 'React Frontend Development', 'Node.js Server-Side Programming', 'RESTful APIs', 'Authentication & Authorization', 'Deployment & DevOps'],
+    instructor: {
+      name: 'Rajalakshmi Venkatesan',
+      role: 'Co-Director & Trainer',
+      image: '/images/raji.png',
+      gender: 'female',
+      rating: 4.95,
+      students: 320,
+      bio: 'Rajalakshmi Venkatesan is an expert in full-stack development with extensive experience in MERN stack and modern web technologies.',
+    },
+    syllabus: {
+      Beginner: [
+        { week: 1, topic: 'Introduction to MERN Stack & Setup', description: 'Understand MERN stack architecture, set up development environment, install Node.js, MongoDB, and create your first MERN project structure.' },
+        { week: 2, topic: 'MongoDB Fundamentals', description: 'Learn MongoDB basics, create databases and collections, perform CRUD operations, and understand document structure.' },
+        { week: 3, topic: 'Node.js & Express.js Basics', description: 'Master Node.js fundamentals, create Express.js server, handle routes, middleware, and build RESTful API endpoints.' },
+        { week: 4, topic: 'React Fundamentals', description: 'Learn React basics, components, props, state, hooks, and build interactive user interfaces with React.' },
+      ],
+      Intermediate: [
+        { week: 1, topic: 'Advanced MongoDB & Mongoose', description: 'Master Mongoose ODM, schema design, relationships, validation, and advanced querying techniques.' },
+        { week: 2, topic: 'Express.js Advanced Features', description: 'Implement authentication with JWT, middleware, error handling, file uploads, and API security best practices.' },
+        { week: 3, topic: 'React Advanced Concepts', description: 'Master React Router, Context API, custom hooks, state management, and component optimization.' },
+        { week: 4, topic: 'API Integration & State Management', description: 'Connect React frontend with Express backend, handle API calls, manage global state, and implement data fetching patterns.' },
+        { week: 5, topic: 'Authentication & Authorization', description: 'Implement user authentication, JWT tokens, protected routes, role-based access control, and secure API endpoints.' },
+        { week: 6, topic: 'Real-time Features with Socket.io', description: 'Add real-time functionality using Socket.io, implement chat features, notifications, and live updates.' },
+        { week: 7, topic: 'Testing & Debugging', description: 'Write unit tests, integration tests, debug applications, use testing frameworks, and ensure code quality.' },
+        { week: 8, topic: 'Final Project - E-commerce Platform', description: 'Build a complete e-commerce platform with user authentication, product management, shopping cart, and payment integration.' },
+      ],
+      Advanced: [
+        { week: 1, topic: 'Advanced MongoDB Patterns', description: 'Implement advanced data modeling, aggregation pipelines, indexing strategies, and performance optimization.' },
+        { week: 2, topic: 'Microservices Architecture', description: 'Design microservices, implement service communication, API gateways, and distributed system patterns.' },
+        { week: 3, topic: 'Advanced React Patterns', description: 'Master advanced React patterns, server-side rendering with Next.js, performance optimization, and code splitting.' },
+        { week: 4, topic: 'GraphQL Integration', description: 'Implement GraphQL APIs, use Apollo Client, handle queries and mutations, and integrate with MERN stack.' },
+        { week: 5, topic: 'Cloud Deployment & DevOps', description: 'Deploy MERN applications to cloud platforms, set up CI/CD pipelines, use Docker, and implement DevOps practices.' },
+        { week: 6, topic: 'Performance Optimization', description: 'Optimize application performance, implement caching strategies, database optimization, and frontend optimization techniques.' },
+        { week: 7, topic: 'Security Best Practices', description: 'Implement security measures, protect against vulnerabilities, secure APIs, and follow security best practices.' },
+        { week: 8, topic: 'Advanced State Management', description: 'Implement Redux, Zustand, or other state management solutions, handle complex state, and optimize state updates.' },
+        { week: 9, topic: 'Payment Integration', description: 'Integrate payment gateways like Stripe, Razorpay, handle transactions, and implement secure payment processing.' },
+        { week: 10, topic: 'Advanced Features', description: 'Implement advanced features like search functionality, filtering, pagination, file handling, and third-party API integrations.' },
+        { week: 11, topic: 'Monitoring & Analytics', description: 'Set up application monitoring, implement analytics, error tracking, performance monitoring, and logging systems.' },
+        { week: 12, topic: 'Final Project - Enterprise Application', description: 'Build a production-ready enterprise application with all advanced features, deployment, and best practices.' },
+      ],
+    },
+  },
+  'Python Full Stack': {
+    name: 'Python Full Stack',
+    baseSlug: 'python-fullstack',
+    category: 'Web Development',
+    image: '/python-fullstack.png',
+    description: 'Master Python full-stack development with Django/Flask, React, and PostgreSQL. Build scalable web applications using Python backend and modern frontend technologies.',
+    objective: 'To master Python full-stack development, enabling you to build robust, scalable web applications using Python frameworks, modern frontend technologies, and best practices.',
+    skills: ['Django/Flask Framework', 'Python Backend Development', 'RESTful APIs', 'Database Design', 'Frontend Integration', 'Authentication', 'Deployment'],
+    instructor: {
+      name: 'Varsha Sekar',
+      role: 'Director & Instructor',
+      image: '/images/img1.png',
+      gender: 'female',
+      rating: 4.95,
+      students: 280,
+      bio: 'Varsha Sekar is an expert in Python development with extensive experience in Django, Flask, and full-stack application development.',
+    },
+    syllabus: {
+      Beginner: [
+        { week: 1, topic: 'Python Web Development Basics', description: 'Review Python fundamentals, understand web development concepts, HTTP protocols, and set up development environment.' },
+        { week: 2, topic: 'Django Framework Introduction', description: 'Learn Django framework, create projects and apps, understand MVC pattern, and build your first Django application.' },
+        { week: 3, topic: 'Database Models & Admin Panel', description: 'Create Django models, work with databases, use Django admin panel, and perform database operations.' },
+        { week: 4, topic: 'Views & Templates', description: 'Create views, templates, handle requests and responses, implement dynamic content, and build user interfaces.' },
+      ],
+      Intermediate: [
+        { week: 1, topic: 'Django REST Framework', description: 'Build RESTful APIs with Django REST Framework, create serializers, viewsets, and handle API requests.' },
+        { week: 2, topic: 'Authentication & User Management', description: 'Implement user authentication, registration, login, password reset, and user management systems.' },
+        { week: 3, topic: 'Frontend Integration with React', description: 'Connect React frontend with Django backend, handle API calls, manage state, and build interactive UIs.' },
+        { week: 4, topic: 'Database Relationships & Queries', description: 'Implement database relationships, optimize queries, use advanced ORM features, and handle complex data operations.' },
+        { week: 5, topic: 'File Handling & Media Management', description: 'Handle file uploads, manage media files, implement file storage, and process uploaded content.' },
+        { week: 6, topic: 'Advanced Django Features', description: 'Use Django middleware, signals, caching, sessions, and implement advanced Django features.' },
+        { week: 7, topic: 'Testing & Debugging', description: 'Write unit tests, integration tests, debug Django applications, and ensure code quality.' },
+        { week: 8, topic: 'Final Project - Blog Platform', description: 'Build a complete blog platform with user authentication, CRUD operations, and API integration.' },
+      ],
+      Advanced: [
+        { week: 1, topic: 'Advanced Django Patterns', description: 'Master advanced Django patterns, custom managers, querysets, and implement complex business logic.' },
+        { week: 2, topic: 'Microservices with Flask', description: 'Build microservices using Flask, implement service communication, and design scalable architectures.' },
+        { week: 3, topic: 'Real-time Features', description: 'Implement real-time features using WebSockets, Django Channels, and build interactive applications.' },
+        { week: 4, topic: 'Advanced API Development', description: 'Build advanced APIs, implement GraphQL, handle complex data structures, and optimize API performance.' },
+        { week: 5, topic: 'Database Optimization', description: 'Optimize database queries, implement indexing, use database connection pooling, and improve performance.' },
+        { week: 6, topic: 'Security & Best Practices', description: 'Implement security measures, protect against vulnerabilities, secure APIs, and follow Django best practices.' },
+        { week: 7, topic: 'Deployment & DevOps', description: 'Deploy Python applications, use Docker, set up CI/CD, implement DevOps practices, and manage production environments.' },
+        { week: 8, topic: 'Performance Optimization', description: 'Optimize application performance, implement caching, use CDN, and improve response times.' },
+        { week: 9, topic: 'Payment Integration', description: 'Integrate payment gateways, handle transactions, implement secure payment processing, and manage subscriptions.' },
+        { week: 10, topic: 'Advanced Frontend Features', description: 'Implement advanced frontend features, use modern React patterns, optimize frontend performance, and enhance UX.' },
+        { week: 11, topic: 'Monitoring & Analytics', description: 'Set up monitoring, implement analytics, error tracking, performance monitoring, and logging systems.' },
+        { week: 12, topic: 'Final Project - Enterprise Application', description: 'Build a production-ready enterprise application with all advanced features, deployment, and best practices.' },
+      ],
+    },
+  },
+  'Vibe Coding': {
+    name: 'Vibe Coding',
+    baseSlug: 'vibe-coding',
+    category: 'Programming Languages',
+    image: '/vibecoding.png',
+    description: 'A complete end-to-end program designed to take you from absolute beginner to confident AI-powered developer. Learn to build real-world applications using AI tools like Cursor, ChatGPT, and GitHub Copilot. Focus on thinking, building, debugging, and shipping - not memorizing syntax.',
+    objective: 'To transform learners from zero coding knowledge to confident AI-powered developers who can build, debug, and ship real-world applications. This course teaches effective AI collaboration, prompt engineering, and modern development workflows that leverage AI tools.',
+    skills: ['AI-Assisted Development', 'Prompt Engineering', 'Full-Stack Development', 'AI Tool Mastery', 'Debugging with AI', 'Deployment & Shipping', 'Product Building'],
+    instructor: {
+      name: 'Rajalakshmi Venkatesan',
+      role: 'Co-Director & Trainer',
+      image: '/images/raji.png',
+      gender: 'female',
+      rating: 4.9,
+      students: 200,
+      bio: 'Rajalakshmi Venkatesan specializes in AI-powered development and modern coding workflows, helping students leverage AI tools to build real-world applications faster.',
+    },
+    syllabus: {
+      Beginner: [
+        { week: 1, topic: 'Introduction to Vibe Coding', description: 'What is Vibe Coding? Evolution of coding → AI-assisted development. Difference between traditional coding vs vibe coding. Myths & realities of "coding with AI". Real-world examples & case studies. Understanding the shift to AI-first development.' },
+        { week: 2, topic: 'Understanding the Vibe Mindset', description: 'Thinking in outcomes, not syntax. How to describe ideas clearly to AI. Prompting as a core skill. Breaking problems into vibes (features, flows, intent). Common beginner mistakes and how to avoid them. Developing the right mindset for AI collaboration.' },
+        { week: 3, topic: 'Tools for Vibe Coding', description: 'Overview of AI coding tools: Cursor, ChatGPT, GitHub Copilot. Choosing the right tool for the right task. Setting up Cursor (Windows & macOS). Understanding AI limitations & hallucinations. Tool comparison and best practices.' },
+        { week: 4, topic: 'Prompt Engineering for Developers', description: 'Basics of prompt engineering. Writing effective prompts for UI generation, backend logic, bug fixing, and refactoring. Iterative prompting techniques. Prompt templates for daily use. Advanced prompting strategies.' },
+        { week: 5, topic: 'Frontend Vibe Coding', description: 'Generating HTML, CSS, JavaScript with AI. Using React / Next.js with AI assistance. Styling with Tailwind & component libraries. Converting Figma / ideas into code. UI debugging with AI. Building responsive interfaces quickly.' },
+        { week: 6, topic: 'Backend Vibe Coding', description: 'Backend concepts (explained simply). Generating APIs using AI. Working with Node.js / Python. Database basics (SQL & NoSQL vibes). Authentication & authorization using AI. Building robust backend systems.' },
+        { week: 7, topic: 'Full-Stack Vibe Projects', description: 'Planning a full-stack app using vibes. Folder structure & architecture with AI. Connecting frontend + backend. Environment variables & configs. Error handling & optimization. Building complete applications end-to-end.' },
+        { week: 8, topic: 'Git, GitHub & AI Collaboration', description: 'Git fundamentals (simple explanation). Using Git inside Cursor. AI-assisted commit messages. Branching, pull requests & collaboration. Deploying from GitHub. Version control best practices with AI.' },
+        { week: 9, topic: 'Debugging & Problem Solving with AI', description: 'How to talk to AI when things break. Reading error messages with AI help. Debugging frontend & backend issues. Performance optimization prompts. Security considerations. Becoming an effective debugger with AI assistance.' },
+        { week: 10, topic: 'Deployment & Shipping Faster', description: 'Hosting frontend apps (Vercel, Netlify). Backend deployment basics. Environment setup for production. Monitoring & fixing production bugs. Shipping mindset & iteration. Getting your apps live quickly.' },
+        { week: 11, topic: 'Real-World Vibe Coding Projects', description: 'Build a landing page in minutes. Build a SaaS MVP. Build an internal tool. Clone popular apps using AI. Freelancing & client projects using vibe coding. Practical project building and portfolio development.' },
+        { week: 12, topic: 'Ethics, Limits & Future of Vibe Coding', description: 'Ethical use of AI in coding. Copyright & licensing awareness. When NOT to rely on AI. Future of developers & AI. Becoming a "Vibe Engineer". Bonus: No-code vs Low-code vs Vibe coding, AI for documentation & testing, monetizing vibe coding skills.' },
+      ],
+      Intermediate: [],
+      Advanced: [],
     },
   },
 };
@@ -563,6 +708,14 @@ const generateDefaultSyllabus = (
 
 // Helper function to get course detail by slug
 export const getCourseBySlug = (slug: string): { course: CourseDetail; level: 'Beginner' | 'Intermediate' | 'Advanced' } | null => {
+  // Special handling for Vibe Coding - it's a single-level course
+  if (slug === 'vibe-coding') {
+    const course = courseDetails['Vibe Coding'];
+    if (course) {
+      return { course, level: 'Beginner' };
+    }
+  }
+  
   const level = slug.endsWith('b') ? 'Beginner' : slug.endsWith('i') ? 'Intermediate' : slug.endsWith('a') ? 'Advanced' : null;
   if (!level) return null;
   
@@ -631,6 +784,15 @@ export const getCourseBySlug = (slug: string): { course: CourseDetail; level: 'B
     'digital-marketingb': 'digital-marketing',
     'digital-marketingi': 'digital-marketing',
     'digital-marketinga': 'digital-marketing',
+    'mern-fullstackb': 'mern-fullstack',
+    'mern-fullstacki': 'mern-fullstack',
+    'mern-fullstacka': 'mern-fullstack',
+    'python-fullstackb': 'python-fullstack',
+    'python-fullstacki': 'python-fullstack',
+    'python-fullstacka': 'python-fullstack',
+    'vibe-codingb': 'vibe-coding',
+    'vibe-codingi': 'vibe-coding',
+    'vibe-codinga': 'vibe-coding',
   };
 
   if (slugToBaseSlug[slug]) {
@@ -665,6 +827,9 @@ export const getCourseBySlug = (slug: string): { course: CourseDetail; level: 'B
     'sqlite': 'Sqlite',
     'mongodb': 'MongoDB',
     'digital-marketing': 'Digital Marketing',
+    'mern-fullstack': 'MERN Full Stack',
+    'python-fullstack': 'Python Full Stack',
+    'vibe-coding': 'Vibe Coding',
   };
 
   const courseName = courseNameMap[baseSlug];
