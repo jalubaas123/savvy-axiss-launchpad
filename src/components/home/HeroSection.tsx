@@ -16,6 +16,11 @@ const stats = [{
   icon: Award
 }];
 export const HeroSection = () => {
+  // Get current month and year dynamically
+  const currentDate = new Date();
+  const currentMonth = currentDate.toLocaleString('en-US', { month: 'long' });
+  const currentYear = currentDate.getFullYear();
+  
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -45,7 +50,7 @@ export const HeroSection = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary" />
             </span>
-            <span className="text-xs sm:text-sm font-medium">Now Enrolling for {new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' })} Batch</span>
+            <span className="text-xs sm:text-sm font-medium">Now Enrolling for {currentMonth} {currentYear} Batch</span>
           </motion.div>
 
           {/* Main Headline */}

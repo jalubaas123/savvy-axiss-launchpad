@@ -1,0 +1,315 @@
+================================================================================
+                    DUMMY/FAKE DATA LIST - SAVVY AXISS PROJECT
+================================================================================
+
+This document lists all placeholder, dummy, fake, or example data found in the
+entire project that needs to be replaced with real content.
+
+================================================================================
+1. PROJECT IMAGES (Unsplash Placeholder URLs)
+================================================================================
+
+Location: /src/data/projectsData.ts
+
+All project images are using Unsplash placeholder URLs. These need to be
+replaced with actual project screenshots or images:
+
+- E-Commerce Website: https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop&q=80
+- Food Delivery App: https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&h=500&fit=crop&q=80
+- Sentiment Analysis System: https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop&q=80
+- Hospital Management System: https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=500&fit=crop&q=80
+- Expense Tracker App: https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop&q=80
+- Crop Disease Detection: https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&h=500&fit=crop&q=80
+- Online Learning Platform: https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=500&fit=crop&q=80
+- Inventory Management System: https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&h=500&fit=crop&q=80
+- Sales Prediction & Analytics Dashboard: https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop&q=80
+- Customer Churn Prediction System: https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=80
+- Stock Market Analysis & Prediction: https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop&q=80
+- Network Intrusion Detection System: https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=500&fit=crop&q=80
+- Password Strength Analyzer & Manager: https://images.unsplash.com/photo-1633265486064-086b219458ec?w=800&h=500&fit=crop&q=80
+- Malware Detection & Analysis System: https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=500&fit=crop&q=80
+- Smart Home Automation System: https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop&q=80
+- Smart Agriculture Monitoring System: https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=500&fit=crop&q=80
+- IoT Health Monitoring Device: https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop&q=80
+
+Research Paper Images:
+- Blockchain in Supply Chain Management: https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=500&fit=crop&q=80
+- AI in Healthcare Diagnosis: https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop&q=80
+- IoT-Based Smart Agriculture: https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=500&fit=crop&q=80
+- Machine Learning for Cybersecurity: https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=500&fit=crop&q=80
+
+MBA Project Images:
+- Market Analysis of FinTech Startups: https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=80
+- Employee Retention Strategies: https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&h=500&fit=crop&q=80
+- Digital Marketing ROI Analysis: https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&h=500&fit=crop&q=80
+- Supply Chain Optimization: https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=500&fit=crop&q=80
+
+================================================================================
+2. YOUTUBE VIDEO URLs (Fake/Dummy Videos)
+================================================================================
+
+Location: /src/data/projectsData.ts
+
+All project video URLs are using placeholder YouTube embed URLs. Most use
+"dQw4w9WgXcQ" which is a famous Rick Roll video ID. These need to be replaced
+with actual project demo videos:
+
+- E-Commerce Website: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Food Delivery App: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Sentiment Analysis System: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Hospital Management System: https://www.youtube.com/embed/ (empty URL)
+- Expense Tracker App: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Crop Disease Detection: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Online Learning Platform: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Inventory Management System: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Sales Prediction & Analytics Dashboard: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Customer Churn Prediction System: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Stock Market Analysis & Prediction: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Network Intrusion Detection System: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Password Strength Analyzer & Manager: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Malware Detection & Analysis System: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Smart Home Automation System: https://www.youtube.com/embed/dQw4w9WgXcQ
+- Smart Agriculture Monitoring System: https://www.youtube.com/embed/dQw4w9WgXcQ
+- IoT Health Monitoring Device: https://www.youtube.com/embed/dQw4w9WgXcQ
+
+Total: 17 projects with fake video URLs
+
+================================================================================
+3. TESTIMONIAL DATA (Fake Names, Companies, Quotes)
+================================================================================
+
+Location: /src/components/home/Testimonials.tsx
+
+All testimonials use fake names, companies, and quotes with Unsplash profile
+images:
+
+1. Priya Sharma
+   - Role: Software Developer at TCS
+   - Image: https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face
+   - Quote: "Savvy Axiss transformed my career. The live projects gave me real-world experience that impressed my interviewers. Landed my dream job within 2 months of completing the course!"
+   - Course: Full Stack Development
+
+2. Rahul Verma
+   - Role: Data Analyst at Infosys
+   - Image: https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face
+   - Quote: "The instructors are amazing and always available for doubts. The curriculum is exactly what the industry needs. Best investment I made in my career."
+   - Course: Data Science
+
+3. Ananya Patel
+   - Role: Marketing Manager at Flipkart
+   - Image: https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face
+   - Quote: "From zero knowledge to managing digital campaigns for a Fortune 500 company. Savvy Axiss made it possible with their practical approach to learning."
+   - Course: Digital Marketing
+
+4. Vikram Singh
+   - Role: UI/UX Designer at Swiggy
+   - Image: https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face
+   - Quote: "The design thinking workshops and real client projects helped me build a portfolio that stands out. Got placed even before completing the course!"
+   - Course: UI/UX Design
+
+5. Sneha Reddy
+   - Role: Cloud Engineer at Amazon
+   - Image: https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face
+   - Quote: "The cloud computing course with hands-on AWS projects was exactly what I needed. The certification helped me crack interviews at top tech companies."
+   - Course: Cloud Computing
+
+Location: /src/pages/WebDevelopment.tsx
+
+Additional testimonials for Web Development page:
+
+1. Rajesh Kumar
+   - Business: Kumar Electronics
+   - Role: Business Owner
+   - Image: https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop
+   - Quote: "Our sales increased 40% after launching our new website. The team understood our needs perfectly and delivered beyond expectations. Highly recommended!"
+   - Results: "40% increase in sales"
+
+2. Priya Sharma
+   - Business: Priya's Boutique
+   - Role: Fashion Designer
+   - Image: https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop
+   - Quote: "Beautiful design and great support. They delivered exactly what I wanted and helped me understand how to manage my website. My online presence has never been better!"
+   - Results: "3x more online inquiries"
+
+3. Dr. Anil Mehta
+   - Business: Mehta Dental Clinic
+   - Role: Dentist
+   - Image: https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop
+   - Quote: "Professional team, on-time delivery. My patients find it easy to book appointments now. The website has significantly improved our patient engagement."
+   - Results: "60% more appointments"
+
+4. Amit Patel
+   - Business: Patel Real Estate
+   - Role: Real Estate Agent
+   - Image: https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop
+   - Quote: "The property listing website they built has transformed my business. I can now showcase properties effectively and get inquiries 24/7. Excellent work!"
+   - Results: "5x more property inquiries"
+
+================================================================================
+4. RANDOM REVIEW COUNTS (Generated with Math.random())
+================================================================================
+
+Location: /src/pages/Courses.tsx (line 50)
+
+The review count for courses is generated randomly:
+- Code: `reviews: Math.floor(Math.random() * 100) + 20`
+- This generates a random number between 20-119 for each course
+- Should be replaced with actual review counts from database or real data
+
+================================================================================
+5. PLACEHOLDER IMAGES FOR COURSES
+================================================================================
+
+Location: /src/pages/Courses.tsx (line 44)
+Location: /src/data/courseData.ts (line 850)
+
+Fallback placeholder image used when course image is not found:
+- '/placeholder.svg' - This file may not exist and needs to be created or replaced
+
+================================================================================
+6. FORM PLACEHOLDER TEXT (Example/Dummy Values)
+================================================================================
+
+Location: Multiple form files
+
+Contact Form (/src/pages/Contact.tsx):
+- Name placeholder: "John Doe"
+- Email placeholder: "john@example.com"
+- Phone placeholder: "+91 93849 02501"
+- Subject placeholder: "Course Inquiry"
+- Message placeholder: "Tell us how we can help you..."
+
+Apply Form (/src/pages/Apply.tsx):
+- Name placeholder: "Enter your full name"
+- Email placeholder: "you@example.com"
+- Phone placeholder: "+91 93849 02501"
+- City placeholder: "Your city"
+- College placeholder: "Your college or university"
+- Year placeholder: "e.g., 2023"
+- Career goals placeholder: "What are your career aspirations? What do you hope to achieve?"
+
+Course Enroll Form (/src/components/course/EnrollModal.tsx):
+- Name placeholder: "Enter your full name"
+- Email placeholder: "your.email@example.com"
+- Phone placeholder: "10-digit mobile number"
+- City placeholder: "Your city"
+- State placeholder: "Your state"
+- College placeholder: "Your college or institution name"
+- Year placeholder: "e.g., 2024"
+- Questions placeholder: "Any questions or special requirements?"
+
+Projects Custom Form (/src/pages/Projects.tsx):
+- Name placeholder: "Enter your name"
+- Email placeholder: "your@email.com"
+- Phone placeholder: "+91 93849 02501"
+- Project title placeholder: "e.g., E-commerce Platform with Payment Gateway"
+- Project details placeholder: "Describe your project requirements, features needed, technologies preferred, timeline, etc."
+
+Note: These placeholders are acceptable for form UX, but the example values
+(like "John Doe", "john@example.com") should be generic and not suggest real
+people.
+
+================================================================================
+7. DEFAULT COURSE DATA GENERATION
+================================================================================
+
+Location: /src/data/courseData.ts (lines 846-862)
+
+When a course is not found in the courseDetails object, a default course is
+generated with:
+- Generic description: "Learn {courseName} from fundamentals to advanced concepts..."
+- Generic objective: "To equip you with comprehensive {courseName} capabilities..."
+- Generic skills: ['Fundamentals', 'Practical Application', 'Best Practices', 'Real-world Projects']
+- Default instructor data
+- Generated syllabus using `generateDefaultSyllabus()` function
+
+This fallback mechanism should ideally redirect to a 404 page or show a proper
+error message instead of generating fake course data.
+
+================================================================================
+8. ABOUT PAGE IMAGE
+================================================================================
+
+Location: /src/pages/About.tsx (line 142)
+
+Team/About section uses an Unsplash image:
+- URL: https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop
+- Should be replaced with actual company/about image
+
+================================================================================
+9. TEAM MEMBER IMAGES (May be Missing)
+================================================================================
+
+Location: /src/pages/About.tsx
+
+Team member images reference local files that may not exist:
+- Shalini Baskaran: '/images/img2.png'
+- Varsha Sekar: '/images/img1.png'
+- Rajalakshmi Venkatesan: '/images/raji.png'
+
+These files need to be verified to exist in the /public/images/ directory.
+
+================================================================================
+10. INSTRUCTOR IMAGES (Now Using Generic Avatars)
+================================================================================
+
+Location: /src/data/courseData.ts
+
+All instructor images reference local files:
+- '/images/img1.png' (Varsha Sekar)
+- '/images/img2.png' (Shalini Baskaran)
+- '/images/raji.png' (Rajalakshmi Venkatesan)
+
+Note: These have been replaced with generic avatar components in the UI, but
+the image paths still exist in the data. The InstructorAvatar component now
+uses gender-based gradient icons instead of actual photos.
+
+================================================================================
+11. MISSING IMAGE FALLBACK
+================================================================================
+
+Location: /src/pages/CourseDetail.tsx (line 281 - removed in recent update)
+
+Previously had a fallback to Unsplash image:
+- 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop'
+- This has been removed and replaced with InstructorAvatar component
+
+================================================================================
+12. SEARCH PLACEHOLDER TEXT
+================================================================================
+
+Location: /src/pages/Courses.tsx (line 214)
+
+Search input placeholder:
+- "Search courses..."
+
+This is acceptable placeholder text for UX purposes.
+
+================================================================================
+SUMMARY
+================================================================================
+
+Total Categories of Dummy Data:
+1. Project Images: 21 Unsplash URLs
+2. Video URLs: 17 fake YouTube embed URLs
+3. Testimonials: 9 fake testimonials with fake names, companies, quotes, and images
+4. Random Review Counts: Generated with Math.random()
+5. Placeholder Images: '/placeholder.svg' fallback
+6. Form Placeholders: Multiple example values (acceptable for UX)
+7. Default Course Generation: Fallback mechanism creating fake course data
+8. About Page Image: 1 Unsplash image
+9. Team Member Images: 3 local file references (need verification)
+10. Instructor Images: 3 local file references (now using avatars)
+
+Priority Items to Replace:
+- HIGH: Project images (21 items)
+- HIGH: Video URLs (17 items)
+- HIGH: Testimonials (9 items with real student data)
+- MEDIUM: Random review counts (replace with real data)
+- MEDIUM: Default course generation (redirect to 404 instead)
+- LOW: Form placeholders (acceptable as-is for UX)
+- LOW: Search placeholder (acceptable as-is)
+
+================================================================================
+END OF DUMMY DATA LIST
+================================================================================

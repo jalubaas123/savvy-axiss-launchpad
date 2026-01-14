@@ -2,7 +2,6 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, ShoppingCart, ChevronRight, Play } from 'lucide-react';
-import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -40,7 +39,11 @@ export default function ProjectDetail() {
     : 0;
 
   const whatsappMessage = encodeURIComponent(
-    `Hi, I'm interested in purchasing the "${project.title}" project. Please share more details.`
+    `Hi, I'm interested in purchasing the following project:\n\n` +
+    `📌 Project: ${project.title}\n` +
+    `💰 Price: ${formatPrice(project.price)}${project.originalPrice ? ` (Original: ${formatPrice(project.originalPrice)})` : ''}\n` +
+    `📂 Category: ${project.category}\n\n` +
+    `Please provide more details and proceed with the purchase.`
   );
 
   return (
@@ -188,9 +191,9 @@ export default function ProjectDetail() {
                       )}
                     </div>
 
-                    {/* CTA Buttons */}
-                    <div className="space-y-3">
-                      <Button className="w-full h-12 text-base" asChild>
+                    {/* CTA Button */}
+                    <div>
+                      <Button className="w-full h-12 text-base bg-[#25D366] hover:bg-[#20BA5A] text-white border-0" asChild>
                         <a
                           href={`https://wa.me/919384902501?text=${whatsappMessage}`}
                           target="_blank"
@@ -198,16 +201,6 @@ export default function ProjectDetail() {
                         >
                           <ShoppingCart className="w-5 h-5 mr-2" />
                           Buy Now
-                        </a>
-                      </Button>
-                      <Button variant="outline" className="w-full h-12 text-base" asChild>
-                        <a
-                          href={`https://wa.me/919384902501?text=${whatsappMessage}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <WhatsAppIcon className="w-5 h-5 mr-2" />
-                          WhatsApp Inquiry
                         </a>
                       </Button>
                     </div>
