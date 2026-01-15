@@ -89,9 +89,9 @@ export const FeaturedCourses = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+          className="mb-12"
         >
-          <div>
+          <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
               <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-secondary/10 text-secondary border border-secondary/20">
                 Featured Courses
@@ -100,19 +100,23 @@ export const FeaturedCourses = () => {
             <div className="flex justify-center mb-4">
               <div className="w-16 h-0.5 bg-gradient-to-r from-secondary to-accent rounded-full" />
             </div>
-            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
-              Start Your Learning Journey
-            </h3>
-            <p className="text-muted-foreground max-w-xl mt-6">
-              Industry-relevant courses designed to make you job-ready from day one.
-            </p>
           </div>
-          <Button variant="ctaOutline" asChild>
-            <Link to="/courses">
-              View All Courses
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </Button>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+                Start Your Learning Journey
+              </h3>
+              <p className="text-muted-foreground max-w-xl">
+                Industry-relevant courses designed to make you job-ready from day one.
+              </p>
+            </div>
+            <Button variant="ctaOutline" asChild>
+              <Link to="/courses">
+                View All Courses
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
         </motion.div>
 
         {/* Courses Carousel */}
