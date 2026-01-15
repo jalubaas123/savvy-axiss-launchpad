@@ -562,6 +562,7 @@ const defaultInstructor = {
   name: 'Varsha Sekar',
   role: 'Director & Instructor',
   image: '/images/img1.png',
+  gender: 'female' as const,
   rating: 4.95,
   students: 100,
   bio: 'Varsha Sekar serves as the Director and Lead Instructor at Savvy Axiss with extensive experience in teaching and technology.',
