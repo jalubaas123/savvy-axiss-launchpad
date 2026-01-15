@@ -100,14 +100,6 @@ const Contact = () => {
       description: 'We respond within 24 hours',
       color: 'from-purple-500 to-pink-500',
     },
-    {
-      icon: MapPin,
-      title: 'Visit Us',
-      value: 'Chennai, India',
-      link: '#map',
-      description: '38 4th Block MMDA Colony, Maduravoyal',
-      color: 'from-emerald-500 to-teal-500',
-    },
   ];
 
   const features = [
