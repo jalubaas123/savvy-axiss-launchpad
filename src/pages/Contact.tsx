@@ -105,8 +105,8 @@ const Contact = () => {
       title: 'Follow us on Instagram',
       value: 'Savvy.axiss',
       link: 'https://www.instagram.com/savvy.axiss/',
-      description: 'We respond within 24 hours',
-      color: 'from-purple-500 to-pink-500',
+      description: 'Follow for Latest Updates',
+      color: 'from-blue-500 to-sky-400',
     },
   ];
 
