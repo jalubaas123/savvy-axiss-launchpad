@@ -100,6 +100,14 @@ const Contact = () => {
       description: 'We respond within 24 hours',
       color: 'from-purple-500 to-pink-500',
     },
+    {
+      icon: Mail,
+      title: 'Thumbs Up',
+      value: 'Savvy.axiss',
+      link: 'https://www.instagram.com/savvy.axiss/',
+      description: 'We respond within 24 hours',
+      color: 'from-purple-500 to-pink-500',
+    },
   ];
 
   const features = [
