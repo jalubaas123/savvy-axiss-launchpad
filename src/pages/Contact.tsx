@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Clock, MessageSquare, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Clock, MessageSquare, CheckCircle2, ArrowRight, Sparkles, ThumbsUp } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -103,12 +103,12 @@ const Contact = () => {
       color: 'from-purple-500 to-pink-500',
     },
     {
-      icon: MapPin,
-      title: 'Visit Us',
-      value: 'Chennai, India',
-      link: '#map',
-      description: '38 4th Block MMDA Colony, Maduravoyal',
-      color: 'from-emerald-500 to-teal-500',
+      icon: ThumbsUp,
+      title: 'Follow us on Instagram',
+      value: 'Savvy.axiss',
+      link: 'https://www.instagram.com/savvy.axiss/',
+      description: 'Follow for Latest Updates',
+      color: 'from-blue-500 to-sky-400',
     },
   ];
 

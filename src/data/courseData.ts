@@ -561,7 +561,12 @@ export const courseDetails: Record<string, CourseDetail> = {
 const defaultInstructor = {
   name: 'Varsha Sekar',
   role: 'Director & Instructor',
+<<<<<<< HEAD
   image: '/placeholder.svg',
+=======
+  image: '/images/img1.png',
+  gender: 'female' as const,
+>>>>>>> 5e9394a99906606bfd0c3ce5a5f7e0b37edcd9cc
   rating: 4.95,
   students: 100,
   bio: 'Varsha Sekar serves as the Director and Lead Instructor at Savvy Axiss with extensive experience in teaching and technology.',

@@ -137,12 +137,12 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="flex justify-start mb-4">
+              <div className="flex justify-center mb-4">
                 <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-secondary/10 text-secondary border border-secondary/20">
                   Our Story
                 </span>
               </div>
-              <div className="flex justify-start mb-4">
+              <div className="flex justify-center mb-4">
                 <div className="w-16 h-0.5 bg-gradient-to-r from-secondary to-accent rounded-full" />
               </div>
               <h2 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
