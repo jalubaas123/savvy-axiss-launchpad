@@ -54,7 +54,11 @@ export const CTABanner = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="text-primary-foreground/70 text-lg max-w-2xl mx-auto mb-10"
             >
-              Join 500+ successful professionals who transformed their careers with Savvy Axiss. 
+              Join 280+ students across Chennai who transformed their careers with our programming courses, 
+              final year projects, and internship programs. Explore our{' '}
+              <Link to="/courses" className="underline hover:text-secondary font-medium">tech courses in Chennai</Link>,{' '}
+              <Link to="/projects" className="underline hover:text-secondary font-medium">final year project solutions</Link>, and{' '}
+              <Link to="/internship" className="underline hover:text-secondary font-medium">internship programs</Link>. 
               Apply now and get exclusive early-bird discounts!
             </motion.p>
 

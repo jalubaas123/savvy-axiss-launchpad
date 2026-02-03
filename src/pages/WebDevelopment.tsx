@@ -12,6 +12,7 @@ import {
 import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { SEO_BASE_URL } from '@/lib/seo';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -322,45 +323,8 @@ const packages = [
   },
 ];
 
-// Testimonials (Enhanced)
-const testimonials = [
-  {
-    name: 'Rajesh Kumar',
-    business: 'Kumar Electronics',
-    role: 'Business Owner',
-    quote: 'Our sales increased 40% after launching our new website. The team understood our needs perfectly and delivered beyond expectations. Highly recommended!',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
-    results: '40% increase in sales'
-  },
-  {
-    name: 'Priya Sharma',
-    business: 'Priya\'s Boutique',
-    role: 'Fashion Designer',
-    quote: 'Beautiful design and great support. They delivered exactly what I wanted and helped me understand how to manage my website. My online presence has never been better!',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    results: '3x more online inquiries'
-  },
-  {
-    name: 'Dr. Anil Mehta',
-    business: 'Mehta Dental Clinic',
-    role: 'Dentist',
-    quote: 'Professional team, on-time delivery. My patients find it easy to book appointments now. The website has significantly improved our patient engagement.',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop',
-    results: '60% more appointments'
-  },
-  {
-    name: 'Amit Patel',
-    business: 'Patel Real Estate',
-    role: 'Real Estate Agent',
-    quote: 'The property listing website they built has transformed my business. I can now showcase properties effectively and get inquiries 24/7. Excellent work!',
-    rating: 5,
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
-    results: '5x more property inquiries'
-  },
-];
+// Real client testimonials — add here once you have verified, permission-based quotes
+const testimonials: Array<{ name: string; business: string; role: string; quote: string; rating: number; image: string; results: string }> = [];
 
 // FAQ
 const faqs = [
@@ -418,9 +382,45 @@ const itemVariants = {
 export default function WebDevelopment() {
   return <>
     <Helmet>
-      <title>Professional Website Development Services | Savvy Axiss</title>
-      <meta name="description" content="Complete website development services for businesses. From design to deployment, we build stunning, mobile-responsive websites that drive results. Get your website today!" />
-      <meta name="keywords" content="website development, web design, e-commerce website, business website, responsive website, SEO optimized website" />
+      <title>Website Development in Chennai - Small Business & E-commerce | Savvy Axiss</title>
+      <meta name="description" content="Website development in Chennai - E-commerce, business sites, portfolios, healthcare, real estate. Savvy Axiss Chennai (Maduravoyal). Responsive, SEO-friendly. Get your quote!" />
+      <meta name="keywords" content="website development Chennai, web design Chennai, e-commerce website Chennai, small business website Chennai, website design Chennai, Savvy Axiss web development, Maduravoyal" />
+      <link rel="canonical" href={`${SEO_BASE_URL}/web-development`} />
+      <meta property="og:title" content="Website Development in Chennai - Savvy Axiss" />
+      <meta property="og:description" content="Chennai-based website development. E-commerce, business sites, portfolios. Savvy Axiss, Maduravoyal." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${SEO_BASE_URL}/web-development`} />
+      <meta property="og:image" content={`${SEO_BASE_URL}/og-image.png`} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Website Development in Chennai - Savvy Axiss" />
+      <meta name="twitter:description" content="Chennai-based website development. E-commerce, business sites, portfolios." />
+      <meta name="twitter:image" content={`${SEO_BASE_URL}/og-image.png`} />
+      <script type="application/ld+json">{JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        serviceType: 'Website Development',
+        provider: { '@type': 'Organization', name: 'Savvy Axiss' },
+        areaServed: [{ '@type': 'City', name: 'Chennai' }, { '@type': 'Country', name: 'India' }],
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Website Types',
+          itemListElement: [
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'E-commerce Website Development' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Business Website Development' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Portfolio Website Design' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Landing Page Development' } },
+          ],
+        },
+      })}</script>
+      <script type="application/ld+json">{JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map(faq => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      })}</script>
     </Helmet>
 
     {/* Hero Section */}
@@ -440,14 +440,22 @@ export default function WebDevelopment() {
             Complete Website Development Services
           </Badge>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-bold mb-6 text-white leading-tight">
-            Build Your Dream Website
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-orange-200">
-              That Drives Real Results
+            Professional Website Development Services for Your Business
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-orange-200 mt-2">
+              That Drive Real Results
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-4 leading-relaxed">
             From stunning design to powerful functionality. We create websites that attract customers, 
             build trust, and grow your business. <strong>200-700% ROI guaranteed.</strong>
+          </p>
+          <p className="text-sm text-white/70 max-w-3xl mx-auto mb-8">
+            Also explore our <Link to="/courses" className="text-yellow-200 font-medium hover:underline">programming courses in Chennai</Link>,{' '}
+            <Link to="/projects" className="text-yellow-200 font-medium hover:underline">final year project solutions</Link>, and{' '}
+            <Link to="/internship" className="text-yellow-200 font-medium hover:underline">internship programs in Chennai</Link>.{' '}
+            <Link to="/about" className="text-yellow-200 font-medium hover:underline">About Savvy Axiss</Link> ·{' '}
+            <Link to="/contact" className="text-yellow-200 font-medium hover:underline">Contact us in Chennai</Link> ·{' '}
+            <Link to="/apply" className="text-yellow-200 font-medium hover:underline">Apply for free consultation</Link>.
           </p>
           
           {/* Key Stats */}
@@ -765,15 +773,8 @@ export default function WebDevelopment() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <Badge className="mb-4 bg-emerald-500/20 text-emerald-700 border-emerald-500/30">
-            Complete Solution
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-            HARI - Everything You Need
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            HARI stands for Hosting, Analytics, Responsive, and Integration - the four pillars of a successful website.
-          </p>
+          
+        
         </motion.div>
 
         <motion.div
@@ -936,36 +937,51 @@ export default function WebDevelopment() {
           viewport={{ once: true }}
           className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto"
         >
-          {testimonials.map((testimonial, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card className="h-full border-2 hover:border-emerald-500/50 transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4 mb-4">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-16 h-16 rounded-full object-cover"
-                    />
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground">{testimonial.business}</p>
-                      <p className="text-xs text-muted-foreground">{testimonial.role}</p>
+          {testimonials.length > 0 ? (
+            testimonials.map((testimonial, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <Card className="h-full border-2 hover:border-emerald-500/50 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4 mb-4">
+                      <img
+                        src={testimonial.image}
+                        alt={`${testimonial.name} - Client testimonial - Savvy Axiss`}
+                        className="w-16 h-16 rounded-full object-cover"
+                      />
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
+                        <p className="text-sm text-muted-foreground">{testimonial.business}</p>
+                        <p className="text-xs text-muted-foreground">{testimonial.role}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-warning text-warning" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground mb-4 italic">"{testimonial.quote}"</p>
-                  <Badge className="bg-emerald-500/10 text-emerald-700 border-emerald-500/20">
-                    <TrendingUp className="w-3 h-3 mr-1" />
-                    {testimonial.results}
-                  </Badge>
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-warning text-warning" />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4 italic">"{testimonial.quote}"</p>
+                    <Badge className="bg-emerald-500/10 text-emerald-700 border-emerald-500/20">
+                      <TrendingUp className="w-3 h-3 mr-1" />
+                      {testimonial.results}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))
+          ) : (
+            <motion.div variants={itemVariants} className="md:col-span-2">
+              <Card className="border-2 border-dashed border-emerald-500/30">
+                <CardContent className="p-8 text-center">
+                  <p className="text-muted-foreground mb-4">
+                    Real results from real businesses. Your success story could be next — get in touch for a free consultation.
+                  </p>
+                  <Button asChild>
+                    <Link to="/contact">Get Free Consultation</Link>
+                  </Button>
                 </CardContent>
               </Card>
             </motion.div>
-          ))}
+          )}
         </motion.div>
       </div>
     </section>

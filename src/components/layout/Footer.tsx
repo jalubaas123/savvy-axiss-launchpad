@@ -1,38 +1,24 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
 const footerLinks = {
-  quickLinks: [{
-    name: 'About Us',
-    href: '/about'
-  }, {
-    name: 'Courses',
-    href: '/courses'
-  }, {
-    name: 'Blog',
-    href: '/blog'
-  }, {
-    name: 'Contact',
-    href: '/contact'
-  }, {
-    name: 'Apply Now',
-    href: '/apply'
-  }],
-  courses: [{
-    name: 'Full Stack Development',
-    href: '/courses/full-stack-development'
-  }, {
-    name: 'Data Science',
-    href: '/courses/data-science'
-  }, {
-    name: 'Digital Marketing',
-    href: '/courses/digital-marketing'
-  }, {
-    name: 'UI/UX Design',
-    href: '/courses/ui-ux-design'
-  }, {
-    name: 'Cloud Computing',
-    href: '/courses/cloud-computing'
-  }]
+  quickLinks: [
+    { name: 'Home', href: '/' },
+    { name: 'About Savvy Axiss Chennai', href: '/about' },
+    { name: 'Programming Courses in Chennai', href: '/courses' },
+    { name: 'Final Year Projects Chennai', href: '/projects' },
+    { name: 'Website Development Chennai', href: '/web-development' },
+    { name: 'Internship Programs Chennai', href: '/internship' },
+    { name: 'Blog & Resources', href: '/blog' },
+    { name: 'Contact Us Chennai', href: '/contact' },
+    { name: 'Apply for Course or Internship', href: '/apply' },
+  ],
+  courses: [
+    { name: 'MERN Full Stack Course', href: '/courses/mern-fullstack-advanced' },
+    { name: 'Python Programming Course', href: '/courses/python-advanced' },
+    { name: 'Digital Marketing Course', href: '/courses/digital-marketing-advanced' },
+    { name: 'React Course Chennai', href: '/courses/react-advanced' },
+    { name: 'Vibe Coding Course', href: '/courses/vibe-coding' },
+  ],
 };
 const socialLinks = [{
   icon: Facebook,
@@ -40,11 +26,11 @@ const socialLinks = [{
   label: 'Facebook'
 }, {
   icon: Twitter,
-  href: 'https://twitter.com',
+  href: 'https://twitter.com/savvyaxiss',
   label: 'Twitter'
 }, {
   icon: Linkedin,
-  href: 'https://linkedin.com',
+  href: 'https://www.linkedin.com/company/savvyaxiss',
   label: 'LinkedIn'
 }, {
   icon: Instagram,
@@ -70,7 +56,7 @@ export const Footer = () => {
               />
             </Link>
             <p className="text-primary-foreground/70 text-sm mb-6 leading-relaxed">
-              Empowering the next generation of tech professionals through live training, 
+              Chennai-based. Empowering the next generation of tech professionals in Chennai through live training, 
               real-time internships, and industry-recognized certifications.
             </p>
             <div className="flex items-center gap-3">
@@ -111,8 +97,8 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
                 <span className="text-primary-foreground/70 text-sm">
-                  38 4th Block MMDA Colony<br />
-                  Maduravoyal, Chennai-600095<br /> 
+                  38, 4th Block MMDA Colony<br />
+                  Maduravoyal, Chennai-600095, Tamil Nadu, India
                 </span>
               </li>
               <li>

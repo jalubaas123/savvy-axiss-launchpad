@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { getProjectBySlug, getRelatedProjects } from '@/data/projectsData';
+import { SEO_BASE_URL } from '@/lib/seo';
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('en-IN', {
@@ -46,14 +47,64 @@ export default function ProjectDetail() {
     `Please provide more details and proceed with the purchase.`
   );
 
+  const schemaBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SEO_BASE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Projects', item: `${SEO_BASE_URL}/projects` },
+      { '@type': 'ListItem', position: 3, name: project.title, item: `${SEO_BASE_URL}/projects/${project.slug}` },
+    ],
+  };
+  const schemaProduct = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: project.title,
+    description: project.longDescription || project.description,
+    category: 'Final Year Project',
+    brand: { '@type': 'Organization', name: 'Savvy Axiss' },
+    offers: {
+      '@type': 'Offer',
+      price: String(project.price),
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+      url: `${SEO_BASE_URL}/projects/${project.slug}`,
+    },
+  };
+
+  const schemaVideo = project.videoUrl
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        name: `${project.title} - Demo Video`,
+        description: project.description,
+        thumbnailUrl: project.image,
+        embedUrl: project.videoUrl,
+      }
+    : null;
+
   return (
     <>
       <Helmet>
-        <title>{project.title} | Final Year Project | Savvy Axiss</title>
-        <meta name="description" content={project.description} />
+        <title>{project.title} - Final Year Project in Chennai | Savvy Axiss</title>
+        <meta name="description" content={`${project.title} final year project in Chennai. Complete source code, documentation, installation & viva support. Domain: ${project.category}. Savvy Axiss, Maduravoyal. Get your project now!`} />
+        <meta name="keywords" content={`${project.title.toLowerCase()}, ${project.category} project Chennai, final year project Chennai, college project Chennai, Savvy Axiss projects, ${project.techStack?.slice(0, 3).join(' ') || ''}`} />
+        <link rel="canonical" href={`${SEO_BASE_URL}/projects/${project.slug}`} />
+        <meta property="og:title" content={`${project.title} - Final Year Project in Chennai | Savvy Axiss`} />
+        <meta property="og:description" content={`Complete ${project.title} project in Chennai. Source code, documentation & expert support. Savvy Axiss, Maduravoyal.`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`${SEO_BASE_URL}/projects/${project.slug}`} />
+        <meta property="og:image" content={project.image?.startsWith('http') ? project.image : `${SEO_BASE_URL}${project.image}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${project.title} - Final Year Project in Chennai | Savvy Axiss`} />
+        <meta name="twitter:description" content={`${project.title} final year project in Chennai. Source code, documentation & expert support.`} />
+        <meta name="twitter:image" content={project.image?.startsWith('http') ? project.image : `${SEO_BASE_URL}${project.image}`} />
+        <script type="application/ld+json">{JSON.stringify(schemaProduct)}</script>
+        <script type="application/ld+json">{JSON.stringify(schemaBreadcrumb)}</script>
+        {schemaVideo && <script type="application/ld+json">{JSON.stringify(schemaVideo)}</script>}
       </Helmet>
 
-      {/* Header */}
+      {/* Breadcrumb & Header */}
       <section className="pt-32 pb-8" style={{ backgroundColor: '#004aad' }}>
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
@@ -61,14 +112,14 @@ export default function ProjectDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-white/70 text-sm mb-6">
+            {/* Visible Breadcrumb (already present, kept as-is) */}
+            <nav className="flex items-center gap-2 text-white/70 text-sm mb-6" aria-label="Breadcrumb">
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <ChevronRight className="w-4 h-4" />
               <Link to="/projects" className="hover:text-white transition-colors">Projects</Link>
               <ChevronRight className="w-4 h-4" />
               <span className="text-white">{project.title}</span>
-            </div>
+            </nav>
 
             <Button
               variant="ghost"
@@ -83,7 +134,7 @@ export default function ProjectDetail() {
               {project.category}
             </Badge>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white">
-              {project.title}
+              {project.title} - Final Year Project
             </h1>
           </motion.div>
         </div>
@@ -95,21 +146,23 @@ export default function ProjectDetail() {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Left Column - Video & Description */}
             <div className="lg:col-span-2 space-y-8">
-              {/* Video Player */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="relative rounded-2xl overflow-hidden bg-card border border-border aspect-video"
-              >
-                <iframe
-                  src={project.videoUrl}
-                  title={project.title}
-                  className="absolute inset-0 w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </motion.div>
+              {/* Video Player - only when demo video URL is provided */}
+              {project.videoUrl ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="relative rounded-2xl overflow-hidden bg-card border border-border aspect-video"
+                >
+                  <iframe
+                    src={project.videoUrl}
+                    title={project.title}
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </motion.div>
+              ) : null}
 
               {/* Description */}
               <motion.div
@@ -268,7 +321,7 @@ export default function ProjectDetail() {
                       <div className="relative aspect-video overflow-hidden">
                         <img
                           src={relProject.image}
-                          alt={relProject.title}
+                          alt={`${relProject.title} - Final Year Project - Savvy Axiss`}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                         <Badge className="absolute top-3 left-3 bg-primary/80 backdrop-blur-sm">

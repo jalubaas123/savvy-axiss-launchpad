@@ -22,6 +22,9 @@ const navLinks = [{
   name: 'Internship',
   href: '/internship'
 }, {
+  name: 'Resources',
+  href: '/blog'
+}, {
   name: 'Contact',
   href: '/contact'
 }];

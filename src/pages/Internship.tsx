@@ -5,6 +5,7 @@ import { Briefcase, CheckCircle2, Users, Trophy, Clock, FileCheck, Lightbulb, Ro
 import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { SEO_BASE_URL } from '@/lib/seo';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 const internshipDomains = [{
   icon: Code2,
@@ -119,8 +120,32 @@ const itemVariants = {
 export default function Internship() {
   return <>
       <Helmet>
-        <title>Internship Programs for Students | Savvy Axiss</title>
-        <meta name="description" content="Join our internship programs and gain real-world experience. Work on live projects, get mentorship from industry experts, and earn certificates with LOR." />
+        <title>Tech Internship in Chennai - Certificate & Job Placement | Savvy Axiss</title>
+        <meta name="description" content="Tech internships in Chennai: Web Development, Data Science, UI/UX, Digital Marketing. Savvy Axiss Chennai - real projects, mentorship, certificate, LOR & job support. Maduravoyal. Apply now!" />
+        <meta name="keywords" content="tech internship Chennai, web development internship Chennai, data science internship Chennai, internship with certificate Chennai, Savvy Axiss internship, Maduravoyal internship" />
+        <link rel="canonical" href={`${SEO_BASE_URL}/internship`} />
+        <meta property="og:title" content="Tech Internship in Chennai - Certificate & Job Placement | Savvy Axiss" />
+        <meta property="og:description" content="Chennai-based tech internships. Web Dev, Data Science, UI/UX, Digital Marketing. Certificate, LOR & job support. Savvy Axiss." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${SEO_BASE_URL}/internship`} />
+        <meta property="og:image" content={`${SEO_BASE_URL}/og-image.png`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Tech Internship in Chennai - Certificate & Job Placement | Savvy Axiss" />
+        <meta name="twitter:description" content="Chennai tech internships. Web Dev, Data Science, UI/UX, Digital Marketing. Certificate & job support." />
+        <meta name="twitter:image" content={`${SEO_BASE_URL}/og-image.png`} />
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'EducationalOccupationalProgram',
+          name: 'Tech Internship Programs',
+          description: 'Chennai-based internship programs in Web Development, Data Science, UI/UX Design, and Digital Marketing. Real projects, mentorship, job placement. Savvy Axiss, Maduravoyal.',
+          provider: { '@type': 'EducationalOrganization', name: 'Savvy Axiss' },
+          areaServed: [{ '@type': 'City', name: 'Chennai' }, { '@type': 'Country', name: 'India' }],
+          occupationalCategory: '15-1200.00',
+          timeToComplete: 'P1M',
+          programPrerequisites: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'Basic programming knowledge' },
+          offers: { '@type': 'Offer', category: 'Internship', priceCurrency: 'INR' },
+          educationalCredentialAwarded: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'Certificate of Completion' },
+        })}</script>
       </Helmet>
 
       {/* Hero Section */}
@@ -143,12 +168,20 @@ export default function Internship() {
               Internship Programs
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-warning">
-              Kickstart Your Career with
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400"> Real Experience</span>
+              Professional Tech Internship Programs with Certificate & LOR
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mt-2">Gain Real Experience</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
               Work on real projects, learn from industry mentors, and build a portfolio that 
               stands out. Get certified with Letter of Recommendation.
+            </p>
+            <p className="text-sm text-muted-foreground/80 max-w-2xl mx-auto mb-8">
+              Also explore our <Link to="/courses" className="text-secondary font-medium hover:underline">programming courses in Chennai</Link>,{' '}
+              <Link to="/projects" className="text-secondary font-medium hover:underline">final year project solutions in Chennai</Link>, and{' '}
+              <Link to="/web-development" className="text-secondary font-medium hover:underline">website development services</Link>.{' '}
+              <Link to="/about" className="text-secondary font-medium hover:underline">About Savvy Axiss</Link> ·{' '}
+              <Link to="/contact" className="text-secondary font-medium hover:underline">Contact us</Link> ·{' '}
+              <Link to="/apply" className="text-secondary font-medium hover:underline">Apply for internship</Link>.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button variant="hero" size="lg" asChild>

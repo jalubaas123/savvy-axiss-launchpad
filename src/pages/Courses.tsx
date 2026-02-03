@@ -38,7 +38,7 @@ const createCourse = (
   description: string
 ) => ({
   id,
-  slug: `${baseSlug}${level === 'Beginner' ? 'b' : level === 'Intermediate' ? 'i' : 'a'}`,
+  slug: baseSlug === 'vibe-coding' ? 'vibe-coding' : `${baseSlug}-${level.toLowerCase()}`,
   title: `${name}${level === 'Beginner' ? ' - Beginner' : level === 'Intermediate' ? ' - Intermediate' : ' - Advanced'}`,
   description,
   image: courseImages[name] || '/placeholder.svg',
@@ -238,15 +238,15 @@ const Courses = () => {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
-              { name: 'Microsoft Excel', slug: 'excela', image: '/msexcel.png' },
-              { name: 'Python', slug: 'pythona', image: '/python.png' },
-              { name: 'Java', slug: 'javaa', image: '/java.png' },
-              { name: 'Web Design', slug: 'cssa', image: '/webdesign.png' },
-              { name: 'Web Development', slug: 'htmla', image: '/webdevelopment.png' },
-              { name: 'MySQL', slug: 'mysqla', image: '/mysql.png' },
-              { name: 'JavaScript', slug: 'javascripta', image: '/javascript.png' },
-              { name: 'React', slug: 'reacta', image: '/webdevelopment.png' },
-              { name: 'Digital Marketing', slug: 'digital-marketinga', image: '/digital-marketing.png' },
+              { name: 'Microsoft Excel', slug: 'excel-advanced', image: '/msexcel.png' },
+              { name: 'Python', slug: 'python-advanced', image: '/python.png' },
+              { name: 'Java', slug: 'java-advanced', image: '/java.png' },
+              { name: 'Web Design', slug: 'css-advanced', image: '/webdesign.png' },
+              { name: 'Web Development', slug: 'html-advanced', image: '/webdevelopment.png' },
+              { name: 'MySQL', slug: 'mysql-advanced', image: '/mysql.png' },
+              { name: 'JavaScript', slug: 'javascript-advanced', image: '/javascript.png' },
+              { name: 'React', slug: 'react-advanced', image: '/webdevelopment.png' },
+              { name: 'Digital Marketing', slug: 'digital-marketing-advanced', image: '/digital-marketing.png' },
             ].map((topic, index) => (
               <motion.div
                 key={topic.slug}
@@ -325,6 +325,14 @@ const Courses = () => {
               </motion.div>
             ))}
           </div>
+          <p className="text-center text-muted-foreground text-sm mt-8 max-w-2xl mx-auto">
+            Also explore our <Link to="/projects" className="text-secondary font-medium hover:underline">final year project solutions in Chennai</Link>,{' '}
+            <Link to="/internship" className="text-secondary font-medium hover:underline">internship programs in Chennai</Link>, and{' '}
+            <Link to="/web-development" className="text-secondary font-medium hover:underline">website development services</Link>.{' '}
+            <Link to="/about" className="text-secondary font-medium hover:underline">About Savvy Axiss</Link> ·{' '}
+            <Link to="/contact" className="text-secondary font-medium hover:underline">Contact us</Link> ·{' '}
+            <Link to="/apply" className="text-secondary font-medium hover:underline">Apply for a free demo</Link>.
+          </p>
         </div>
       </section>
 
@@ -345,9 +353,9 @@ const Courses = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
-              { slug: 'pythona', title: 'Python Programming', image: '/python.png', rating: 5.0, level: 'Advanced', duration: '12 Weeks', price: 2999 },
-              { slug: 'cssb', title: 'CSS', image: '/css.png', rating: 4.8, level: 'Beginner', duration: '4 Weeks', price: 999 },
-              { slug: 'htmla', title: 'HTML', image: '/html.png', rating: 5.0, level: 'Advanced', duration: '12 Weeks', price: 2999 },
+              { slug: 'python-advanced', title: 'Python Programming', image: '/python.png', rating: 5.0, level: 'Advanced', duration: '12 Weeks', price: 2999 },
+              { slug: 'css-beginner', title: 'CSS', image: '/css.png', rating: 4.8, level: 'Beginner', duration: '4 Weeks', price: 999 },
+              { slug: 'html-advanced', title: 'HTML', image: '/html.png', rating: 5.0, level: 'Advanced', duration: '12 Weeks', price: 2999 },
             ].map((course, index) => (
               <motion.div
                 key={course.slug}

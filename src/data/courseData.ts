@@ -42,7 +42,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Varsha Sekar',
       role: 'Director & Instructor',
-      image: '/images/img1.png',
+      image: '/placeholder.svg',
       gender: 'female',
       rating: 4.95,
       students: 100,
@@ -92,7 +92,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Varsha Sekar',
       role: 'Director & Instructor',
-      image: '/images/img1.png',
+      image: '/placeholder.svg',
       gender: 'female',
       rating: 4.95,
       students: 120,
@@ -142,7 +142,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Rajalakshmi Venkatesan',
       role: 'Co-Director & Trainer',
-      image: '/images/raji.png',
+      image: '/placeholder.svg',
       gender: 'female',
       rating: 4.9,
       students: 200,
@@ -192,7 +192,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Rajalakshmi Venkatesan',
       role: 'Co-Director & Trainer',
-      image: '/images/raji.png',
+      image: '/placeholder.svg',
       gender: 'female',
       rating: 4.9,
       students: 180,
@@ -242,7 +242,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Rajalakshmi Venkatesan',
       role: 'Co-Director & Trainer',
-      image: '/images/raji.png',
+      image: '/placeholder.svg',
       gender: 'female',
       rating: 4.9,
       students: 250,
@@ -292,7 +292,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Rajalakshmi Venkatesan',
       role: 'Co-Director & Trainer',
-      image: '/images/raji.png',
+      image: '/placeholder.svg',
       gender: 'female',
       rating: 4.9,
       students: 280,
@@ -342,7 +342,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Shalini Baskaran',
       role: 'Founder & CEO',
-      image: '/images/img2.png',
+      image: '/placeholder.svg',
       gender: 'female',
       rating: 4.95,
       students: 300,
@@ -380,7 +380,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Shalini Baskaran',
       role: 'Founder & CEO',
-      image: '/images/img2.png',
+      image: '/placeholder.svg',
       gender: 'female',
       rating: 4.95,
       students: 180,
@@ -430,7 +430,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Rajalakshmi Venkatesan',
       role: 'Co-Director & Trainer',
-      image: '/images/raji.png',
+      image: '/placeholder.svg',
       gender: 'female',
       rating: 4.95,
       students: 320,
@@ -480,7 +480,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Varsha Sekar',
       role: 'Director & Instructor',
-      image: '/images/img1.png',
+      image: '/placeholder.svg',
       gender: 'female',
       rating: 4.95,
       students: 280,
@@ -530,7 +530,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Rajalakshmi Venkatesan',
       role: 'Co-Director & Trainer',
-      image: '/images/raji.png',
+      image: '/placeholder.svg',
       gender: 'female',
       rating: 4.9,
       students: 200,
@@ -561,7 +561,7 @@ export const courseDetails: Record<string, CourseDetail> = {
 const defaultInstructor = {
   name: 'Varsha Sekar',
   role: 'Director & Instructor',
-  image: '/images/img1.png',
+  image: '/placeholder.svg',
   rating: 4.95,
   students: 100,
   bio: 'Varsha Sekar serves as the Director and Lead Instructor at Savvy Axiss with extensive experience in teaching and technology.',
@@ -706,159 +706,54 @@ const generateDefaultSyllabus = (
   }));
 };
 
-// Helper function to get course detail by slug
-export const getCourseBySlug = (slug: string): { course: CourseDetail; level: 'Beginner' | 'Intermediate' | 'Advanced' } | null => {
-  // Special handling for Vibe Coding - it's a single-level course
-  if (slug === 'vibe-coding') {
-    const course = courseDetails['Vibe Coding'];
-    if (course) {
-      return { course, level: 'Beginner' };
-    }
-  }
-  
-  const level = slug.endsWith('b') ? 'Beginner' : slug.endsWith('i') ? 'Intermediate' : slug.endsWith('a') ? 'Advanced' : null;
-  if (!level) return null;
-  
-  // Handle special cases for slugs
-  let baseSlug = slug.slice(0, -1);
-  
-  // Map slug variations to course names
-  const slugToBaseSlug: Record<string, string> = {
-    'cb': 'c',
-    'ci': 'c',
-    'ca': 'c',
-    'c++b': 'c++',
-    'c++i': 'c++',
-    'c++a': 'c++',
-    'pythonb': 'python',
-    'pythoni': 'python',
-    'pythona': 'python',
-    'javab': 'java',
-    'javai': 'java',
-    'javaa': 'java',
-    'csharpb': 'csharp',
-    'csharpi': 'csharp',
-    'csharpa': 'csharp',
-    'htmlb': 'html',
-    'htmli': 'html',
-    'htmla': 'html',
-    'cssb': 'css',
-    'cssi': 'css',
-    'cssa': 'css',
-    'javascriptb': 'javascript',
-    'javascripti': 'javascript',
-    'javascripta': 'javascript',
-    'reactb': 'react',
-    'reacti': 'react',
-    'reacta': 'react',
-    'aspb': 'asp',
-    'aspi': 'asp',
-    'aspa': 'asp',
-    'vbb': 'vb',
-    'vbi': 'vb',
-    'vba': 'vb',
-    'wordb': 'word',
-    'wordi': 'word',
-    'worda': 'word',
-    'excelb': 'excel',
-    'exceli': 'excel',
-    'excela': 'excel',
-    'pptb': 'ppt',
-    'ppti': 'ppt',
-    'ppta': 'ppt',
-    'accessb': 'access',
-    'accessi': 'access',
-    'accessa': 'access',
-    'sqlb': 'sql',
-    'sqli': 'sql',
-    'sqla': 'sql',
-    'mysqlb': 'mysql',
-    'mysqli': 'mysql',
-    'mysqla': 'mysql',
-    'sqliteb': 'sqlite',
-    'sqlitei': 'sqlite',
-    'sqlitea': 'sqlite',
-    'mongodbb': 'mongodb',
-    'mongodbi': 'mongodb',
-    'mongodba': 'mongodb',
-    'digital-marketingb': 'digital-marketing',
-    'digital-marketingi': 'digital-marketing',
-    'digital-marketinga': 'digital-marketing',
-    'mern-fullstackb': 'mern-fullstack',
-    'mern-fullstacki': 'mern-fullstack',
-    'mern-fullstacka': 'mern-fullstack',
-    'python-fullstackb': 'python-fullstack',
-    'python-fullstacki': 'python-fullstack',
-    'python-fullstacka': 'python-fullstack',
-    'vibe-codingb': 'vibe-coding',
-    'vibe-codingi': 'vibe-coding',
-    'vibe-codinga': 'vibe-coding',
-  };
-
-  if (slugToBaseSlug[slug]) {
-    baseSlug = slugToBaseSlug[slug];
-  }
-  
-  const course = Object.values(courseDetails).find(c => c.baseSlug === baseSlug);
-  
-  if (course) {
-    return { course, level };
-  }
-
-  // Generate default course data for courses not in courseDetails
-  const courseNameMap: Record<string, string> = {
-    'c': 'C Programming',
-    'c++': 'C++ Programming',
-    'python': 'Python Programming',
-    'java': 'Java Programming',
-    'csharp': 'C# Programming',
-    'html': 'HTML',
-    'css': 'CSS',
-    'javascript': 'JavaScript',
-    'react': 'React',
-    'asp': 'ASP.NET',
-    'vb': 'VB.NET',
-    'word': 'Word Document',
-    'excel': 'Excel',
-    'ppt': 'PowerPoint',
-    'access': 'Access',
-    'sql': 'SQL',
-    'mysql': 'MySQL',
-    'sqlite': 'Sqlite',
-    'mongodb': 'MongoDB',
-    'digital-marketing': 'Digital Marketing',
-    'mern-fullstack': 'MERN Full Stack',
-    'python-fullstack': 'Python Full Stack',
-    'vibe-coding': 'Vibe Coding',
-  };
-
-  const courseName = courseNameMap[baseSlug];
-  if (!courseName) return null;
-
-  // Map course names to their images
-  const courseImageMap: Record<string, string> = {
-    'Sqlite': '/sqlite.png',
-    'SQL': '/mysql.png',
-    'MySQL': '/mysql.png',
-    'MongoDB': '/mongodb.png',
-  };
-
-  const defaultCourse: CourseDetail = {
-    name: courseName,
-    baseSlug,
-    category: 'Programming Languages',
-    image: courseImageMap[courseName] || '/placeholder.svg',
-    description: `Learn ${courseName} from fundamentals to advanced concepts. Master the skills needed to excel in this field.`,
-    objective: `To equip you with comprehensive ${courseName} capabilities, enabling you to work on real-world projects and applications.`,
-    skills: ['Fundamentals', 'Practical Application', 'Best Practices', 'Real-world Projects'],
-    instructor: defaultInstructor,
-    syllabus: {
-      Beginner: generateDefaultSyllabus(courseName, 'Beginner'),
-      Intermediate: generateDefaultSyllabus(courseName, 'Intermediate'),
-      Advanced: generateDefaultSyllabus(courseName, 'Advanced'),
-    },
-  };
-
-  return { course: defaultCourse, level };
+/** Generate SEO-friendly course slug: e.g. excel-advanced, python-beginner, vibe-coding */
+export const toCourseSlug = (baseSlug: string, level: 'Beginner' | 'Intermediate' | 'Advanced'): string => {
+  if (baseSlug === 'vibe-coding') return 'vibe-coding';
+  return `${baseSlug}-${level.toLowerCase()}`;
 };
 
+// Helper function to get course detail by slug (SEO-friendly: excel-advanced, python-beginner, or legacy: excela, pythonb)
+export const getCourseBySlug = (slug: string): { course: CourseDetail; level: 'Beginner' | 'Intermediate' | 'Advanced' } | null => {
+  // Special handling for Vibe Coding - single-level course
+  if (slug === 'vibe-coding') {
+    const course = courseDetails['Vibe Coding'];
+    if (course) return { course, level: 'Beginner' };
+    return null;
+  }
+
+  // SEO-friendly slug: e.g. excel-advanced, python-beginner, digital-marketing-intermediate
+  const levelMatch = slug.match(/-(beginner|intermediate|advanced)$/i);
+  if (levelMatch) {
+    const levelStr = levelMatch[1].toLowerCase();
+    const level: 'Beginner' | 'Intermediate' | 'Advanced' =
+      levelStr === 'beginner' ? 'Beginner' : levelStr === 'intermediate' ? 'Intermediate' : 'Advanced';
+    const baseSlug = slug.slice(0, -levelMatch[0].length); // part before -beginner/-intermediate/-advanced
+    const course = Object.values(courseDetails).find(c => c.baseSlug === baseSlug);
+    if (course) return { course, level };
+    return null;
+  }
+
+  // Legacy slug support (excela, pythonb, etc.) for backward compatibility
+  const legacyLevel = slug.endsWith('b') ? 'Beginner' : slug.endsWith('i') ? 'Intermediate' : slug.endsWith('a') ? 'Advanced' : null;
+  if (!legacyLevel) return null;
+  let baseSlug = slug.slice(0, -1);
+  const slugToBaseSlug: Record<string, string> = {
+    'pythonb': 'python', 'pythoni': 'python', 'pythona': 'python',
+    'javab': 'java', 'javai': 'java', 'javaa': 'java',
+    'htmlb': 'html', 'htmli': 'html', 'htmla': 'html',
+    'cssb': 'css', 'cssi': 'css', 'cssa': 'css',
+    'javascriptb': 'javascript', 'javascripti': 'javascript', 'javascripta': 'javascript',
+    'reactb': 'react', 'reacti': 'react', 'reacta': 'react',
+    'excelb': 'excel', 'exceli': 'excel', 'excela': 'excel',
+    'mysqlb': 'mysql', 'mysqli': 'mysql', 'mysqla': 'mysql',
+    'mongodbb': 'mongodb', 'mongodbi': 'mongodb', 'mongodba': 'mongodb',
+    'digital-marketingb': 'digital-marketing', 'digital-marketingi': 'digital-marketing', 'digital-marketinga': 'digital-marketing',
+    'mern-fullstackb': 'mern-fullstack', 'mern-fullstacki': 'mern-fullstack', 'mern-fullstacka': 'mern-fullstack',
+    'python-fullstackb': 'python-fullstack', 'python-fullstacki': 'python-fullstack', 'python-fullstacka': 'python-fullstack',
+    'vibe-codingb': 'vibe-coding', 'vibe-codingi': 'vibe-coding', 'vibe-codinga': 'vibe-coding',
+  };
+  if (slugToBaseSlug[slug]) baseSlug = slugToBaseSlug[slug];
+  const course = Object.values(courseDetails).find(c => c.baseSlug === baseSlug);
+  if (course) return { course, level: legacyLevel };
+  return null;
+};

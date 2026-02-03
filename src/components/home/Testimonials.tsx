@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
@@ -6,53 +7,8 @@ import { Star, Quote } from 'lucide-react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const testimonials = [
-  {
-    id: 1,
-    name: 'Priya Sharma',
-    role: 'Software Developer at TCS',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face',
-    content: 'Savvy Axiss transformed my career. The live projects gave me real-world experience that impressed my interviewers. Landed my dream job within 2 months of completing the course!',
-    rating: 5,
-    course: 'Full Stack Development',
-  },
-  {
-    id: 2,
-    name: 'Rahul Verma',
-    role: 'Data Analyst at Infosys',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
-    content: 'The instructors are amazing and always available for doubts. The curriculum is exactly what the industry needs. Best investment I made in my career.',
-    rating: 5,
-    course: 'Data Science',
-  },
-  {
-    id: 3,
-    name: 'Ananya Patel',
-    role: 'Marketing Manager at Flipkart',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
-    content: 'From zero knowledge to managing digital campaigns for a Fortune 500 company. Savvy Axiss made it possible with their practical approach to learning.',
-    rating: 5,
-    course: 'Digital Marketing',
-  },
-  {
-    id: 4,
-    name: 'Vikram Singh',
-    role: 'UI/UX Designer at Swiggy',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face',
-    content: 'The design thinking workshops and real client projects helped me build a portfolio that stands out. Got placed even before completing the course!',
-    rating: 5,
-    course: 'UI/UX Design',
-  },
-  {
-    id: 5,
-    name: 'Sneha Reddy',
-    role: 'Cloud Engineer at Amazon',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face',
-    content: 'The cloud computing course with hands-on AWS projects was exactly what I needed. The certification helped me crack interviews at top tech companies.',
-    rating: 5,
-    course: 'Cloud Computing',
-  },
-];
+// Real student testimonials — add here once you have verified, permission-based quotes
+const testimonials: Array<{ id: number; name: string; role: string; image: string; content: string; rating: number; course: string }> = [];
 
 export const Testimonials = () => {
   const ref = useRef(null);
@@ -85,72 +41,100 @@ export const Testimonials = () => {
           </p>
         </motion.div>
 
-        {/* Testimonials Carousel */}
+        {/* Testimonials Carousel or CTA when no testimonials yet */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Swiper
-            modules={[Pagination, Autoplay]}
-            spaceBetween={24}
-            slidesPerView={1}
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 6000, disableOnInteraction: false }}
-            breakpoints={{
-              768: { slidesPerView: 2 },
-              1280: { slidesPerView: 3 },
-            }}
-            className="!pb-14"
-          >
-            {testimonials.map((testimonial) => (
-              <SwiperSlide key={testimonial.id}>
-                <div className="bg-card rounded-2xl p-6 lg:p-8 h-full border border-border hover:border-secondary/30 transition-all duration-300">
-                  {/* Quote Icon */}
-                  <Quote className="w-10 h-10 text-secondary/30 mb-4" />
-
-                  {/* Content */}
-                  <p className="text-foreground/80 leading-relaxed mb-6">
-                    "{testimonial.content}"
-                  </p>
-
-                  {/* Rating */}
-                  <div className="flex items-center gap-1 mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-4 h-4 ${
-                          i < testimonial.rating
-                            ? 'fill-warning text-warning'
-                            : 'text-muted-foreground'
-                        }`}
+          {testimonials.length > 0 ? (
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              spaceBetween={24}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 6000, disableOnInteraction: false }}
+              breakpoints={{
+                768: { slidesPerView: 2 },
+                1280: { slidesPerView: 3 },
+              }}
+              className="!pb-14"
+            >
+              {testimonials.map((testimonial) => (
+                <SwiperSlide key={testimonial.id}>
+                  <div className="bg-card rounded-2xl p-6 lg:p-8 h-full border border-border hover:border-secondary/30 transition-all duration-300">
+                    <Quote className="w-10 h-10 text-secondary/30 mb-4" />
+                    <p className="text-foreground/80 leading-relaxed mb-6">
+                      "{testimonial.content}"
+                    </p>
+                    <div className="flex items-center gap-1 mb-6">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-4 h-4 ${
+                            i < testimonial.rating
+                              ? 'fill-warning text-warning'
+                              : 'text-muted-foreground'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={testimonial.image}
+                        alt={`Student testimonial - ${testimonial.name} - Savvy Axiss`}
+                        loading="lazy"
+                        className="w-14 h-14 rounded-full object-cover border-2 border-secondary/30"
                       />
-                    ))}
-                  </div>
-
-                  {/* Author */}
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-14 h-14 rounded-full object-cover border-2 border-secondary/30"
-                    />
-                    <div>
-                      <h4 className="font-semibold text-foreground">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.role}
-                      </p>
-                      <p className="text-xs text-secondary mt-1">
-                        {testimonial.course}
-                      </p>
+                      <div>
+                        <h4 className="font-semibold text-foreground">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          {testimonial.role}
+                        </p>
+                        <p className="text-xs text-secondary mt-1">
+                          {testimonial.course}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <div className="bg-card rounded-2xl p-8 lg:p-12 border border-border text-center max-w-2xl mx-auto">
+              <Quote className="w-12 h-12 text-secondary/30 mx-auto mb-4" />
+              <p className="text-foreground/80 leading-relaxed mb-6">
+                Join our community. Your success story could be next — explore our{' '}
+                <Link to="/courses" className="text-secondary font-medium hover:underline">programming courses in Chennai</Link>,{' '}
+                <Link to="/projects" className="text-secondary font-medium hover:underline">final year project solutions</Link>, or{' '}
+                <Link to="/internship" className="text-secondary font-medium hover:underline">internship programs in Chennai</Link>.{' '}
+                <Link to="/contact" className="text-secondary font-medium hover:underline">Get in touch</Link> or{' '}
+                <Link to="/apply" className="text-secondary font-medium hover:underline">apply now</Link> to start your journey with Savvy Axiss Chennai.
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                <Link
+                  to="/courses"
+                  className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+                >
+                  View Courses
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center rounded-md border border-primary px-6 py-3 text-sm font-medium text-foreground hover:bg-primary/10 transition-colors"
+                >
+                  Contact Us
+                </Link>
+                <Link
+                  to="/apply"
+                  className="inline-flex items-center justify-center rounded-md border border-secondary px-6 py-3 text-sm font-medium text-secondary hover:bg-secondary/10 transition-colors"
+                >
+                  Apply Now
+                </Link>
+              </div>
+            </div>
+          )}
         </motion.div>
       </div>
     </section>

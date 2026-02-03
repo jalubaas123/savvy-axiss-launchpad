@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Home, ArrowLeft } from "lucide-react";
 
@@ -11,6 +12,12 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
+    <>
+      <Helmet>
+        <title>404 - Page Not Found | Savvy Axiss Chennai</title>
+        <meta name="description" content="The page you're looking for doesn't exist. Return to Savvy Axiss Chennai - tech courses, final year projects & internships in Maduravoyal." />
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
     <div className="min-h-screen flex items-center justify-center hero-gradient px-4">
       <div className="text-center max-w-md">
         <h1 className="text-8xl font-heading font-bold gradient-text mb-4">404</h1>
@@ -34,6 +41,7 @@ const NotFound = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

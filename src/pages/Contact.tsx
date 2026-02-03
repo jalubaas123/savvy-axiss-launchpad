@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Clock, MessageSquare, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
@@ -7,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { SEO_BASE_URL } from '@/lib/seo';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -131,11 +133,24 @@ const Contact = () => {
   return (
     <>
       <Helmet>
-        <title>Contact Us - Savvy Axiss | Get in Touch</title>
-        <meta 
-          name="description" 
-          content="Have questions about our courses? Contact Savvy Axiss. We're here to help you start your tech career journey." 
-        />
+        <title>Contact Us - Savvy Axiss Chennai (Maduravoyal) | Get in Touch</title>
+        <meta name="description" content="Contact Savvy Axiss Chennai - Maduravoyal, Chennai-600095. Courses, final year projects, website development & internships. Visit or call +91 93849 02501." />
+        <meta name="keywords" content="contact Savvy Axiss, Savvy Axiss Chennai, Savvy Axiss Maduravoyal, Savvy Axiss address, Savvy Axiss phone, tech training Chennai contact" />
+        <link rel="canonical" href={`${SEO_BASE_URL}/contact`} />
+        <meta property="og:title" content="Contact Savvy Axiss - Chennai (Maduravoyal)" />
+        <meta property="og:description" content="Savvy Axiss Chennai - Maduravoyal. Contact for courses, projects, web development & internships." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${SEO_BASE_URL}/contact`} />
+        <meta property="og:image" content={`${SEO_BASE_URL}/og-image.png`} />
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'ContactPage',
+          mainEntity: {
+            '@type': 'Organization',
+            name: 'Savvy Axiss',
+            contactPoint: { '@type': 'ContactPoint', contactType: 'Customer Service', availableLanguage: ['English', 'Hindi'] },
+          },
+        })}</script>
       </Helmet>
 
       {/* Hero Section */}
@@ -164,12 +179,20 @@ const Contact = () => {
               Get in Touch
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-primary-foreground mb-6 leading-tight">
-              We'd Love to{' '}
-              <span className="gradient-text">Hear From You</span>
+              Contact Us
+              <span className="block gradient-text mt-2">We'd Love to Hear From You</span>
             </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/70 max-w-2xl mx-auto mb-8">
+            <p className="text-lg md:text-xl text-primary-foreground/70 max-w-2xl mx-auto mb-4">
               Have questions about our courses? Ready to start your journey? 
               Reach out and we'll respond within 24 hours.
+            </p>
+            <p className="text-sm text-primary-foreground/60 max-w-2xl mx-auto mb-8">
+              Explore our <Link to="/courses" className="text-secondary font-medium hover:underline">programming courses in Chennai</Link>,{' '}
+              <Link to="/projects" className="text-secondary font-medium hover:underline">final year project solutions</Link>,{' '}
+              <Link to="/internship" className="text-secondary font-medium hover:underline">internship programs in Chennai</Link>, and{' '}
+              <Link to="/web-development" className="text-secondary font-medium hover:underline">website development services</Link>.{' '}
+              <Link to="/about" className="text-secondary font-medium hover:underline">About Savvy Axiss</Link> ·{' '}
+              <Link to="/apply" className="text-secondary font-medium hover:underline">Apply for course or internship</Link>.
             </p>
             
             {/* Quick Contact Stats */}

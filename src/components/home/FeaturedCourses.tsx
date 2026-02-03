@@ -12,7 +12,7 @@ import 'swiper/css/pagination';
 const courses = [
   {
     id: 1,
-    slug: 'pythona',
+    slug: 'python-advanced',
     title: 'Python Programming - Advanced',
     image: '/python.png',
     duration: '12 Weeks',
@@ -26,7 +26,7 @@ const courses = [
   },
   {
     id: 2,
-    slug: 'cssb',
+    slug: 'css-beginner',
     title: 'CSS - Beginner',
     image: '/css.png',
     duration: '4 Weeks',
@@ -40,7 +40,7 @@ const courses = [
   },
   {
     id: 3,
-    slug: 'htmla',
+    slug: 'html-advanced',
     title: 'HTML - Advanced',
     image: '/html.png',
     duration: '12 Weeks',
@@ -54,14 +54,14 @@ const courses = [
   },
   {
     id: 4,
-    slug: 'aspi',
-    title: 'ASP.NET - Intermediate',
+    slug: 'react-intermediate',
+    title: 'React - Intermediate',
     image: '/webdevelopment.png',
     duration: '8 Weeks',
     mode: 'Live Online',
     price: 1999,
     originalPrice: 2999,
-    rating: 4.55,
+    rating: 4.85,
     reviews: 150,
     category: 'Web Development',
   },
@@ -162,7 +162,8 @@ export const FeaturedCourses = () => {
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={course.image}
-                        alt={course.title}
+                        alt={`${course.title} - Savvy Axiss`}
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
@@ -232,6 +233,21 @@ export const FeaturedCourses = () => {
             ))}
           </Swiper>
         </motion.div>
+
+        {/* Internal links - keyword-rich */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center text-muted-foreground text-sm mt-8 max-w-2xl mx-auto"
+        >
+          Explore all our <Link to="/courses" className="text-secondary font-medium hover:underline">programming courses in Chennai</Link>, 
+          <Link to="/projects" className="text-secondary font-medium hover:underline ml-1">final year project solutions</Link>, 
+          <Link to="/internship" className="text-secondary font-medium hover:underline ml-1">internship programs in Chennai</Link>, and 
+          <Link to="/web-development" className="text-secondary font-medium hover:underline ml-1">website development services</Link>. 
+          <Link to="/about" className="text-secondary font-medium hover:underline ml-1">About Savvy Axiss</Link> · 
+          <Link to="/contact" className="text-secondary font-medium hover:underline ml-1">Contact us in Chennai</Link>.
+        </motion.p>
       </div>
     </section>
   );

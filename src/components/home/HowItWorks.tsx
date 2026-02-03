@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { UserPlus, BookOpen, Award } from 'lucide-react';
 
@@ -50,7 +51,11 @@ export const HowItWorks = () => {
             How It Works
           </h3>
           <p className="text-muted-foreground max-w-2xl mx-auto mt-6">
-            Your journey from learner to professional in three simple steps
+            Your journey from learner to professional in three simple steps. Start with our{' '}
+            <Link to="/courses" className="text-secondary font-medium hover:underline">programming courses in Chennai</Link>, 
+            build your portfolio with <Link to="/projects" className="text-secondary font-medium hover:underline">final year project solutions</Link>, 
+            or gain experience through our <Link to="/internship" className="text-secondary font-medium hover:underline">internship programs in Chennai</Link>. 
+            Need a website? Check our <Link to="/web-development" className="text-secondary font-medium hover:underline">website development services</Link> or <Link to="/apply" className="text-secondary font-medium hover:underline">apply now</Link> for a free demo.
           </p>
         </motion.div>
 

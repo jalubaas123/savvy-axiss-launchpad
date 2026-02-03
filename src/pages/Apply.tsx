@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
+import { SEO_BASE_URL } from '@/lib/seo';
 
 const courses = [
   'Full Stack Development',
@@ -178,11 +179,17 @@ const Apply = () => {
   return (
     <>
       <Helmet>
-        <title>Apply Now - Savvy Axiss | Start Your Tech Journey</title>
-        <meta 
-          name="description" 
-          content="Apply for Savvy Axiss courses. Start your tech career journey with live training and real-time internships." 
-        />
+        <title>Apply Now | Savvy Axiss Chennai</title>
+        <meta name="description" content="Apply for Savvy Axiss Chennai courses and internship programs. Fill out the application form to start your tech journey in Chennai. Maduravoyal." />
+        <meta name="keywords" content="apply Savvy Axiss, course application Chennai, internship application Chennai, Savvy Axiss Chennai, Maduravoyal" />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href={`${SEO_BASE_URL}/apply`} />
+        <meta property="og:title" content="Apply Now | Savvy Axiss Chennai" />
+        <meta property="og:description" content="Apply for Savvy Axiss Chennai courses and internship programs. Maduravoyal." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${SEO_BASE_URL}/apply`} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Apply Now | Savvy Axiss Chennai" />
       </Helmet>
 
       {/* Hero */}
@@ -198,7 +205,8 @@ const Apply = () => {
               Apply Now
             </span>
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-6">
-              Start Your <span className="gradient-text">Tech Journey</span> Today
+              Apply for Courses & Internships
+              <span className="block gradient-text mt-2">Start Your Tech Journey Today</span>
             </h1>
             <p className="text-lg text-primary-foreground/70">
               Fill out the application form and our team will get in touch within 24 hours.

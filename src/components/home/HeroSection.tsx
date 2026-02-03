@@ -4,15 +4,15 @@ import { ArrowRight, Play, Users, Award, TrendingUp, ChevronDown } from 'lucide-
 import { Button } from '@/components/ui/button';
 const stats = [{
   label: 'Students Trained',
-  value: '450+',
+  value: '280+',
   icon: Users
 }, {
   label: 'Experience',
   value: '3+',
   icon: TrendingUp
 }, {
-  label: 'Industry Recognized',
-  value: '100%',
+  label: 'Rating',
+  value: '4.8/5',
   icon: Award
 }];
 export const HeroSection = () => {
@@ -53,7 +53,7 @@ export const HeroSection = () => {
             <span className="text-xs sm:text-sm font-medium">Now Enrolling for {currentMonth} {currentYear} Batch</span>
           </motion.div>
 
-          {/* Main Headline */}
+          {/* Main Headline - Only ONE H1 per page with primary keyword + Chennai */}
           <motion.h1 initial={{
           opacity: 0,
           y: 20
@@ -64,9 +64,8 @@ export const HeroSection = () => {
           duration: 0.5,
           delay: 0.1
         }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-primary-foreground leading-tight mb-4 sm:mb-6 px-2">
-            Transform Your Career with{' '}
-            <span className="gradient-text">Live Training</span> &{' '}
-            <span className="gradient-text">Real-Time Internships</span>
+            Programming Courses, Projects & Internships in{' '}
+            <span className="gradient-text">Chennai</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -80,8 +79,8 @@ export const HeroSection = () => {
           duration: 0.5,
           delay: 0.2
         }} className="text-base sm:text-lg md:text-xl text-primary-foreground/70 max-w-3xl mx-auto mb-8 sm:mb-10 px-4">
-            Master in-demand tech skills through hands-on projects with industry experts. 
-            Get certified. Get hired. Start your journey today.
+            Affordable tech training for students across Chennai. Master Python, Java, Full Stack, React with live classes. 
+            Get certified, build real projects, and land your dream job. Serving T Nagar, Velachery, Tambaram, Anna Nagar, OMR, Guindy.
           </motion.p>
 
           {/* CTA Buttons */}

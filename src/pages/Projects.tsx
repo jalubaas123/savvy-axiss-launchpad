@@ -12,6 +12,34 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { projects, researchPapers, mbaProjects, projectCategories } from '@/data/projectsData';
+import { SEO_BASE_URL } from '@/lib/seo';
+
+const schemaProjectsPage = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Final Year Project Solutions',
+  provider: { '@type': 'EducationalOrganization', name: 'Savvy Axiss' },
+  areaServed: [{ '@type': 'City', name: 'Chennai' }, { '@type': 'Country', name: 'India' }],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Project Categories',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Web Development Projects' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Mobile App Projects' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Machine Learning Projects' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Data Science Projects' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Cyber Security Projects' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'IoT Projects' } },
+    ],
+  },
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'INR',
+    lowPrice: '2999',
+    highPrice: '9999',
+    offerCount: '100',
+  },
+};
 const projectDomains = [{
   icon: Code2,
   name: 'Web Development',
@@ -136,8 +164,20 @@ export default function Projects() {
   const isResearchPaper = activeCategory === 'Research Papers';
   return <>
       <Helmet>
-        <title>Final Year Projects for College Students | Savvy Axiss</title>
-        <meta name="description" content="Get expert guidance for your final year college projects. We provide complete solutions with documentation, PPT, and project support in all domains." />
+        <title>Final Year Projects in Chennai - BTech, MCA & MBA | Savvy Axiss</title>
+        <meta name="description" content="Final year project solutions in Chennai for BTech, BE, MCA & MBA students. Savvy Axiss Chennai - 100+ projects, Web Dev, ML, IoT, Cyber Security. Documentation, code & viva support. Maduravoyal." />
+        <meta name="keywords" content="final year projects Chennai, BTech projects Chennai, MCA projects Chennai, college projects Chennai, engineering project guidance Chennai, final year project help Chennai, Savvy Axiss projects" />
+        <link rel="canonical" href={`${SEO_BASE_URL}/projects`} />
+        <meta property="og:title" content="Final Year Projects in Chennai - BTech, MCA & MBA | Savvy Axiss" />
+        <meta property="og:description" content="Chennai-based final year project solutions. 100+ projects, documentation, code & expert guidance. Savvy Axiss, Maduravoyal." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${SEO_BASE_URL}/projects`} />
+        <meta property="og:image" content={`${SEO_BASE_URL}/og-image.png`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Final Year Projects in Chennai - BTech, MCA & MBA | Savvy Axiss" />
+        <meta name="twitter:description" content="Chennai-based final year project solutions. 100+ projects, documentation & expert guidance." />
+        <meta name="twitter:image" content={`${SEO_BASE_URL}/og-image.png`} />
+        <script type="application/ld+json">{JSON.stringify(schemaProjectsPage)}</script>
       </Helmet>
 
       {/* Hero Section */}
@@ -160,12 +200,20 @@ export default function Projects() {
               Final Year Projects
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-violet-400">
-              Score Top Grades with
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400"> Expert Project Support</span>
+              Final Year Projects for{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">BTech, MCA & MBA Students</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
               Get complete final year project solutions with documentation, presentation, 
               and expert guidance. All domains covered, plagiarism-free guaranteed.
+            </p>
+            <p className="text-sm text-muted-foreground/80 max-w-2xl mx-auto mb-8">
+              Also explore our <Link to="/courses" className="text-secondary font-medium hover:underline">programming courses in Chennai</Link>,{' '}
+              <Link to="/internship" className="text-secondary font-medium hover:underline">internship programs in Chennai</Link>, and{' '}
+              <Link to="/web-development" className="text-secondary font-medium hover:underline">website development services</Link>.{' '}
+              <Link to="/about" className="text-secondary font-medium hover:underline">About Savvy Axiss</Link> ·{' '}
+              <Link to="/contact" className="text-secondary font-medium hover:underline">Contact us</Link> ·{' '}
+              <Link to="/apply" className="text-secondary font-medium hover:underline">Apply for free consultation</Link>.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button variant="hero" size="lg" asChild>
@@ -277,7 +325,7 @@ export default function Projects() {
                   <Card className={`group overflow-hidden transition-all duration-300 card-hover h-full flex flex-col ${isResearchPaper ? 'hover:border-violet-500/50' : 'hover:border-secondary/50'}`}>
                     {/* Image */}
                     <div className="relative aspect-video overflow-hidden">
-                      <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <img src={item.image} alt={`${item.title} - Savvy Axiss`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                       <div className={`absolute inset-0 bg-gradient-to-t ${isResearchPaper ? 'from-violet-900/60' : 'from-primary/60'} to-transparent`} />
                       
                       {/* Category/Domain Badge */}
@@ -380,7 +428,7 @@ export default function Projects() {
             return <motion.div key={paper.id} variants={itemVariants}>
                   <Card className="group overflow-hidden hover:border-violet-500/50 transition-all duration-300 card-hover h-full flex flex-col">
                     <div className="relative aspect-video overflow-hidden">
-                      <img src={paper.image} alt={paper.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <img src={paper.image} alt={`${paper.title} - Research paper - Savvy Axiss`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-gradient-to-t from-violet-900/60 to-transparent" />
                       <Badge className="absolute top-3 left-3 bg-violet-500/80 backdrop-blur-sm text-white">
                         {paper.domain}
@@ -458,7 +506,7 @@ export default function Projects() {
             return <motion.div key={project.id} variants={itemVariants}>
                   <Card className="group overflow-hidden hover:border-amber-500/50 transition-all duration-300 card-hover h-full flex flex-col">
                     <div className="relative aspect-video overflow-hidden">
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <img src={project.image} alt={`${project.title} - Final Year Project - Savvy Axiss`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 to-transparent" />
                       <Badge className="absolute top-3 left-3 bg-amber-500/80 backdrop-blur-sm text-white">
                         {project.specialization}

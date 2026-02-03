@@ -1,23 +1,34 @@
 HOME:
-
+#- Edit stats in header block 
+- add: some batches apprears left -- like Our services, featured courses.
+#- Edit stats section
 ABOUT:
-
+#- edit content vission mission
+- edit teams section
 PROJECTS:
+#- add: filter for projects by domain and language.
+#- add: a section for Research papers.
+#- add: a section for MBA projects.
+#- Edit the package content
+- add: at last change the " need help with ur projects" to own idea or title on ur mind - share ur requirements ----> form to fill details and payment.
 
 COUSES:
-- Edit only one full stack course not beginner, intemediate and advanced
+- Edit courses keep latest courses.
 WEB DEVELOPMENT:
 - HARI section
 INTERNSHIP:
-
+#- Edit packages content
 CONTACT:
+#  - NO CHANGES
 
-
-   
+add: alter the Application form field "preffered start date"  to batch selection - month wise   
 
 add: NEED TO ADD A BLOG FOR UPLOADING UPCOMING WORKSHOP DETAILS, PHOTOS
+add: NEED TO INTEGRATE PAYMENT VIA WHATSAPP
+add: NEED TO CREATE DATABASE FOR STORING PROJECT FILES no need.
 
 
+add: Mern full stack , python full stack, vibe coding courses 
 
 add: on home page "Now Enrolling for January 2026 Batch" keep this as automatic getmonth().
 add: add a share icon button for all courses

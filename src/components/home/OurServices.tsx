@@ -84,12 +84,12 @@ export const OurServices = () => {
           <div className="flex justify-center mb-4">
             <div className="w-16 h-0.5 bg-gradient-to-r from-secondary to-accent rounded-full" />
           </div>
-          <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
-            What We Offer
-          </h3>
+          <h2 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+            Tech Services in Chennai for Students & Businesses
+          </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mt-6">
-            From college projects to career development, we provide comprehensive solutions 
-            to help students and businesses succeed.
+            Affordable programming courses, final year projects, internships, and website development across Chennai. 
+            Serving students from T Nagar, Velachery, Tambaram, Anna Nagar, OMR, Guindy, Maduravoyal, and nearby areas.
           </p>
         </motion.div>
 
@@ -115,7 +115,7 @@ export const OurServices = () => {
               </div>
 
               {/* Content */}
-              <h3 className="text-xl lg:text-2xl font-heading font-semibold text-foreground mb-3">
+              <h3 className="text-xl lg:text-2xl font-heading font-semibold text-foreground mb-3" id={`service-${service.title.replace(/\s+/g, '-').toLowerCase()}`}>
                 {service.title}
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed mb-4">
