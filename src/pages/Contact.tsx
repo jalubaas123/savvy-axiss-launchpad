@@ -8,7 +8,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { SEO_BASE_URL } from '@/lib/seo';
+import { SEO_BASE_URL, createBreadcrumbSchema } from '@/lib/seo';
+
+const contactBreadcrumbSchema = createBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Contact', url: '/contact' },
+]);
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -151,6 +156,7 @@ const Contact = () => {
             contactPoint: { '@type': 'ContactPoint', contactType: 'Customer Service', availableLanguage: ['English', 'Hindi'] },
           },
         })}</script>
+        <script type="application/ld+json">{JSON.stringify(contactBreadcrumbSchema)}</script>
       </Helmet>
 
       {/* Hero Section */}

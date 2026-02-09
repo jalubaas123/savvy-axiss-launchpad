@@ -1,3 +1,4 @@
+// videoUrl on Project: for future use with Savvy Axiss YouTube channel (@savvyaxiss). Video sections are commented out in ProjectDetail.tsx until ready.
 export interface Project {
   id: number;
   slug: string;

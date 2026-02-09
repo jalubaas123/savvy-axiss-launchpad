@@ -5,6 +5,28 @@ import { motion } from 'framer-motion';
 import { Search, Clock, Users, Star, Filter, X, Gift, Home, Headphones, Book, Award, DollarSign, MessageCircle, Network, ChevronRight, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { SEO_BASE_URL, createBreadcrumbSchema, createFAQSchema } from '@/lib/seo';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
+const coursesBreadcrumbSchema = createBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Courses', url: '/courses' },
+]);
+
+const coursesFAQs = createFAQSchema([
+  {
+    question: 'Where can I learn programming courses in Chennai?',
+    answer: 'Savvy Axiss offers programming courses in Chennai at Maduravoyal: Python, Java, MERN Full Stack, React, Digital Marketing, Excel, and more. Live online and in-person batches with certificate.',
+  },
+  {
+    question: 'What programming courses are best for beginners in Chennai?',
+    answer: 'Python, Java, HTML, CSS, and JavaScript beginner courses are ideal. Savvy Axiss Chennai offers 4-week beginner batches with hands-on projects and certificate.',
+  },
+  {
+    question: 'Do you provide certificate after completing a course in Chennai?',
+    answer: 'Yes. Savvy Axiss provides a certificate on course completion. We also offer soft skill training and placement guidance for Chennai students.',
+  },
+]);
 
 // Course image mapping - appropriate images for each course
 const courseImages: Record<string, string> = {
@@ -176,11 +198,21 @@ const Courses = () => {
   return (
     <>
       <Helmet>
-        <title>Courses - Savvy Axiss | Learn In-Demand Tech Skills</title>
-        <meta 
-          name="description" 
-          content="Explore our industry-relevant courses in Full Stack Development, Data Science, Digital Marketing, UI/UX Design, and more. Live training with real projects." 
+        <title>Programming Courses in Chennai | Python, Java, MERN, Full Stack | Savvy Axiss</title>
+        <meta
+          name="description"
+          content="Best programming courses in Chennai: Python, Java, MERN Full Stack, React, Digital Marketing, Excel. Live training in Maduravoyal. Certificate, placement support. Enroll now."
         />
+        <meta
+          name="keywords"
+          content="programming courses in Chennai, Python course Chennai, Java training Chennai, MERN stack course Chennai, learn programming Chennai, tech courses Chennai, Savvy Axiss courses"
+        />
+        <link rel="canonical" href={`${SEO_BASE_URL}/courses`} />
+        <meta property="og:title" content="Programming Courses in Chennai | Savvy Axiss" />
+        <meta property="og:description" content="Python, Java, MERN, React, Digital Marketing in Chennai. Live training, certificate, placement support. Maduravoyal." />
+        <meta property="og:url" content={`${SEO_BASE_URL}/courses`} />
+        <script type="application/ld+json">{JSON.stringify(coursesBreadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(coursesFAQs)}</script>
       </Helmet>
 
       {/* Page Header */}
@@ -196,7 +228,7 @@ const Courses = () => {
             <div className="flex items-center justify-center gap-2 text-white/70 text-sm mb-6">
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <ChevronRight className="w-4 h-4" />
-              <span className="text-white">Course</span>
+              <span className="text-white">Courses</span>
             </div>
             
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
@@ -616,6 +648,39 @@ const Courses = () => {
                   </Button>
                 </div>
               )}
+
+              {/* FAQ — educational intent, local keywords */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="mt-16 max-w-3xl mx-auto"
+              >
+                <h2 className="text-2xl font-heading font-bold text-foreground mb-6">
+                  Frequently Asked Questions – Programming Courses in Chennai
+                </h2>
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="courses-faq-1">
+                    <AccordionTrigger>Where can I learn programming courses in Chennai?</AccordionTrigger>
+                    <AccordionContent>
+                      Savvy Axiss offers programming courses in Chennai at Maduravoyal: Python, Java, MERN Full Stack, React, Digital Marketing, Excel, and more. Live online and in-person batches with certificate.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="courses-faq-2">
+                    <AccordionTrigger>What programming courses are best for beginners in Chennai?</AccordionTrigger>
+                    <AccordionContent>
+                      Python, Java, HTML, CSS, and JavaScript beginner courses are ideal. Savvy Axiss Chennai offers 4-week beginner batches with hands-on projects and certificate.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="courses-faq-3">
+                    <AccordionTrigger>Do you provide certificate after completing a course in Chennai?</AccordionTrigger>
+                    <AccordionContent>
+                      Yes. Savvy Axiss provides a certificate on course completion. We also offer soft skill training and placement guidance for Chennai students.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </motion.div>
             </div>
           </div>
         </div>

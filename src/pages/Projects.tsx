@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FolderKanban, CheckCircle2, FileText, Users, Clock, Code2, Database, Globe, Smartphone, Brain, Shield, ArrowRight, Eye, GraduationCap, BookOpen, Send } from 'lucide-react';
+import { FolderKanban, CheckCircle2, FileText, Users, Clock, Code2, Database, Globe, Smartphone, Brain, Shield, ArrowRight, Eye, GraduationCap, BookOpen, Send, Search } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -17,7 +17,7 @@ import { SEO_BASE_URL } from '@/lib/seo';
 const schemaProjectsPage = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  serviceType: 'Final Year Project Solutions',
+  serviceType: 'Final Year Project Solutions for All Students',
   provider: { '@type': 'EducationalOrganization', name: 'Savvy Axiss' },
   areaServed: [{ '@type': 'City', name: 'Chennai' }, { '@type': 'Country', name: 'India' }],
   hasOfferCatalog: {
@@ -150,32 +150,47 @@ const formatPrice = (price: number) => {
 };
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
-  
+  const [searchQuery, setSearchQuery] = useState('');
+
   const filteredItems = useMemo(() => {
+    let items: typeof projects | typeof researchPapers;
     if (activeCategory === 'All') {
-      return projects;
+      items = projects;
+    } else if (activeCategory === 'Research Papers') {
+      items = researchPapers;
+    } else {
+      items = projects.filter(project => project.category === activeCategory);
     }
-    if (activeCategory === 'Research Papers') {
-      return researchPapers;
-    }
-    return projects.filter(project => project.category === activeCategory);
-  }, [activeCategory]);
-  
+
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return items;
+
+    return items.filter((item: any) => {
+      const title = (item.title || '').toLowerCase();
+      const desc = (item.description || '').toLowerCase();
+      const longDesc = (item.longDescription || '').toLowerCase();
+      const category = (item.category || item.domain || '').toLowerCase();
+      const techStack = Array.isArray(item.techStack) ? item.techStack.join(' ').toLowerCase() : '';
+      const searchable = `${title} ${desc} ${longDesc} ${category} ${techStack}`;
+      return searchable.includes(q);
+    });
+  }, [activeCategory, searchQuery]);
+
   const isResearchPaper = activeCategory === 'Research Papers';
   return <>
       <Helmet>
-        <title>Final Year Projects in Chennai - BTech, MCA & MBA | Savvy Axiss</title>
-        <meta name="description" content="Final year project solutions in Chennai for BTech, BE, MCA & MBA students. Savvy Axiss Chennai - 100+ projects, Web Dev, ML, IoT, Cyber Security. Documentation, code & viva support. Maduravoyal." />
-        <meta name="keywords" content="final year projects Chennai, BTech projects Chennai, MCA projects Chennai, college projects Chennai, engineering project guidance Chennai, final year project help Chennai, Savvy Axiss projects" />
+        <title>Final Year Projects in Chennai - All Students | Engineering, Arts, Science, MCA, MBA | Savvy Axiss</title>
+        <meta name="description" content="Final year project solutions in Chennai for all students — BTech, BE, MCA, MBA, BSc, BCA, Arts, Science, Engineering & more. 100+ projects: Web Dev, ML, IoT, Cyber Security. Documentation, code & viva support. Savvy Axiss, Maduravoyal." />
+        <meta name="keywords" content="final year projects Chennai, BTech projects, MCA projects, MBA projects, BSc projects, engineering projects Chennai, arts and science projects, college projects Chennai, final year project help Chennai, project with source code, Savvy Axiss projects" />
         <link rel="canonical" href={`${SEO_BASE_URL}/projects`} />
-        <meta property="og:title" content="Final Year Projects in Chennai - BTech, MCA & MBA | Savvy Axiss" />
-        <meta property="og:description" content="Chennai-based final year project solutions. 100+ projects, documentation, code & expert guidance. Savvy Axiss, Maduravoyal." />
+        <meta property="og:title" content="Final Year Projects in Chennai - All Students | Savvy Axiss" />
+        <meta property="og:description" content="Final year project solutions for all students — Engineering, Arts, Science, MCA, MBA. 100+ projects, documentation & expert guidance. Savvy Axiss, Maduravoyal." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${SEO_BASE_URL}/projects`} />
         <meta property="og:image" content={`${SEO_BASE_URL}/og-image.png`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Final Year Projects in Chennai - BTech, MCA & MBA | Savvy Axiss" />
-        <meta name="twitter:description" content="Chennai-based final year project solutions. 100+ projects, documentation & expert guidance." />
+        <meta name="twitter:title" content="Final Year Projects in Chennai - All Students | Savvy Axiss" />
+        <meta name="twitter:description" content="Final year projects for all students. 100+ projects, documentation & expert guidance. Savvy Axiss, Chennai." />
         <meta name="twitter:image" content={`${SEO_BASE_URL}/og-image.png`} />
         <script type="application/ld+json">{JSON.stringify(schemaProjectsPage)}</script>
       </Helmet>
@@ -201,11 +216,14 @@ export default function Projects() {
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-violet-400">
               Final Year Projects for{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">BTech, MCA & MBA Students</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">All Students</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
-              Get complete final year project solutions with documentation, presentation, 
-              and expert guidance. All domains covered, plagiarism-free guaranteed.
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-2">
+              Engineering, Arts, Science, BTech, BE, MCA, MBA, BSc, BCA & more — complete project solutions with documentation, 
+              presentation, and expert guidance. All domains covered, plagiarism-free guaranteed.
+            </p>
+            <p className="text-sm text-muted-foreground/90 max-w-2xl mx-auto mb-4">
+              Search by project name, technology, or domain below.
             </p>
             <p className="text-sm text-muted-foreground/80 max-w-2xl mx-auto mb-8">
               Also explore our <Link to="/courses" className="text-secondary font-medium hover:underline">programming courses in Chennai</Link>,{' '}
@@ -291,6 +309,36 @@ export default function Projects() {
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Choose from our collection of ready-made projects with complete source code and documentation.
             </p>
+          </motion.div>
+
+          {/* Keyword search — by project name, technology, domain */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-xl mx-auto mb-6"
+          >
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
+              <Input
+                type="search"
+                placeholder="Search by project name, technology, or domain (e.g. ecommerce, Python, ML, IoT, web)..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-11 pr-4 h-12 rounded-xl border-border bg-card text-foreground placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-secondary"
+                aria-label="Search projects"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground text-sm"
+                  aria-label="Clear search"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
           </motion.div>
 
           {/* Category Filter Tabs */}
@@ -391,9 +439,20 @@ export default function Projects() {
           })}
           </motion.div>
 
-          {filteredItems.length === 0 && <div className="text-center py-12">
-              <p className="text-muted-foreground">No {isResearchPaper ? 'research papers' : 'projects'} found in this category.</p>
-            </div>}
+          {filteredItems.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">
+                {searchQuery.trim()
+                  ? `No ${isResearchPaper ? 'research papers' : 'projects'} match "${searchQuery.trim()}". Try a different keyword or category.`
+                  : `No ${isResearchPaper ? 'research papers' : 'projects'} found in this category.`}
+              </p>
+              {searchQuery.trim() && (
+                <Button variant="outline" className="mt-4" onClick={() => setSearchQuery('')}>
+                  Clear search
+                </Button>
+              )}
+            </div>
+          )}
         </div>
       </section>
 

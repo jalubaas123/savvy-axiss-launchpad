@@ -162,6 +162,58 @@ export const createBreadcrumbSchema = (items: Array<{ name: string; url: string 
     '@type': 'ListItem',
     position: index + 1,
     name: item.name,
-    item: item.url,
+    item: item.url.startsWith('http') ? item.url : `${SEO_BASE_URL}${item.url}`,
   })),
+});
+
+/** Course schema (courseCode, learningResourceType) for CourseDetail pages */
+export const createCourseSchema = (params: {
+  name: string;
+  description: string;
+  courseCode?: string;
+  provider?: string;
+  url: string;
+  image?: string;
+  instructor?: { name: string };
+  offers?: { price?: number; priceCurrency?: string };
+  aggregateRating?: { ratingValue: number; reviewCount: number };
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: params.name,
+  description: params.description,
+  learningResourceType: 'Course',
+  ...(params.courseCode && { courseCode: params.courseCode }),
+  ...(params.provider && { provider: { '@type': 'Organization', name: params.provider } }),
+  url: params.url.startsWith('http') ? params.url : `${SEO_BASE_URL}${params.url}`,
+  ...(params.image && { image: params.image.startsWith('http') ? params.image : `${SEO_BASE_URL}${params.image}` }),
+  ...(params.instructor && { instructor: { '@type': 'Person', name: params.instructor.name } }),
+  ...(params.offers && { offers: { '@type': 'Offer', ...params.offers } }),
+  ...(params.aggregateRating && {
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: params.aggregateRating.ratingValue,
+      reviewCount: params.aggregateRating.reviewCount,
+      bestRating: 5,
+    },
+  }),
+});
+
+/** Review/Rating schema (AggregateRating) for student reviews */
+export const createReviewSchema = (params: {
+  itemName: string;
+  ratingValue: number;
+  reviewCount: number;
+  bestRating?: number;
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: params.itemName,
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: params.ratingValue,
+    reviewCount: params.reviewCount,
+    bestRating: params.bestRating ?? 5,
+    worstRating: 1,
+  },
 });

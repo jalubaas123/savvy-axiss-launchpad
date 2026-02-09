@@ -72,16 +72,18 @@ export default function ProjectDetail() {
     },
   };
 
-  const schemaVideo = project.videoUrl
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'VideoObject',
-        name: `${project.title} - Demo Video`,
-        description: project.description,
-        thumbnailUrl: project.image,
-        embedUrl: project.videoUrl,
-      }
-    : null;
+  // Future use: Savvy Axiss YouTube channel — uncomment when adding project demo videos
+  // const schemaVideo = project.videoUrl
+  //   ? {
+  //       '@context': 'https://schema.org',
+  //       '@type': 'VideoObject',
+  //       name: `${project.title} - Demo Video`,
+  //       description: project.description,
+  //       thumbnailUrl: project.image,
+  //       embedUrl: project.videoUrl,
+  //     }
+  //   : null;
+  const schemaVideo = null;
 
   return (
     <>
@@ -101,7 +103,7 @@ export default function ProjectDetail() {
         <meta name="twitter:image" content={project.image?.startsWith('http') ? project.image : `${SEO_BASE_URL}${project.image}`} />
         <script type="application/ld+json">{JSON.stringify(schemaProduct)}</script>
         <script type="application/ld+json">{JSON.stringify(schemaBreadcrumb)}</script>
-        {schemaVideo && <script type="application/ld+json">{JSON.stringify(schemaVideo)}</script>}
+        {/* Future: Savvy Axiss YouTube — {schemaVideo && <script type="application/ld+json">{JSON.stringify(schemaVideo)}</script>} */}
       </Helmet>
 
       {/* Breadcrumb & Header */}
@@ -146,8 +148,8 @@ export default function ProjectDetail() {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Left Column - Video & Description */}
             <div className="lg:col-span-2 space-y-8">
-              {/* Video Player - only when demo video URL is provided */}
-              {project.videoUrl ? (
+              {/* YouTube / Demo Video — commented for future use with Savvy Axiss YouTube channel (@savvyaxiss). Uncomment when videos are ready. */}
+              {/* {project.videoUrl ? (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -162,7 +164,7 @@ export default function ProjectDetail() {
                     allowFullScreen
                   />
                 </motion.div>
-              ) : null}
+              ) : null} */}
 
               {/* Description */}
               <motion.div
@@ -212,6 +214,12 @@ export default function ProjectDetail() {
                     </Badge>
                   ))}
                 </div>
+                <p className="text-muted-foreground mt-4">
+                  Want to build projects like this? Learn {project.techStack.slice(0, 2).join(', ')} and more in Chennai.{' '}
+                  <Link to="/courses" className="text-secondary font-medium hover:underline">
+                    View our programming courses →
+                  </Link>
+                </p>
               </motion.div>
             </div>
 

@@ -166,7 +166,7 @@ export const FeaturedCourses = () => {
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={course.image}
-                        alt={`${course.title} - Savvy Axiss`}
+                        alt={`${course.title} - Programming course in Chennai - Savvy Axiss`}
                         loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />

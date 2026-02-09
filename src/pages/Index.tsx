@@ -3,10 +3,10 @@ import { HeroSection } from '@/components/home/HeroSection';
 import { OurServices } from '@/components/home/OurServices';
 import { FeaturedCourses } from '@/components/home/FeaturedCourses';
 import { HowItWorks } from '@/components/home/HowItWorks';
-import { Testimonials } from '@/components/home/Testimonials';
+import { StudentReviews } from '@/components/home/StudentReviews';
 import { StatsCounter } from '@/components/home/StatsCounter';
 import { CTABanner } from '@/components/home/CTABanner';
-import { SEO_BASE_URL, schemaLocalBusiness, schemaOrganization, schemaWebSite, createFAQSchema } from '@/lib/seo';
+import { SEO_BASE_URL, schemaLocalBusiness, schemaOrganization, schemaWebSite, createFAQSchema, createReviewSchema } from '@/lib/seo';
 
 // FAQ Schema for home page
 const homeFAQs = createFAQSchema([
@@ -27,6 +27,13 @@ const homeFAQs = createFAQSchema([
     answer: 'Yes, Savvy Axiss offers internship programs for students in Chennai with real-world projects, hands-on training, and completion certificates.',
   },
 ]);
+
+const reviewSchema = createReviewSchema({
+  itemName: 'Savvy Axiss',
+  ratingValue: 4.9,
+  reviewCount: 50,
+  bestRating: 5,
+});
 
 const Index = () => {
   return (
@@ -55,6 +62,7 @@ const Index = () => {
         <script type="application/ld+json">{JSON.stringify(schemaOrganization)}</script>
         <script type="application/ld+json">{JSON.stringify(schemaWebSite)}</script>
         <script type="application/ld+json">{JSON.stringify(schemaLocalBusiness)}</script>
+        <script type="application/ld+json">{JSON.stringify(reviewSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(homeFAQs)}</script>
       </Helmet>
 
@@ -62,7 +70,7 @@ const Index = () => {
       <OurServices />
       <FeaturedCourses />
       <HowItWorks />
-      <Testimonials />
+      <StudentReviews />
       <StatsCounter />
       <CTABanner />
     </>

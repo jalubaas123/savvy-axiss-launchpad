@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { Clock, Users, Star, Calendar, Globe, Award, Gift, ArrowLeft, Share2 } from 'lucide-react';
+import { Clock, Users, Star, Calendar, Globe, Award, Gift, ArrowLeft, Share2, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { getCourseBySlug } from '@/data/courseData';
 import { allCourses } from '@/pages/Courses';
 import { EnrollModal } from '@/components/course/EnrollModal';
 import { InstructorAvatar } from '@/components/ui/instructor-avatar';
+import { SEO_BASE_URL, createCourseSchema, createBreadcrumbSchema, createFAQSchema } from '@/lib/seo';
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('en-IN', {
@@ -39,6 +40,38 @@ const CourseDetail = () => {
   const syllabus = course.syllabus[level];
   const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
 
+  const courseSchema = createCourseSchema({
+    name: courseInfo.title,
+    description: course.description,
+    courseCode: courseInfo.slug,
+    provider: 'Savvy Axiss',
+    url: `/courses/${courseInfo.slug}`,
+    image: courseInfo.image,
+    instructor: { name: course.instructor.name },
+    offers: { price: courseInfo.price, priceCurrency: 'INR' },
+    aggregateRating: { ratingValue: courseInfo.rating, reviewCount: courseInfo.reviews },
+  });
+  const breadcrumbSchema = createBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Courses', url: '/courses' },
+    { name: courseInfo.title, url: `/courses/${courseInfo.slug}` },
+  ]);
+  const courseFAQs = createFAQSchema([
+    {
+      question: `Where can I learn ${course.name} in Chennai?`,
+      answer: `Savvy Axiss offers ${course.name} training in Chennai at Maduravoyal. Live online and in-person batches. Enroll for ${level} level with certification.`,
+    },
+    {
+      question: `What is the duration of ${courseInfo.title}?`,
+      answer: `${courseInfo.title} at Savvy Axiss is ${courseInfo.duration}. Includes hands-on projects, certificate, and placement support.`,
+    },
+    {
+      question: 'Do you provide certificate after course completion?',
+      answer: 'Yes. Savvy Axiss provides a certificate on completion. We also offer soft skill training and placement guidance for Chennai students.',
+    },
+  ]);
+  const relatedCourses = allCourses.filter((c) => c.category === courseInfo.category && c.slug !== courseInfo.slug).slice(0, 4);
+
   const handleEnroll = () => {
     setIsEnrollModalOpen(true);
   };
@@ -59,8 +92,23 @@ const CourseDetail = () => {
   return (
     <>
       <Helmet>
-        <title>{courseInfo.title} - Savvy Axiss</title>
-        <meta name="description" content={course.description} />
+        <title>{courseInfo.title} - Programming Course in Chennai | Savvy Axiss</title>
+        <meta
+          name="description"
+          content={`${course.description} Learn ${course.name} in Chennai at Savvy Axiss (Maduravoyal). ${level} level, ${courseInfo.duration}, live training, certificate. Best programming courses in Chennai.`}
+        />
+        <meta
+          name="keywords"
+          content={`${course.name} course Chennai, ${course.name} training Chennai, programming course Chennai, learn ${course.name} Chennai, Savvy Axiss ${course.name}`}
+        />
+        <link rel="canonical" href={`${SEO_BASE_URL}/courses/${courseInfo.slug}`} />
+        <meta property="og:title" content={`${courseInfo.title} - Programming Course in Chennai | Savvy Axiss`} />
+        <meta property="og:description" content={`${course.description} Learn in Chennai. ${courseInfo.duration}, certificate. Savvy Axiss, Maduravoyal.`} />
+        <meta property="og:url" content={`${SEO_BASE_URL}/courses/${courseInfo.slug}`} />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify(courseSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(courseFAQs)}</script>
       </Helmet>
 
       {/* Page Header */}
@@ -75,11 +123,13 @@ const CourseDetail = () => {
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Courses
             </Link>
-            <div className="flex items-center gap-2 text-sm text-primary-foreground/70 mb-4">
+            <nav className="flex items-center gap-2 text-sm text-primary-foreground/70 mb-4" aria-label="Breadcrumb">
               <Link to="/" className="hover:text-primary-foreground">Home</Link>
               <span>/</span>
-              <Link to="/courses" className="hover:text-primary-foreground">Course</Link>
-            </div>
+              <Link to="/courses" className="hover:text-primary-foreground">Courses</Link>
+              <span>/</span>
+              <span className="text-primary-foreground">{courseInfo.title}</span>
+            </nav>
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-4">
               {courseInfo.title}
             </h1>
@@ -120,8 +170,26 @@ const CourseDetail = () => {
                 </div>
               </motion.div>
 
+              {/* Table of contents — long page */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="bg-card p-6 rounded-xl border border-border mb-8"
+              >
+                <h2 className="text-lg font-heading font-bold text-foreground mb-3">On this page</h2>
+                <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
+                  <li><a href="#about-course" className="hover:text-secondary underline-offset-2 hover:underline">About this course</a></li>
+                  <li><a href="#syllabus" className="hover:text-secondary underline-offset-2 hover:underline">Syllabus</a></li>
+                  <li><a href="#instructor" className="hover:text-secondary underline-offset-2 hover:underline">Instructor</a></li>
+                  <li><a href="#related-courses" className="hover:text-secondary underline-offset-2 hover:underline">Related courses</a></li>
+                  <li><a href="#faq" className="hover:text-secondary underline-offset-2 hover:underline">FAQ</a></li>
+                </ul>
+              </motion.div>
+
               {/* About This Course */}
               <motion.div
+                id="about-course"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -199,7 +267,7 @@ const CourseDetail = () => {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="bg-card p-6 rounded-xl border border-border mb-8"
               >
-                <h2 className="text-2xl font-heading font-bold text-foreground mb-6">
+                <h2 id="syllabus" className="text-2xl font-heading font-bold text-foreground mb-6">
                   {course.baseSlug === 'vibe-coding' ? 'Course Modules' : 'Syllabus'}
                 </h2>
                 <Accordion type="single" collapsible className="w-full">
@@ -271,7 +339,7 @@ const CourseDetail = () => {
                 transition={{ duration: 0.5, delay: course.baseSlug === 'vibe-coding' ? 0.6 : 0.6 }}
                 className="bg-card p-6 rounded-xl border border-border"
               >
-                <h2 className="text-2xl font-heading font-bold text-foreground mb-6">About the Instructor</h2>
+                <h2 id="instructor" className="text-2xl font-heading font-bold text-foreground mb-6">About the Instructor</h2>
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
                     <InstructorAvatar gender={course.instructor.gender} />
@@ -311,7 +379,7 @@ const CourseDetail = () => {
                 <div className="aspect-video rounded-lg overflow-hidden mb-6">
                   <img
                     src={courseInfo.image}
-                    alt={courseInfo.title}
+                    alt={`${courseInfo.title} - Programming course in Chennai at Savvy Axiss`}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -400,6 +468,67 @@ const CourseDetail = () => {
                     </div>
                   </div>
                 </div>
+              </motion.div>
+
+              {/* Related courses — internal linking */}
+              {relatedCourses.length > 0 && (
+                <motion.div
+                  id="related-courses"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="bg-card p-6 rounded-xl border border-border mb-8"
+                >
+                  <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Related Courses in Chennai</h2>
+                  <p className="text-muted-foreground mb-4">Explore more programming courses at Savvy Axiss Chennai.</p>
+                  <ul className="grid sm:grid-cols-2 gap-2">
+                    {relatedCourses.map((c) => (
+                      <li key={c.slug}>
+                        <Link
+                          to={`/courses/${c.slug}`}
+                          className="flex items-center gap-2 text-secondary hover:underline font-medium"
+                        >
+                          <ChevronRight className="w-4 h-4 flex-shrink-0" />
+                          {c.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to="/courses" className="inline-block mt-4 text-secondary font-medium hover:underline">
+                    View all programming courses in Chennai →
+                  </Link>
+                </motion.div>
+              )}
+
+              {/* FAQ — educational intent */}
+              <motion.div
+                id="faq"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.45 }}
+                className="bg-card p-6 rounded-xl border border-border mb-8"
+              >
+                <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Frequently Asked Questions</h2>
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="faq-1">
+                    <AccordionTrigger>Where can I learn {course.name} in Chennai?</AccordionTrigger>
+                    <AccordionContent>
+                      Savvy Axiss offers {course.name} training in Chennai at Maduravoyal. Live online and in-person batches. Enroll for {level} level with certification.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="faq-2">
+                    <AccordionTrigger>What is the duration of {courseInfo.title}?</AccordionTrigger>
+                    <AccordionContent>
+                      {courseInfo.title} at Savvy Axiss is {courseInfo.duration}. Includes hands-on projects, certificate, and placement support.
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="faq-3">
+                    <AccordionTrigger>Do you provide certificate after course completion?</AccordionTrigger>
+                    <AccordionContent>
+                      Yes. Savvy Axiss provides a certificate on completion. We also offer soft skill training and placement guidance for Chennai students.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </motion.div>
             </div>
           </div>

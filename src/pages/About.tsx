@@ -2,7 +2,12 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Target, Eye, Heart, Users, Lightbulb, Shield } from 'lucide-react';
-import { SEO_BASE_URL, CHENNAI_ADDRESS } from '@/lib/seo';
+import { SEO_BASE_URL, CHENNAI_ADDRESS, createBreadcrumbSchema } from '@/lib/seo';
+
+const aboutBreadcrumbSchema = createBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'About', url: '/about' },
+]);
 
 const schemaAboutPage = {
   '@context': 'https://schema.org',
@@ -93,6 +98,7 @@ const About = () => {
         <meta name="twitter:description" content="Savvy Axiss Chennai - founded in 2022. Tech training, projects & internships. Maduravoyal, Chennai." />
         <meta name="twitter:image" content={`${SEO_BASE_URL}/og-image.png`} />
         <script type="application/ld+json">{JSON.stringify(schemaAboutPage)}</script>
+        <script type="application/ld+json">{JSON.stringify(aboutBreadcrumbSchema)}</script>
       </Helmet>
 
       {/* Hero */}
