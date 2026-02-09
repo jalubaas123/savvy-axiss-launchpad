@@ -2,7 +2,12 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpen, GraduationCap, Code2, Briefcase, ArrowRight } from 'lucide-react';
-import { SEO_BASE_URL } from '@/lib/seo';
+import { SEO_BASE_URL, createBreadcrumbSchema } from '@/lib/seo';
+
+const blogBreadcrumbSchema = createBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Resources & Blog', url: '/blog' },
+]);
 
 const resourceLinks = [
   {
@@ -46,6 +51,9 @@ export default function Blog() {
         <meta property="og:image" content={`${SEO_BASE_URL}/og-image.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Resources & Blog | Savvy Axiss Chennai" />
+        <meta name="twitter:description" content="Explore tech courses, final year projects, website development and internships in Chennai." />
+        <meta name="twitter:image" content={`${SEO_BASE_URL}/og-image.png`} />
+        <script type="application/ld+json">{JSON.stringify(blogBreadcrumbSchema)}</script>
       </Helmet>
 
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 hero-gradient">

@@ -1,3 +1,7 @@
+# Savvy Axiss – robots.txt
+# Only form/utility pages are disallowed; all key content is indexable.
+# Submit sitemap in Google Search Console and Bing Webmaster Tools.
+
 User-agent: *
 Allow: /
 Disallow: /apply

@@ -163,7 +163,7 @@ export const allCourses = [
 ];
 
 const categories = ['All', 'Programming Languages', 'Web Development', 'Microsoft Office', 'Database', 'Marketing'];
-const levels = ['All', 'Beginner', 'Intermediate', 'Advanced'];
+const levels = ['Beginner', 'Intermediate', 'Advanced'] as const;
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('en-IN', {
@@ -176,24 +176,24 @@ const formatPrice = (price: number) => {
 const Courses = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedLevel, setSelectedLevel] = useState('All');
+  const [selectedLevel, setSelectedLevel] = useState<'Beginner' | 'Intermediate' | 'Advanced'>('Beginner');
   const [showFilters, setShowFilters] = useState(false);
 
   const filteredCourses = allCourses.filter((course) => {
     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       course.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || course.category === selectedCategory;
-    const matchesLevel = selectedLevel === 'All' || course.level === selectedLevel;
+    const matchesLevel = course.level === selectedLevel;
     return matchesSearch && matchesCategory && matchesLevel;
   });
 
   const clearFilters = () => {
     setSearchQuery('');
     setSelectedCategory('All');
-    setSelectedLevel('All');
+    setSelectedLevel('Beginner');
   };
 
-  const hasActiveFilters = searchQuery || selectedCategory !== 'All' || selectedLevel !== 'All';
+  const hasActiveFilters = searchQuery || selectedCategory !== 'All' || selectedLevel !== 'Beginner';
 
   return (
     <>
@@ -232,10 +232,10 @@ const Courses = () => {
             </div>
             
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
-              Courses
+              Programming Courses in Chennai
             </h1>
             <p className="text-lg text-white/80 mb-8">
-              Industry-relevant courses designed to make you job-ready from day one.
+              Industry-relevant programming courses in Chennai—Python, Java, MERN, React, Digital Marketing. Live training at Maduravoyal, certificate, job-ready from day one.
             </p>
             
             {/* Search Bar */}
@@ -531,10 +531,10 @@ const Courses = () => {
                         <X className="w-3 h-3 cursor-pointer" onClick={() => setSelectedCategory('All')} />
                       </span>
                     )}
-                    {selectedLevel !== 'All' && (
+                    {selectedLevel !== 'Beginner' && (
                       <span className="inline-flex items-center gap-1 px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm">
                         {selectedLevel}
-                        <X className="w-3 h-3 cursor-pointer" onClick={() => setSelectedLevel('All')} />
+                        <X className="w-3 h-3 cursor-pointer" onClick={() => setSelectedLevel('Beginner')} />
                       </span>
                     )}
                   </div>

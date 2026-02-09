@@ -12,7 +12,12 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { projects, researchPapers, mbaProjects, projectCategories } from '@/data/projectsData';
-import { SEO_BASE_URL } from '@/lib/seo';
+import { SEO_BASE_URL, createBreadcrumbSchema } from '@/lib/seo';
+
+const projectsBreadcrumbSchema = createBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Projects', url: '/projects' },
+]);
 
 const schemaProjectsPage = {
   '@context': 'https://schema.org',
@@ -193,6 +198,7 @@ export default function Projects() {
         <meta name="twitter:description" content="Final year projects for all students. 100+ projects, documentation & expert guidance. Savvy Axiss, Chennai." />
         <meta name="twitter:image" content={`${SEO_BASE_URL}/og-image.png`} />
         <script type="application/ld+json">{JSON.stringify(schemaProjectsPage)}</script>
+        <script type="application/ld+json">{JSON.stringify(projectsBreadcrumbSchema)}</script>
       </Helmet>
 
       {/* Hero Section */}
@@ -215,7 +221,7 @@ export default function Projects() {
               Final Year Projects
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-violet-400">
-              Final Year Projects for{' '}
+              Final Year Projects in Chennai for{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">All Students</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-2">

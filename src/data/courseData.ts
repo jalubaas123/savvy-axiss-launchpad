@@ -36,7 +36,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     baseSlug: 'python',
     category: 'Programming Languages',
     image: '/python.png',
-    description: 'Learn Python programming from basics to advanced. Master data structures, algorithms, and real-world applications.',
+    description: 'Learn Python programming from basics to advanced at Savvy Axiss Chennai. Master data structures, algorithms, file handling, APIs, and real-world applications. Ideal for students and professionals in Chennai looking for the best Python course—live online and in-person batches in Maduravoyal, with hands-on projects and certificate.',
     objective: 'To equip you with advanced Python programming capabilities, enabling you to work with machine learning models, process large datasets, and implement data pipelines in Python for complex, real-world scenarios.',
     skills: ['Advanced Data Processing', 'Machine Learning Foundations', 'Automate Data Collection with APIs'],
     instructor: {
@@ -86,7 +86,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     baseSlug: 'java',
     category: 'Programming Languages',
     image: '/java.png',
-    description: 'Comprehensive Java programming course covering OOP concepts, collections, multithreading, and Java frameworks.',
+    description: 'Comprehensive Java programming course in Chennai covering OOP concepts, collections, multithreading, JDBC, and Java frameworks. Join one of the best Java training programs in Chennai—live sessions at Maduravoyal, certificate on completion, and placement support for engineering and MCA students.',
     objective: 'To master Java programming from fundamentals to advanced concepts, enabling you to build robust applications using Java frameworks and best practices.',
     skills: ['Object-Oriented Programming', 'Java Collections', 'Multithreading', 'Java Frameworks'],
     instructor: {
@@ -286,7 +286,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     baseSlug: 'react',
     category: 'Web Development',
     image: '/webdevelopment.png',
-    description: 'Master React.js framework. Learn components, hooks, state management, routing, and build modern single-page applications.',
+    description: 'Master React.js framework in Chennai at Savvy Axiss. Learn components, hooks, state management, routing, and build modern single-page applications. Best React training in Chennai—live online and in-person at Maduravoyal, certificate, and hands-on projects for students and developers.',
     objective: 'To master React.js from fundamentals to advanced concepts, enabling you to build scalable, performant, and maintainable web applications using modern React patterns and best practices.',
     skills: ['React Components', 'Hooks & State Management', 'React Router', 'Context API', 'Performance Optimization'],
     instructor: {
@@ -374,7 +374,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     baseSlug: 'digital-marketing',
     category: 'Marketing',
     image: '/digital-marketing.png',
-    description: 'Master digital marketing strategies. Learn SEO, social media marketing, PPC advertising, content marketing, email marketing, and analytics.',
+    description: 'Master digital marketing strategies in Chennai. Learn SEO, social media marketing, PPC advertising, content marketing, email marketing, and analytics. Savvy Axiss Chennai offers one of the best digital marketing courses in Chennai—live training in Maduravoyal, certificate, and placement support.',
     objective: 'To master digital marketing strategies and tools, enabling you to create effective marketing campaigns and drive business growth through digital channels.',
     skills: ['SEO Optimization', 'Social Media Marketing', 'PPC Advertising', 'Content Marketing', 'Analytics'],
     instructor: {
@@ -424,7 +424,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     baseSlug: 'mern-fullstack',
     category: 'Web Development',
     image: '/webdevelopment.png',
-    description: 'Master the complete MERN stack (MongoDB, Express.js, React, Node.js) to build full-stack web applications. Learn modern development practices, deployment, and real-world project implementation.',
+    description: 'Master the complete MERN stack (MongoDB, Express.js, React, Node.js) at Savvy Axiss Chennai. Build full-stack web applications with modern development practices, deployment, and real-world projects. One of the best MERN stack courses in Chennai—live training in Maduravoyal, certificate, and placement support for students and career switchers.',
     objective: 'To master the complete MERN stack development, enabling you to build scalable, production-ready full-stack web applications with modern tools and best practices.',
     skills: ['MongoDB Database Design', 'Express.js Backend Development', 'React Frontend Development', 'Node.js Server-Side Programming', 'RESTful APIs', 'Authentication & Authorization', 'Deployment & DevOps'],
     instructor: {

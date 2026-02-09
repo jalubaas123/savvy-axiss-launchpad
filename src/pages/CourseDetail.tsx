@@ -170,14 +170,15 @@ const CourseDetail = () => {
                 </div>
               </motion.div>
 
-              {/* Table of contents — long page */}
-              <motion.div
+              {/* Table of contents — long page (nav only; no H2 to keep clear H1 → H2 hierarchy) */}
+              <motion.nav
+                aria-label="Table of contents for this course page"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.15 }}
                 className="bg-card p-6 rounded-xl border border-border mb-8"
               >
-                <h2 className="text-lg font-heading font-bold text-foreground mb-3">On this page</h2>
+                <p className="text-lg font-heading font-bold text-foreground mb-3">On this page</p>
                 <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
                   <li><a href="#about-course" className="hover:text-secondary underline-offset-2 hover:underline">About this course</a></li>
                   <li><a href="#syllabus" className="hover:text-secondary underline-offset-2 hover:underline">Syllabus</a></li>
@@ -185,7 +186,7 @@ const CourseDetail = () => {
                   <li><a href="#related-courses" className="hover:text-secondary underline-offset-2 hover:underline">Related courses</a></li>
                   <li><a href="#faq" className="hover:text-secondary underline-offset-2 hover:underline">FAQ</a></li>
                 </ul>
-              </motion.div>
+              </motion.nav>
 
               {/* About This Course */}
               <motion.div

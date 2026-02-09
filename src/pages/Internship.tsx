@@ -5,7 +5,12 @@ import { Briefcase, CheckCircle2, Users, Trophy, Clock, FileCheck, Lightbulb, Ro
 import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { SEO_BASE_URL } from '@/lib/seo';
+import { SEO_BASE_URL, createBreadcrumbSchema } from '@/lib/seo';
+
+const internshipBreadcrumbSchema = createBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Internship', url: '/internship' },
+]);
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 const internshipDomains = [{
   icon: Code2,
@@ -146,6 +151,7 @@ export default function Internship() {
           offers: { '@type': 'Offer', category: 'Internship', priceCurrency: 'INR' },
           educationalCredentialAwarded: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'Certificate of Completion' },
         })}</script>
+        <script type="application/ld+json">{JSON.stringify(internshipBreadcrumbSchema)}</script>
       </Helmet>
 
       {/* Hero Section */}
@@ -168,7 +174,7 @@ export default function Internship() {
               Internship Programs
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-warning">
-              Professional Tech Internship Programs with Certificate & LOR
+              Tech Internship Programs in Chennai with Certificate & LOR
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mt-2">Gain Real Experience</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4">

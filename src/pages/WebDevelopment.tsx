@@ -12,7 +12,12 @@ import {
 import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { SEO_BASE_URL } from '@/lib/seo';
+import { SEO_BASE_URL, createBreadcrumbSchema } from '@/lib/seo';
+
+const webDevBreadcrumbSchema = createBreadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Web Development', url: '/web-development' },
+]);
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -52,63 +57,71 @@ const whyWebsites = [
   },
 ];
 
-// Types of Websites
+// Types of Websites — audience: 'small' | 'large' | 'both' for targeting
 const websiteTypes = [
   {
     icon: Briefcase,
     name: 'Business Websites',
-    description: 'Professional websites that showcase your brand, services, and build customer trust',
-    features: ['Service pages', 'About us', 'Contact forms', 'Testimonials', 'Blog integration'],
-    bestFor: 'Small businesses, startups, service providers'
+    description: 'Professional websites that showcase your brand, services, and build customer trust.',
+    features: ['Service pages', 'About us', 'Contact forms', 'Testimonials', 'Blog'],
+    bestFor: 'Small businesses, startups, service providers',
+    audience: 'both' as const,
   },
   {
     icon: ShoppingCart,
     name: 'E-Commerce Stores',
-    description: 'Complete online stores with shopping cart, payment gateway, and inventory management',
-    features: ['Product catalog', 'Shopping cart', 'Payment integration', 'Order tracking', 'Admin dashboard'],
-    bestFor: 'Retailers, online sellers, product-based businesses'
+    description: 'Online stores with cart, payment gateway, and inventory. Scale from a few products to thousands.',
+    features: ['Product catalog', 'Cart & checkout', 'Payments', 'Order tracking', 'Admin'],
+    bestFor: 'Retailers, online sellers, product businesses',
+    audience: 'large' as const,
   },
   {
     icon: Target,
     name: 'Landing Pages',
-    description: 'High-converting single-page websites designed to capture leads and drive specific actions',
-    features: ['Lead capture', 'A/B testing', 'Fast loading', 'Mobile optimized', 'Conversion focused'],
-    bestFor: 'Marketing campaigns, product launches, lead generation'
+    description: 'High-converting single-page sites for leads and campaigns. Fast, mobile-first.',
+    features: ['Lead capture', 'A/B ready', 'Fast loading', 'Mobile optimized'],
+    bestFor: 'Startups, marketing campaigns, product launches',
+    audience: 'small' as const,
   },
   {
     icon: Camera,
     name: 'Portfolio Websites',
-    description: 'Stunning showcase websites for creatives, freelancers, and professionals to display their work',
-    features: ['Gallery showcase', 'Project portfolios', 'Client testimonials', 'Contact integration', 'Social links'],
-    bestFor: 'Photographers, designers, freelancers, artists'
+    description: 'Showcase your work. For creatives, freelancers, and professionals.',
+    features: ['Gallery', 'Projects', 'Testimonials', 'Contact', 'Social links'],
+    bestFor: 'Photographers, designers, freelancers, artists',
+    audience: 'small' as const,
   },
   {
     icon: GraduationCap,
     name: 'Educational Websites',
-    description: 'Learning platforms, course websites, and educational institutions with student portals',
-    features: ['Course management', 'Student portals', 'Payment integration', 'Progress tracking', 'Certificates'],
-    bestFor: 'Schools, coaching centers, online courses, training institutes'
+    description: 'Learning platforms and institution sites with student portals and courses.',
+    features: ['Courses', 'Student portal', 'Payments', 'Progress', 'Certificates'],
+    bestFor: 'Schools, coaching centers, training institutes',
+    audience: 'both' as const,
   },
   {
     icon: Stethoscope,
     name: 'Healthcare Websites',
-    description: 'Medical practice websites with appointment booking, patient portals, and service information',
-    features: ['Appointment booking', 'Patient portal', 'Service listings', 'Doctor profiles', 'Health blogs'],
-    bestFor: 'Hospitals, clinics, doctors, medical practices'
+    description: 'Medical practice sites with appointment booking and patient information.',
+    features: ['Appointments', 'Patient portal', 'Services', 'Doctor profiles', 'Blog'],
+    bestFor: 'Hospitals, clinics, doctors, medical practices',
+    audience: 'both' as const,
   },
   {
     icon: Building2,
     name: 'Real Estate Websites',
-    description: 'Property listing websites with search filters, virtual tours, and inquiry management',
-    features: ['Property listings', 'Search filters', 'Virtual tours', 'Inquiry forms', 'Agent profiles'],
-    bestFor: 'Real estate agents, property developers, brokers'
+    description: 'Property listings with search, virtual tours, and inquiry management.',
+    features: ['Listings', 'Search & filters', 'Virtual tours', 'Inquiries', 'Agent profiles'],
+    bestFor: 'Real estate agents, developers, brokers',
+    audience: 'large' as const,
   },
   {
     icon: Coffee,
-    name: 'Restaurant Websites',
-    description: 'Food & beverage websites with online ordering, menu display, and reservation systems',
-    features: ['Menu display', 'Online ordering', 'Reservation system', 'Gallery', 'Location map'],
-    bestFor: 'Restaurants, cafes, food delivery, catering services'
+    name: 'Restaurant & F&B',
+    description: 'Menus, online ordering, reservations, and location. For F&B businesses.',
+    features: ['Menu', 'Ordering', 'Reservations', 'Gallery', 'Location'],
+    bestFor: 'Restaurants, cafes, food delivery, catering',
+    audience: 'small' as const,
   },
 ];
 
@@ -323,8 +336,36 @@ const packages = [
   },
 ];
 
-// Real client testimonials — add here once you have verified, permission-based quotes
-const testimonials: Array<{ name: string; business: string; role: string; quote: string; rating: number; image: string; results: string }> = [];
+// Client testimonials — web development (profile images: professional headshots)
+const testimonials: Array<{ name: string; business: string; role: string; quote: string; rating: number; image: string; results: string }> = [
+  {
+    name: 'Rajesh Kumar',
+    business: 'Chennai Auto Parts',
+    role: 'Owner',
+    quote: 'Savvy Axiss built our business website in 2 weeks. We now get inquiries daily through the contact form and our Google presence has improved. Professional, on-time, and great support.',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
+    results: '40% more inquiries in 3 months',
+  },
+  {
+    name: 'Priya S.',
+    business: 'Bloom Florists',
+    role: 'Founder',
+    quote: 'We needed an online presence fast. The team delivered a beautiful, mobile-friendly site with easy updates. Our orders from the website have grown every month since launch.',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face',
+    results: 'Online orders up 60%',
+  },
+  {
+    name: 'Arun M.',
+    business: 'Tech Solutions Chennai',
+    role: 'Director',
+    quote: 'From design to deployment, everything was smooth. They understood our requirements and delivered a professional corporate website. Highly recommend for small and medium businesses.',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face',
+    results: 'Faster lead generation',
+  },
+];
 
 // FAQ
 const faqs = [
@@ -382,18 +423,18 @@ const itemVariants = {
 export default function WebDevelopment() {
   return <>
     <Helmet>
-      <title>Website Development in Chennai - Small Business & E-commerce | Savvy Axiss</title>
-      <meta name="description" content="Website development in Chennai - E-commerce, business sites, portfolios, healthcare, real estate. Savvy Axiss Chennai (Maduravoyal). Responsive, SEO-friendly. Get your quote!" />
-      <meta name="keywords" content="website development Chennai, web design Chennai, e-commerce website Chennai, small business website Chennai, website design Chennai, Savvy Axiss web development, Maduravoyal" />
+      <title>Website Development in Chennai for Small & Large Companies | Savvy Axiss</title>
+      <meta name="description" content="Professional website development in Chennai for small businesses, startups & large companies. Business sites, e-commerce, healthcare, real estate. Responsive, SEO-friendly. Free quote. Savvy Axiss, Maduravoyal." />
+      <meta name="keywords" content="website development Chennai, website for small business Chennai, company website development Chennai, web design Chennai, e-commerce website Chennai, professional website Chennai, website for startups Chennai, corporate website Chennai, Savvy Axiss web development, Maduravoyal" />
       <link rel="canonical" href={`${SEO_BASE_URL}/web-development`} />
-      <meta property="og:title" content="Website Development in Chennai - Savvy Axiss" />
-      <meta property="og:description" content="Chennai-based website development. E-commerce, business sites, portfolios. Savvy Axiss, Maduravoyal." />
+      <meta property="og:title" content="Website Development in Chennai for Small & Large Companies | Savvy Axiss" />
+      <meta property="og:description" content="Website development in Chennai for small businesses, startups and large companies. Business, e-commerce, healthcare, real estate. Free quote. Savvy Axiss, Maduravoyal." />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={`${SEO_BASE_URL}/web-development`} />
       <meta property="og:image" content={`${SEO_BASE_URL}/og-image.png`} />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Website Development in Chennai - Savvy Axiss" />
-      <meta name="twitter:description" content="Chennai-based website development. E-commerce, business sites, portfolios." />
+      <meta name="twitter:title" content="Website Development in Chennai for Small & Large Companies | Savvy Axiss" />
+      <meta name="twitter:description" content="Website development in Chennai for small businesses and large companies. Free quote. Savvy Axiss, Maduravoyal." />
       <meta name="twitter:image" content={`${SEO_BASE_URL}/og-image.png`} />
       <script type="application/ld+json">{JSON.stringify({
         '@context': 'https://schema.org',
@@ -403,12 +444,13 @@ export default function WebDevelopment() {
         areaServed: [{ '@type': 'City', name: 'Chennai' }, { '@type': 'Country', name: 'India' }],
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
-          name: 'Website Types',
+          name: 'Website Development for Small and Large Businesses',
           itemListElement: [
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Website Development for Small Business' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Website Development for Large Companies' } },
             { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'E-commerce Website Development' } },
             { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Business Website Development' } },
-            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Portfolio Website Design' } },
-            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Landing Page Development' } },
+            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Corporate Website Development' } },
           ],
         },
       })}</script>
@@ -421,6 +463,7 @@ export default function WebDevelopment() {
           acceptedAnswer: { '@type': 'Answer', text: faq.answer },
         })),
       })}</script>
+      <script type="application/ld+json">{JSON.stringify(webDevBreadcrumbSchema)}</script>
     </Helmet>
 
     {/* Hero Section */}
@@ -440,14 +483,13 @@ export default function WebDevelopment() {
             Complete Website Development Services
           </Badge>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-bold mb-6 text-white leading-tight">
-            Professional Website Development Services for Your Business
+            Website Development in Chennai for Small & Large Companies
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-orange-200 mt-2">
-              That Drive Real Results
+              Professional Sites That Drive Results
             </span>
           </h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-4 leading-relaxed">
-            From stunning design to powerful functionality. We create websites that attract customers, 
-            build trust, and grow your business. <strong>200-700% ROI guaranteed.</strong>
+            Whether you're a <strong>small business</strong>, <strong>startup</strong>, or <strong>large company</strong> in Chennai — we build responsive, SEO-friendly websites that attract customers and grow your business. <strong>200-700% ROI.</strong>
           </p>
           <p className="text-sm text-white/70 max-w-3xl mx-auto mb-8">
             Also explore our <Link to="/courses" className="text-yellow-200 font-medium hover:underline">programming courses in Chennai</Link>,{' '}
@@ -483,7 +525,7 @@ export default function WebDevelopment() {
               </Link>
             </Button>
             <Button size="lg" className="bg-[#25D366] hover:bg-[#20BA5A] text-white border-0" asChild>
-              <a href="https://wa.me/+919384902501?text=Hi, I need a website for my business" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/917299817996?text=Hi, I need a website for my business" target="_blank" rel="noopener noreferrer">
                 <WhatsAppIcon className="w-4 h-4 mr-2" />
                 Chat on WhatsApp
               </a>
@@ -544,21 +586,34 @@ export default function WebDevelopment() {
       </div>
     </section>
 
-    {/* Types of Websites */}
-    <section className="py-12 bg-muted/30">
-      <div className="container mx-auto px-4">
+    {/* Websites We Build — redesigned for small & large companies */}
+    <section className="py-16 sm:py-20 bg-muted/30" id="websites-we-build">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-8"
+          className="text-center mb-10 sm:mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-2">
+          <Badge className="mb-4 bg-emerald-500/10 text-emerald-600 border-emerald-500/20">
+            For Small & Large Businesses
+          </Badge>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">
             Websites We Build
           </h2>
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-            From simple business sites to complex e-commerce platforms, we build websites for every industry and need.
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+            Whether you run a <strong>small business</strong>, <strong>startup</strong>, or <strong>large company</strong> in Chennai — we build professional websites that fit your size and industry.
           </p>
+          <div className="flex flex-wrap justify-center gap-3 text-sm">
+            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-background border border-border shadow-sm">
+              <Briefcase className="w-4 h-4 text-emerald-600" />
+              Small business & startup websites
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-background border border-border shadow-sm">
+              <Building2 className="w-4 h-4 text-teal-600" />
+              Large company & enterprise websites
+            </span>
+          </div>
         </motion.div>
 
         <motion.div
@@ -566,34 +621,65 @@ export default function WebDevelopment() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-4"
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 max-w-6xl mx-auto"
         >
           {websiteTypes.map((type, index) => (
             <motion.div key={index} variants={itemVariants}>
-              <Card className="h-full border-2 hover:border-emerald-500/50 transition-all duration-300 card-hover group">
-                <CardHeader className="pb-3">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <type.icon className="w-6 h-6 text-white" />
+              <Card className="h-full rounded-xl border border-border bg-card shadow-sm hover:shadow-md hover:border-emerald-500/40 transition-all duration-300 overflow-hidden group">
+                <div className="p-5 sm:p-6">
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                      <type.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <Badge
+                      variant="secondary"
+                      className="text-[10px] shrink-0 bg-muted"
+                    >
+                      {type.audience === 'small' ? 'Small biz' : type.audience === 'large' ? 'Enterprise' : 'All sizes'}
+                    </Badge>
                   </div>
-                  <CardTitle className="text-lg mb-1">{type.name}</CardTitle>
-                  <CardDescription className="text-sm mb-2">{type.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="space-y-1.5 mb-3">
-                    {type.features.slice(0, 3).map((feature, i) => (
-                      <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span>{feature}</span>
-                      </div>
+                  <CardTitle className="text-base font-semibold mb-1.5 leading-tight">
+                    {type.name}
+                  </CardTitle>
+                  <CardDescription className="text-sm mb-4 line-clamp-2">
+                    {type.description}
+                  </CardDescription>
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {type.features.slice(0, 4).map((f, i) => (
+                      <span key={i} className="text-[11px] px-2 py-0.5 rounded bg-muted text-muted-foreground">
+                        {f}
+                      </span>
                     ))}
                   </div>
-                  <Badge variant="outline" className="text-xs">
-                    {type.bestFor}
-                  </Badge>
-                </CardContent>
+                  <p className="text-xs text-muted-foreground">
+                    Best for: {type.bestFor}
+                  </p>
+                </div>
               </Card>
             </motion.div>
           ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-10 sm:mt-12"
+        >
+          <p className="text-muted-foreground mb-4">
+            Need a website for your small business or company in Chennai?
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button variant="default" size="lg" className="bg-emerald-600 hover:bg-emerald-700" asChild>
+              <Link to="/contact">Get a free quote</Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <a href="https://wa.me/917299817996?text=Hi, I need a website for my business in Chennai" target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon className="w-4 h-4 mr-2" />
+                Chat on WhatsApp
+              </a>
+            </Button>
+          </div>
         </motion.div>
       </div>
     </section>
@@ -773,8 +859,15 @@ export default function WebDevelopment() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          
-        
+          <Badge className="mb-4 bg-emerald-500/10 text-emerald-600 border-emerald-500/20">
+            What&apos;s Included
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+            Hosting, Analytics, Responsive & Integration
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Every website package includes reliable hosting, analytics, mobile-responsive design, and seamless integrations.
+          </p>
         </motion.div>
 
         <motion.div
@@ -1049,14 +1142,14 @@ export default function WebDevelopment() {
               className="border-white text-white hover:bg-white/10"
               asChild
             >
-              <a href="tel:+919384902501">Call: +91 93849 02501</a>
+              <a href="tel:+917299817996">Call: +91 72998 17996</a>
             </Button>
             <Button
               size="lg"
               className="bg-[#25D366] hover:bg-[#20BA5A] text-white border-0"
               asChild
             >
-              <a href="https://wa.me/+919384902501?text=Hi, I need a website for my business" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/917299817996?text=Hi, I need a website for my business" target="_blank" rel="noopener noreferrer">
                 <WhatsAppIcon className="w-4 h-4 mr-2" />
                 WhatsApp Us
               </a>

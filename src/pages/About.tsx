@@ -1,8 +1,60 @@
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Target, Eye, Heart, Users, Lightbulb, Shield } from 'lucide-react';
+import { Target, Eye, Heart, Users, Lightbulb, Shield, Facebook, Linkedin, Instagram, X } from 'lucide-react';
 import { SEO_BASE_URL, CHENNAI_ADDRESS, createBreadcrumbSchema } from '@/lib/seo';
+
+/** Meet Our Team: neumorphic cards, layered photo frames, public folder images, social links */
+const teamMembers = [
+  {
+    id: 1,
+    name: 'Shalini Baskaran',
+    role: 'Founder & CEO',
+    image: '/shalini.png',
+    socialLinks: {
+      facebook: 'https://www.facebook.com/share/akFQyk7tZLz9S1jX/',
+      twitter: 'https://x.com/ShaliniBas50457',
+      instagram: 'https://www.instagram.com/starlet_shals_official?igsh=NWZ6cHFlMXNvc3Bs',
+      linkedin: 'https://www.linkedin.com/in/shalini-b-baskaran-21b744211?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+    },
+  },
+  {
+    id: 2,
+    name: 'Varsha Sekar',
+    role: 'President & Director',
+    image: '/varsha.png',
+    socialLinks: {
+      facebook: 'https://www.facebook.com/varsha.sekar29?mibextid=ZbWKwL',
+      twitter: 'https://x.com/__ahs__rav__?t=uvTshHfk4TBPsJxQeHryRQ&s=09',
+      instagram: 'https://www.instagram.com/___ahs__rav___?igsh=MW1rMXJrMHZ1YnU3Ng==',
+      linkedin: 'https://www.linkedin.com/in/varsha-sekar-314725221?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+    },
+  },
+  {
+    id: 3,
+    name: 'Sakthi Jayavel',
+    role: 'Co-Director & Instructor',
+    image: '/sakthi.png',
+    socialLinks: {
+      facebook: 'https://www.facebook.com/sakthi.j.5249?mibextid=rS40aB7S9Ucbxw6v',
+      twitter: 'https://x.com/sakthi_jayavel?t=uLiwpiBWekCx_I7gRLsj2w&s=08',
+      instagram: 'https://www.instagram.com/s.a.k.t.h.i._/profilecard/?igsh=MWNkbzU0Z3NscTJzMA==',
+      linkedin: 'https://www.linkedin.com/in/sakthi-j-b06a12265?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+    },
+  },
+  {
+    id: 4,
+    name: 'Rajalakshmi Venkatesan',
+    role: 'Co-Director & Trainer',
+    image: '/rajalakshmi.png',
+    socialLinks: {
+      facebook: 'https://www.facebook.com/profile.php?id=100090665041671',
+      twitter: 'https://x.com/Raji1308?t=MGb6CZ15QELu8ER0PemACw&s=09',
+      instagram: 'https://www.instagram.com/r_a__j_i13/profilecard/?igsh=MWtnYmZ0OGo4cWtwcg==',
+      linkedin: 'https://www.linkedin.com/in/rajalakshmi-s-v-237ab8214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+    },
+  },
+];
 
 const aboutBreadcrumbSchema = createBreadcrumbSchema([
   { name: 'Home', url: '/' },
@@ -20,7 +72,8 @@ const schemaAboutPage = {
     areaServed: [{ '@type': 'City', name: 'Chennai' }, { '@type': 'Country', name: 'India' }],
     employee: [
       { '@type': 'Person', name: 'Shalini Baskaran', jobTitle: 'Founder & CEO', description: 'Business development expert specializing in MS Office and digital marketing.' },
-      { '@type': 'Person', name: 'Varsha Sekar', jobTitle: 'Director & Instructor', description: 'Professor at Jeppiaar Engineering College specializing in Machine Learning, Deep Learning, and Python.', worksFor: { '@type': 'Organization', name: 'Jeppiaar Engineering College' } },
+      { '@type': 'Person', name: 'Varsha Sekar', jobTitle: 'President & Director', description: 'Professor at Jeppiaar Engineering College specializing in Machine Learning, Deep Learning, and Python.', worksFor: { '@type': 'Organization', name: 'Jeppiaar Engineering College' } },
+      { '@type': 'Person', name: 'Sakthi Jayavel', jobTitle: 'Co-Director & Instructor', description: 'Instructor at Savvy Axiss.' },
       { '@type': 'Person', name: 'Rajalakshmi Venkatesan', jobTitle: 'Co-Director & Trainer', description: 'Expert in web development, React, and full stack technologies.' },
     ],
   },
@@ -59,34 +112,13 @@ const values = [
   },
 ];
 
-const team = [
-  {
-    name: 'Shalini Baskaran',
-    role: 'Founder & CEO',
-    image: '/placeholder.svg',
-    bio: 'Shalini Baskaran is the Founder and CEO of Savvy Axiss with extensive expertise in business development, Microsoft Office applications, and digital marketing strategies.',
-  },
-  {
-    name: 'Varsha Sekar',
-    role: 'Director & Instructor',
-    image: '/placeholder.svg',
-    bio: 'Varsha Sekar serves as the Director and Lead Instructor at Savvy Axiss and is a Professor at Jeppiaar Engineering College. With expertise in Machine Learning, Deep Learning, and Python programming.',
-  },
-  {
-    name: 'Rajalakshmi Venkatesan',
-    role: 'Co-Director & Trainer',
-    image: '/placeholder.svg',
-    bio: 'Rajalakshmi Venkatesan serves as Co-Director and Trainer at Savvy Axiss with extensive expertise in web development, frontend technologies, React, and full-stack development.',
-  },
-];
-
 const About = () => {
   return (
     <>
       <Helmet>
         <title>About Us - Chennai-Based Tech Training Company | Savvy Axiss</title>
-        <meta name="description" content="Savvy Axiss is a Chennai-based tech training company (Maduravoyal), founded in 2022. Meet our team: Shalini Baskaran, Varsha Sekar, Rajalakshmi Venkatesan. Empowering tech professionals in Chennai & India." />
-        <meta name="keywords" content="about Savvy Axiss, tech training company Chennai, Savvy Axiss Chennai, Maduravoyal, Shalini Baskaran, Varsha Sekar, Rajalakshmi Venkatesan, education Chennai" />
+        <meta name="description" content="Savvy Axiss is a Chennai-based tech training company (Maduravoyal), founded in 2022. Meet our team: Shalini Baskaran, Varsha Sekar, Sakthi Jayavel, Rajalakshmi Venkatesan. Empowering tech professionals in Chennai & India." />
+        <meta name="keywords" content="about Savvy Axiss, tech training company Chennai, Savvy Axiss Chennai, Maduravoyal, Shalini Baskaran, Varsha Sekar, Sakthi Jayavel, Rajalakshmi Venkatesan, education Chennai" />
         <link rel="canonical" href={`${SEO_BASE_URL}/about`} />
         <meta property="og:title" content="About Savvy Axiss - Chennai-Based Tech Training Company" />
         <meta property="og:description" content="Savvy Axiss Chennai - founded in 2022 in Maduravoyal. Hands-on tech training, final year projects & internships. Meet our expert team." />
@@ -286,54 +318,90 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-12 sm:py-20 bg-muted/50">
+      {/* Meet Our Team — balanced size, faces not cropped */}
+      <section className="py-12 sm:py-16 bg-muted/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-12"
           >
-            <div className="flex justify-center mb-4">
-              <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-secondary/10 text-secondary border border-secondary/20">
-                Our Team
-              </span>
-            </div>
-            <div className="flex justify-center mb-4">
-              <div className="w-16 h-0.5 bg-gradient-to-r from-secondary to-accent rounded-full" />
-            </div>
-            <h2 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+            <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground">
               Meet Our Team
             </h2>
+            <p className="text-muted-foreground text-sm mt-1 max-w-xl mx-auto">
+              The people behind Savvy Axiss
+            </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 30 }}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto">
+            {teamMembers.map((member, index) => (
+              <motion.article
+                key={member.id}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center group"
+                transition={{ duration: 0.35, delay: index * 0.05 }}
+                className="bg-card rounded-xl border border-border p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300"
               >
-                <div className="relative mb-4 overflow-hidden rounded-2xl">
-                  <img
-                    src={member.image}
-                    alt={`${member.name} - ${member.role} of Savvy Axiss`}
-                    className="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Photo — larger, object-top so face/head stays in frame */}
+                <div className="w-full max-w-[200px] mx-auto mb-5">
+                  <div className="aspect-square rounded-xl overflow-hidden border border-border bg-muted shadow-sm">
+                    <img
+                      src={member.image}
+                      alt={`${member.name} - ${member.role} at Savvy Axiss`}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
                 </div>
-                <h3 className="text-lg font-heading font-semibold text-foreground">
+
+                <h3 className="font-heading font-semibold text-foreground text-lg mb-1 truncate" title={member.name}>
                   {member.name}
                 </h3>
-                <p className="text-muted-foreground text-sm mb-2">{member.role}</p>
-                {member.bio && (
-                  <p className="text-xs text-muted-foreground line-clamp-3">{member.bio}</p>
-                )}
-              </motion.div>
+                <p className="text-[#0047AB] text-sm font-medium mb-4">
+                  {member.role}
+                </p>
+
+                <div className="flex items-center justify-center gap-3 pt-3 border-t border-border/80">
+                  <a
+                    href={member.socialLinks.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-md text-muted-foreground hover:text-[#1877F2] hover:bg-[#1877F2]/10 transition-colors duration-200"
+                    aria-label={`${member.name} on Facebook`}
+                  >
+                    <Facebook className="w-5 h-5" strokeWidth={2} />
+                  </a>
+                  <a
+                    href={member.socialLinks.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-md text-muted-foreground hover:text-black hover:bg-black/10 transition-colors duration-200"
+                    aria-label={`${member.name} on X`}
+                  >
+                    <X className="w-5 h-5" strokeWidth={2.5} />
+                  </a>
+                  <a
+                    href={member.socialLinks.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-md text-muted-foreground hover:text-[#E1306C] hover:bg-[#E1306C]/10 transition-colors duration-200"
+                    aria-label={`${member.name} on Instagram`}
+                  >
+                    <Instagram className="w-5 h-5" strokeWidth={2} />
+                  </a>
+                  <a
+                    href={member.socialLinks.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-md text-muted-foreground hover:text-[#0A66C2] hover:bg-[#0A66C2]/10 transition-colors duration-200"
+                    aria-label={`${member.name} on LinkedIn`}
+                  >
+                    <Linkedin className="w-5 h-5" strokeWidth={2} />
+                  </a>
+                </div>
+              </motion.article>
             ))}
           </div>
         </div>

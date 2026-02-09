@@ -13,6 +13,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useToast } from '@/hooks/use-toast';
 import { getCourseBySlug } from '@/data/courseData';
 import { allCourses } from './Courses';
+import { SEO_BASE_URL } from '@/lib/seo';
 
 const educationLevels = [
   '10th Pass',
@@ -222,11 +223,17 @@ const CourseEnroll = () => {
   return (
     <>
       <Helmet>
-        <title>Enroll in {courseTitle} - Savvy Axiss</title>
-        <meta 
-          name="description" 
-          content={`Enroll in ${courseTitle} at Savvy Axiss. Fill out the enrollment form to start your learning journey.`} 
-        />
+        <title>Enroll in {courseTitle} - Savvy Axiss Chennai</title>
+        <meta name="description" content={`Enroll in ${courseTitle} at Savvy Axiss Chennai. Fill out the enrollment form to start your learning journey. Maduravoyal.`} />
+        <meta name="keywords" content={`enroll ${courseTitle} Chennai, course enrollment Savvy Axiss, programming course Chennai, Maduravoyal`} />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href={`${SEO_BASE_URL}/enroll${courseSlug ? `?course=${courseSlug}` : ''}`} />
+        <meta property="og:title" content={`Enroll in ${courseTitle} - Savvy Axiss Chennai`} />
+        <meta property="og:description" content={`Enroll in ${courseTitle} at Savvy Axiss Chennai. Maduravoyal.`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${SEO_BASE_URL}/enroll${courseSlug ? `?course=${courseSlug}` : ''}`} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={`Enroll in ${courseTitle} - Savvy Axiss Chennai`} />
       </Helmet>
 
       {/* Hero */}
