@@ -141,7 +141,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     skills: ['HTML5 Semantic Elements', 'Forms and Validation', 'Multimedia Integration', 'Accessibility'],
     instructor: {
       name: 'Rajalakshmi Venkatesan',
-      role: 'Co-Director & Trainer',
+      role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
       rating: 4.9,
@@ -191,7 +191,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     skills: ['CSS3 Styling', 'Flexbox and Grid Layouts', 'Animations and Transitions', 'Responsive Design'],
     instructor: {
       name: 'Rajalakshmi Venkatesan',
-      role: 'Co-Director & Trainer',
+      role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
       rating: 4.9,
@@ -241,7 +241,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     skills: ['ES6+ Features', 'DOM Manipulation', 'Async Programming', 'Modern Frameworks'],
     instructor: {
       name: 'Rajalakshmi Venkatesan',
-      role: 'Co-Director & Trainer',
+      role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
       rating: 4.9,
@@ -291,7 +291,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     skills: ['React Components', 'Hooks & State Management', 'React Router', 'Context API', 'Performance Optimization'],
     instructor: {
       name: 'Rajalakshmi Venkatesan',
-      role: 'Co-Director & Trainer',
+      role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
       rating: 4.9,
@@ -429,7 +429,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     skills: ['MongoDB Database Design', 'Express.js Backend Development', 'React Frontend Development', 'Node.js Server-Side Programming', 'RESTful APIs', 'Authentication & Authorization', 'Deployment & DevOps'],
     instructor: {
       name: 'Rajalakshmi Venkatesan',
-      role: 'Co-Director & Trainer',
+      role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
       rating: 4.95,
@@ -529,7 +529,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     skills: ['AI-Assisted Development', 'Prompt Engineering', 'Full-Stack Development', 'AI Tool Mastery', 'Debugging with AI', 'Deployment & Shipping', 'Product Building'],
     instructor: {
       name: 'Rajalakshmi Venkatesan',
-      role: 'Co-Director & Trainer',
+      role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
       rating: 4.9,

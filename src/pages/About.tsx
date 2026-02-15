@@ -45,7 +45,7 @@ const teamMembers = [
   {
     id: 4,
     name: 'Rajalakshmi Venkatesan',
-    role: 'Co-Director & Trainer',
+    role: 'Softskill Trainer',                                                                                                                                                                                                                                                                                                                                                                                                                               
     image: '/rajalakshmi.png',
     socialLinks: {
       facebook: 'https://www.facebook.com/profile.php?id=100090665041671',
@@ -134,8 +134,32 @@ const About = () => {
       </Helmet>
 
       {/* Hero */}
-      <section className="pt-24 sm:pt-32 pb-12 sm:pb-20 hero-gradient">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-20 hero-gradient overflow-hidden">
+        {/* Decorative background — same palette, visible pattern and orbs */}
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden>
+          {/* Soft glowing orbs */}
+          <div className="absolute -top-20 left-1/4 w-[500px] h-[500px] rounded-full blur-2xl opacity-35" style={{ background: 'radial-gradient(circle, hsl(199, 55%, 28%) 0%, transparent 65%)' }} />
+          <div className="absolute -bottom-20 right-1/4 w-[450px] h-[450px] rounded-full blur-2xl opacity-35" style={{ background: 'radial-gradient(circle, hsl(222, 50%, 25%) 0%, transparent 65%)' }} />
+          <div className="absolute top-1/3 right-0 w-[350px] h-[350px] rounded-full blur-2xl opacity-30" style={{ background: 'radial-gradient(circle, hsl(187, 55%, 22%) 0%, transparent 65%)' }} />
+          <div className="absolute bottom-1/3 -left-20 w-[300px] h-[300px] rounded-full blur-2xl opacity-30" style={{ background: 'radial-gradient(circle, hsl(222, 47%, 20%) 0%, transparent 65%)' }} />
+          {/* Dot grid pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.18]"
+            style={{
+              backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.5) 1.5px, transparent 1.5px)',
+              backgroundSize: '28px 28px',
+            }}
+          />
+          {/* Line grid for depth */}
+          <div
+            className="absolute inset-0 opacity-[0.12]"
+            style={{
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)',
+              backgroundSize: '48px 48px',
+            }}
+          />
+        </div>
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -186,8 +210,13 @@ const About = () => {
               <h2 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
                 Our Story
               </h2>
-              <h3 className="text-xl font-heading font-medium text-foreground mt-4 mb-2">From Vision to Reality</h3>
-              <div className="space-y-4 text-muted-foreground mt-4">
+              <h3 className="text-xl md:text-2xl font-heading font-medium text-foreground mt-6 mb-6 pl-4 border-l-4 border-secondary/70 flex flex-wrap items-baseline gap-x-2">
+                <span className="text-muted-foreground/90">From</span>
+                <span className="gradient-text font-semibold">Vision</span>
+                <span className="text-muted-foreground/90">to</span>
+                <span className="gradient-text font-semibold">Reality</span>
+              </h3>
+              <div className="space-y-4 text-muted-foreground mt-4 text-justify text-lg leading-relaxed">
                 <p>
                   Savvy Axiss was founded in 2022 with a simple yet powerful vision: 
                   to make quality tech education accessible and practical. We noticed 
@@ -228,23 +257,44 @@ const About = () => {
       {/* Mission & Vision */}
       <section className="py-12 sm:py-20 bg-muted/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block px-4 py-1 rounded-full bg-secondary/20 text-secondary text-sm font-medium mb-4">
+              What drives us
+            </span>
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-0.5 bg-gradient-to-r from-secondary to-accent rounded-full" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground">
+              Our <span className="gradient-text">Mission</span> & <span className="gradient-text">Vision</span>
+            </h2>
+          </motion.div>
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-card p-8 lg:p-10 rounded-2xl border border-border"
+              className="group relative bg-card p-8 lg:p-10 rounded-2xl border border-border overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center mb-6 shadow-glow">
-                <Target className="w-7 h-7 text-secondary-foreground" />
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center mb-6 shadow-lg shadow-secondary/20">
+                  <Target className="w-7 h-7 text-secondary-foreground" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-heading font-bold mb-2 pl-4 border-l-4 border-secondary">
+                  Our <span className="gradient-text">Mission</span>
+                </h3>
+                <p className="text-muted-foreground text-lg leading-relaxed text-justify mt-4">
+                  To democratize tech education by providing affordable, industry-relevant, 
+                  hands-on training that transforms learners into job-ready professionals. 
+                  We aim to bridge the gap between academic knowledge and industry requirements.
+                </p>
               </div>
-              <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Our Mission</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                To democratize tech education by providing affordable, industry-relevant, 
-                hands-on training that transforms learners into job-ready professionals. 
-                We aim to bridge the gap between academic knowledge and industry requirements.
-              </p>
             </motion.div>
 
             <motion.div
@@ -252,17 +302,22 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-card p-8 lg:p-10 rounded-2xl border border-border"
+              className="group relative bg-card p-8 lg:p-10 rounded-2xl border border-border overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center mb-6 shadow-glow">
-                <Eye className="w-7 h-7 text-secondary-foreground" />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent to-secondary flex items-center justify-center mb-6 shadow-lg shadow-accent/20">
+                  <Eye className="w-7 h-7 text-secondary-foreground" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-heading font-bold mb-2 pl-4 border-l-4 border-accent">
+                  Our <span className="gradient-text">Vision</span>
+                </h3>
+                <p className="text-muted-foreground text-lg leading-relaxed text-justify mt-4">
+                  To become India's most trusted EdTech platform for practical tech education, 
+                  known for our student success rates and industry partnerships. We envision 
+                  a future where every motivated learner can access quality tech education.
+                </p>
               </div>
-              <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Our Vision</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                To become India's most trusted EdTech platform for practical tech education, 
-                known for our student success rates and industry partnerships. We envision 
-                a future where every motivated learner can access quality tech education.
-              </p>
             </motion.div>
           </div>
         </div>
@@ -318,89 +373,100 @@ const About = () => {
         </div>
       </section>
 
-      {/* Meet Our Team — balanced size, faces not cropped */}
-      <section className="py-12 sm:py-16 bg-muted/50">
+      {/* Meet Our Team — animated professional cards */}
+      <section className="py-16 sm:py-20 bg-muted/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-10 sm:mb-12"
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12 sm:mb-14"
           >
-            <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground">
-              Meet Our Team
+            <span className="inline-block px-4 py-1 rounded-full bg-secondary/20 text-secondary text-sm font-medium mb-4">
+              Our Leadership
+            </span>
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-0.5 bg-gradient-to-r from-secondary to-accent rounded-full" />
+            </div>
+            <h2 className="text-2xl md:text-4xl font-heading font-bold text-foreground">
+              The <span className="gradient-text">Minds</span> Behind Savvy Axiss
             </h2>
-            <p className="text-muted-foreground text-sm mt-1 max-w-xl mx-auto">
-              The people behind Savvy Axiss
+            <p className="text-muted-foreground mt-3 max-w-lg mx-auto">
+              Experienced professionals dedicated to your growth
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto">
             {teamMembers.map((member, index) => (
               <motion.article
                 key={member.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: index * 0.05 }}
-                className="bg-card rounded-xl border border-border p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300"
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -8, transition: { duration: 0.25 } }}
+                className="group relative bg-card rounded-2xl border border-border overflow-hidden shadow-sm hover:shadow-xl hover:shadow-secondary/10 hover:border-secondary/30 transition-shadow duration-300"
               >
-                {/* Photo — larger, object-top so face/head stays in frame */}
-                <div className="w-full max-w-[200px] mx-auto mb-5">
-                  <div className="aspect-square rounded-xl overflow-hidden border border-border bg-muted shadow-sm">
-                    <img
-                      src={member.image}
-                      alt={`${member.name} - ${member.role} at Savvy Axiss`}
-                      className="w-full h-full object-cover object-top"
-                    />
+                {/* Photo with zoom-on-hover */}
+                <div className="relative w-full max-w-[260px] mx-auto pt-6 px-5">
+                  <div className="aspect-square rounded-2xl overflow-hidden border-2 border-border/80 bg-muted shadow-md ring-2 ring-secondary/10 group-hover:ring-secondary/30 transition-all duration-300">
+                    <motion.div
+                      className="w-full h-full"
+                      whileHover={{ scale: 1.06 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      <img
+                        src={member.image}
+                        alt={`${member.name} - ${member.role} at Savvy Axiss`}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </motion.div>
                   </div>
                 </div>
 
-                <h3 className="font-heading font-semibold text-foreground text-lg mb-1 truncate" title={member.name}>
-                  {member.name}
-                </h3>
-                <p className="text-[#0047AB] text-sm font-medium mb-4">
-                  {member.role}
-                </p>
+                <div className="p-5 sm:p-6 pt-4 min-w-0 text-center sm:text-left">
+                  <motion.h3
+                    className="font-heading font-semibold text-foreground text-lg mb-1 break-words leading-tight"
+                    title={member.name}
+                    initial={false}
+                    whileHover={{ x: 2 }}
+                  >
+                    {member.name}
+                  </motion.h3>
+                  <p className="text-secondary font-medium text-sm mb-4">
+                    {member.role}
+                  </p>
 
-                <div className="flex items-center justify-center gap-3 pt-3 border-t border-border/80">
-                  <a
-                    href={member.socialLinks.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-md text-muted-foreground hover:text-[#1877F2] hover:bg-[#1877F2]/10 transition-colors duration-200"
-                    aria-label={`${member.name} on Facebook`}
+                  <motion.div
+                    initial={false}
+                    className="flex items-center justify-center gap-2 pt-4 border-t border-border/80"
                   >
-                    <Facebook className="w-5 h-5" strokeWidth={2} />
-                  </a>
-                  <a
-                    href={member.socialLinks.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-md text-muted-foreground hover:text-black hover:bg-black/10 transition-colors duration-200"
-                    aria-label={`${member.name} on X`}
-                  >
-                    <X className="w-5 h-5" strokeWidth={2.5} />
-                  </a>
-                  <a
-                    href={member.socialLinks.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-md text-muted-foreground hover:text-[#E1306C] hover:bg-[#E1306C]/10 transition-colors duration-200"
-                    aria-label={`${member.name} on Instagram`}
-                  >
-                    <Instagram className="w-5 h-5" strokeWidth={2} />
-                  </a>
-                  <a
-                    href={member.socialLinks.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-md text-muted-foreground hover:text-[#0A66C2] hover:bg-[#0A66C2]/10 transition-colors duration-200"
-                    aria-label={`${member.name} on LinkedIn`}
-                  >
-                    <Linkedin className="w-5 h-5" strokeWidth={2} />
-                  </a>
+                    {[
+                      { Icon: Facebook, href: member.socialLinks.facebook, label: 'Facebook', color: 'hover:text-[#1877F2] hover:bg-[#1877F2]/10' },
+                      { Icon: X, href: member.socialLinks.twitter, label: 'X', color: 'hover:text-foreground hover:bg-muted' },
+                      { Icon: Instagram, href: member.socialLinks.instagram, label: 'Instagram', color: 'hover:text-[#E1306C] hover:bg-[#E1306C]/10' },
+                      { Icon: Linkedin, href: member.socialLinks.linkedin, label: 'LinkedIn', color: 'hover:text-[#0A66C2] hover:bg-[#0A66C2]/10' },
+                    ].map(({ Icon, href, label, color }, i) => (
+                      <motion.a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`p-2.5 rounded-lg text-muted-foreground transition-colors duration-200 ${color}`}
+                        aria-label={`${member.name} on ${label}`}
+                        whileHover={{ scale: 1.12 }}
+                        whileTap={{ scale: 0.96 }}
+                        initial={{ opacity: 1 }}
+                      >
+                        <Icon className="w-5 h-5" strokeWidth={Icon === X ? 2.5 : 2} />
+                      </motion.a>
+                    ))}
+                  </motion.div>
                 </div>
+
+                {/* Subtle gradient glow on hover */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-secondary/0 to-secondary/5 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300" />
               </motion.article>
             ))}
           </div>

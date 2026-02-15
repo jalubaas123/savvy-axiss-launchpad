@@ -82,7 +82,7 @@ export const FeaturedCourses = () => {
 
   return (
     <section className="py-12 sm:py-20 lg:py-28 bg-muted/50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px]">
         {/* Section Header */}
         <motion.div
           ref={ref}
@@ -154,7 +154,8 @@ export const FeaturedCourses = () => {
             breakpoints={{
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
-              1280: { slidesPerView: 3.5 },
+              1280: { slidesPerView: 3 },
+              1536: { slidesPerView: 4 },
             }}
             className="!pb-12"
           >

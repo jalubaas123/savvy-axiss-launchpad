@@ -214,7 +214,7 @@ export default function Internship() {
           }} transition={{
             delay: 0.3,
             duration: 0.6
-          }} className="flex flex-wrap justify-center gap-8 mt-12">
+          }} className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 mt-8 max-w-[220px] sm:max-w-xs mx-auto">
               {[{
               icon: Users,
               label: 'Interns Trained',
@@ -227,12 +227,10 @@ export default function Internship() {
               icon: Trophy,
               label: 'Placed Successfully',
               value: '85%'
-            }].map(stat => <div key={stat.label} className="flex items-center gap-3 bg-card/50 backdrop-blur-sm px-6 py-3 rounded-xl border border-border/50">
-                  <stat.icon className="w-5 h-5 text-orange-700" />
-                  <div>
-                    <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                    <p className="text-sm text-orange-600">{stat.label}</p>
-                  </div>
+            }].map(stat => <div key={stat.label} className="flex flex-col items-center justify-center text-center gap-0.5 bg-card/50 backdrop-blur-sm px-2.5 py-1.5 rounded-lg border border-border/50 min-w-0 w-full">
+                  <stat.icon className="w-4 h-4 text-orange-700 shrink-0" />
+                  <p className="text-lg font-bold text-foreground leading-tight">{stat.value}</p>
+                  <p className="text-[10px] sm:text-xs text-orange-600 leading-tight">{stat.label}</p>
                 </div>)}
             </motion.div>
           </motion.div>
@@ -250,11 +248,11 @@ export default function Internship() {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+        }} className="text-center mb-12 w-full">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4 text-center">
               Domains
             </h2>
-            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4">
+            <h3 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-4 text-center">
               Choose Your Internship Domain
             </h3>
           </motion.div>
@@ -262,8 +260,8 @@ export default function Internship() {
           <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
           once: true
         }} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {internshipDomains.map(domain => <motion.div key={domain.name} variants={itemVariants} className="group p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 transition-all duration-300 card-hover">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            {internshipDomains.map(domain => <motion.div key={domain.name} variants={itemVariants} className="group p-6 rounded-xl bg-card border border-border hover:border-orange-500/50 transition-all duration-300 card-hover flex flex-col items-center text-center md:items-start md:text-left">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shrink-0">
                   <domain.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-1">{domain.name}</h3>

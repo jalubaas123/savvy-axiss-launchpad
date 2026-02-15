@@ -28,6 +28,10 @@ const navLinks = [{
   name: 'Contact',
   href: '/contact'
 }];
+
+const isLinkActive = (pathname: string, href: string) =>
+  pathname === href || (href !== '/' && pathname.startsWith(href + '/'));
+
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -52,15 +56,15 @@ export const Navbar = () => {
     }} className="sticky top-0 z-50 bg-primary-foreground shadow-sm">
         <nav className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 bg-primary-foreground">
           <div className="flex items-center justify-between h-16 sm:h-20 md:h-24 lg:h-28">
-            {/* Left Section: Logo + Text — extra margin-right for space before nav (menu stays centered) */}
-            <div className="flex items-center flex-shrink-0 lg:mr-8 xl:mr-10">
-              <Link to="/" className="flex items-center gap-1 sm:gap-1.5 md:gap-2 group">
+            {/* Left Section: Logo + Text — constrained so center nav (Home, etc.) is not hidden */}
+            <div className="flex items-center min-w-0 max-w-[38%] sm:max-w-[40%] lg:max-w-[180px] xl:max-w-[200px] lg:mr-6 xl:mr-8 flex-shrink-0">
+              <Link to="/" className="flex items-center gap-1 sm:gap-1.5 group min-w-0">
                 <img
                   src="/logo.png"
                   alt="Savvy Axiss Logo"
-                  className="h-10 sm:h-14 md:h-16 lg:h-20 xl:h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-300 flex-shrink-0"
+                  className="h-12 sm:h-14 md:h-14 lg:h-14 xl:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300 flex-shrink-0"
                 />
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-heading font-bold text-blue-900 hidden sm:inline-block">
+                <span className="text-xs sm:text-sm md:text-base lg:text-sm xl:text-base font-heading font-bold text-blue-900 hidden sm:inline-block truncate">
                   Savvy<span className="text-orange-600">Axiss</span>
                 </span>
               </Link>
@@ -72,7 +76,7 @@ export const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.href}
-                  className={`text-sm xl:text-base font-medium transition-colors duration-300 link-underline whitespace-nowrap ${location.pathname === link.href ? 'text-secondary' : 'text-foreground/80 hover:text-secondary'}`}
+                  className={`text-sm xl:text-base font-medium transition-colors duration-300 link-underline whitespace-nowrap ${isLinkActive(location.pathname, link.href) ? 'text-secondary' : 'text-foreground/80 hover:text-secondary'}`}
                 >
                   {link.name}
                 </Link>
@@ -134,7 +138,7 @@ export const Navbar = () => {
               }} transition={{
                 delay: index * 0.1
               }}>
-                      <Link to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg text-base sm:text-lg font-medium transition-all duration-300 ${location.pathname === link.href ? 'bg-secondary/10 text-secondary' : 'text-foreground hover:bg-muted hover:text-secondary'}`}>
+                      <Link to={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`block py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg text-base sm:text-lg font-medium transition-all duration-300 ${isLinkActive(location.pathname, link.href) ? 'bg-secondary/10 text-secondary' : 'text-foreground hover:bg-muted hover:text-secondary'}`}>
                         {link.name}
                       </Link>
                     </motion.div>)}
