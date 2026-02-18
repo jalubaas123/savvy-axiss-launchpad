@@ -7,8 +7,10 @@ This folder contains the **write (doPost)** and **read (doGet)** API for student
 1. Create a new Google Sheet.
 2. In **row 1**, add these column headers exactly:
    ```
-   id | name | course | rating | review | created_at | approved
+   id | name | course | rating | review | created_at | approved | gender | image
    ```
+   - **gender** (required): `male` or `female` — used for the default profile picture when no image is uploaded.
+   - **image** (optional): URL or base64 image if the user uploads a photo.
 3. Copy the **Spreadsheet ID** from the URL:
    - URL looks like: `https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/edit`
    - Use `SPREADSHEET_ID` in the script.

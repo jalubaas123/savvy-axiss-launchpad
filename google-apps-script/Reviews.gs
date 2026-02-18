@@ -3,7 +3,7 @@
  *
  * SETUP:
  * 1. Create a Google Sheet with these columns in row 1:
- *    id | name | course | rating | review | created_at | approved
+ *    id | name | course | rating | review | created_at | approved | gender | image
  * 2. In Apps Script: File → New → Script project (or extend a spreadsheet).
  * 3. Replace SHEET_ID below with your spreadsheet ID (from the Sheet URL).
  * 4. Paste this code, deploy as Web App:
@@ -67,13 +67,15 @@ function getApprovedRows() {
   var reviewIdx = headers.indexOf('review');
   var createdIdx = headers.indexOf('created_at');
   var approvedIdx = headers.indexOf('approved');
+  var genderIdx = headers.indexOf('gender') >= 0 ? headers.indexOf('gender') : -1;
+  var imageIdx = headers.indexOf('image') >= 0 ? headers.indexOf('image') : -1;
 
   var rows = [];
   for (var i = 1; i < data.length; i++) {
     var row = data[i];
     var approved = row[approvedIdx];
     if (approved !== true && String(approved).toUpperCase() !== 'TRUE') continue;
-    rows.push({
+    var obj = {
       id: row[idIdx] != null ? String(row[idIdx]) : '',
       name: row[nameIdx] != null ? String(row[nameIdx]) : '',
       course: row[courseIdx] != null ? String(row[courseIdx]) : '',
@@ -81,7 +83,10 @@ function getApprovedRows() {
       review: row[reviewIdx] != null ? String(row[reviewIdx]) : '',
       created_at: row[createdIdx] != null ? String(row[createdIdx]) : '',
       approved: true
-    });
+    };
+    if (genderIdx >= 0 && row[genderIdx] != null && String(row[genderIdx]).trim()) obj.gender = String(row[genderIdx]).trim();
+    if (imageIdx >= 0 && row[imageIdx] != null && String(row[imageIdx]).trim()) obj.image = String(row[imageIdx]).trim();
+    rows.push(obj);
   }
 
   rows.sort(function (a, b) {
@@ -94,8 +99,9 @@ function getApprovedRows() {
 
 /**
  * doPost — WRITE: Append one new review row.
- * Accepts form-encoded (e.parameter) or JSON (e.postData.contents) body: name, course, rating, review.
+ * Accepts form-encoded (e.parameter) or JSON (e.postData.contents) body: name, course, rating, review, gender [, image].
  * Sets: id (timestamp), created_at (ISO), approved = FALSE.
+ * gender is required (male|female) for default profile picture when no image is uploaded.
  * Wrapped in try-catch so errors return 200 + { success: false, error } instead of 500 (avoids CORS block).
  */
 function doPost(e) {
@@ -103,7 +109,14 @@ function doPost(e) {
     e = e || {};
     var body = {};
     if (e.parameter) {
-      body = { name: e.parameter.name, course: e.parameter.course, rating: e.parameter.rating, review: e.parameter.review };
+      body = {
+        name: e.parameter.name,
+        course: e.parameter.course,
+        rating: e.parameter.rating,
+        review: e.parameter.review,
+        gender: e.parameter.gender,
+        image: e.parameter.image
+      };
     } else if (e.postData && e.postData.contents) {
       try {
         body = JSON.parse(e.postData.contents);
@@ -116,9 +129,12 @@ function doPost(e) {
     var course = (body.course != null ? String(body.course).trim() : '') || '';
     var rating = typeof body.rating === 'number' ? body.rating : parseInt(body.rating, 10);
     var review = (body.review != null ? String(body.review).trim() : '') || '';
+    var gender = (body.gender != null ? String(body.gender).trim().toLowerCase() : '') || '';
+    var image = (body.image != null ? String(body.image).trim() : '') || '';
 
     if (!name) return createJsonResponse({ success: false, error: 'Name is required' }, 200);
     if (!review) return createJsonResponse({ success: false, error: 'Review is required' }, 200);
+    if (gender !== 'male' && gender !== 'female') return createJsonResponse({ success: false, error: 'Gender is required (male or female)' }, 200);
     if (isNaN(rating) || rating < 1 || rating > 5) return createJsonResponse({ success: false, error: 'Rating must be 1–5' }, 200);
     if (review.length > 400) return createJsonResponse({ success: false, error: 'Review must be at most 400 characters (about 50 words)' }, 200);
 
@@ -127,7 +143,7 @@ function doPost(e) {
     var approved = false;
 
     var sheet = getReviewsSheet();
-    sheet.appendRow([id, name, course, rating, review, created_at, approved]);
+    sheet.appendRow([id, name, course, rating, review, created_at, approved, gender, image]);
 
     return createJsonResponse({ success: true, id: id });
   } catch (err) {

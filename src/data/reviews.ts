@@ -4,8 +4,13 @@
  * Each review gets a stable id used for shareable links: /#review-{id}
  */
 
+
 /** Category selected when submitting a review (Course / Internship / Project / Website Development). */
 export type ReviewCategory = 'Course' | 'Internship' | 'Project' | 'Website Development';
+
+/** Gender selected by user for default profile picture when no photo is uploaded. */
+export type ReviewGender = 'male' | 'female';
+
 
 export interface StudentReview {
   id: string;
@@ -15,8 +20,13 @@ export interface StudentReview {
   content: string;
   rating: number;
   course: string;
+
   /** Optional: category selected by student when submitting; used for the badge label. */
   category?: ReviewCategory;
+
+  /** Gender for default avatar when image is not set (asked in form). */
+  gender?: ReviewGender;
+
   /** Optional: when the review was added (display only) */
   dateAdded?: string;
 }
@@ -30,7 +40,11 @@ export const studentReviews: StudentReview[] = [
     content: 'The Python and MERN stack courses helped me land my first internship. Instructors are patient and the projects are very practical.',
     rating: 5,
     course: 'Python & MERN Stack',
+
     category: 'Course',
+
+    gender: 'female',
+
     dateAdded: '2024',
   },
   {
@@ -42,6 +56,9 @@ export const studentReviews: StudentReview[] = [
     rating: 5,
     course: 'Final Year Project',
     category: 'Project',
+
+    gender: 'male',
+
     dateAdded: '2024',
   },
   {
@@ -52,7 +69,11 @@ export const studentReviews: StudentReview[] = [
     content: 'Excel and Digital Marketing training was exactly what I needed for my job. Affordable and flexible timings. Great for students.',
     rating: 5,
     course: 'Excel & Digital Marketing',
+
     category: 'Course',
+
+    gender: 'female',
+
     dateAdded: '2024',
   },
   {
@@ -63,7 +84,11 @@ export const studentReviews: StudentReview[] = [
     content: 'Completed internship with real client projects. Certificate and experience helped me get placed. Savvy Axiss is one of the best in Chennai for students.',
     rating: 5,
     course: 'Internship Program',
+
     category: 'Internship',
+
+    gender: 'male',
+
     dateAdded: '2024',
   },
 ];

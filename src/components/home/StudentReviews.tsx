@@ -2,7 +2,11 @@ import { useRef, useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Star, Quote, MessageSquarePlus, X, Loader2 } from 'lucide-react';
 import { studentReviews as staticReviews } from '@/data/reviews';
+<<<<<<< Updated upstream
 import type { StudentReview, ReviewCategory } from '@/data/reviews';
+=======
+import type { StudentReview, ReviewGender } from '@/data/reviews';
+>>>>>>> Stashed changes
 import {
   isReviewsScriptConfigured,
   fetchApprovedReviews,
@@ -147,16 +151,25 @@ export const StudentReviews = () => {
     const formData = new FormData(form);
     const name = (formData.get('name') as string)?.trim() ?? '';
     const course = (formData.get('course') as string)?.trim() ?? '';
+<<<<<<< Updated upstream
     const category = (formData.get('category') as string)?.trim() ?? '';
+=======
+    const gender = (formData.get('gender') as string)?.trim() ?? '';
+>>>>>>> Stashed changes
     const ratingRaw = formData.get('rating');
     const rating = ratingRaw !== null && ratingRaw !== '' ? Number(ratingRaw) : 0;
     const review = (formData.get('review') as string)?.trim() ?? '';
 
     if (!name) { toast.error('Please enter your name.'); return; }
     if (!course) { toast.error('Please enter the course or program.'); return; }
+<<<<<<< Updated upstream
     const validCategories = REVIEW_CATEGORIES.map((c) => c.value);
     if (!category || !validCategories.includes(category as ReviewCategory)) {
       toast.error('Please select what you are reviewing (Course, Internship, Project, or Website Development).');
+=======
+    if (gender !== 'male' && gender !== 'female') {
+      toast.error('Please select your gender (used for your default profile picture).');
+>>>>>>> Stashed changes
       return;
     }
     if (!review) { toast.error('Please enter your review.'); return; }
@@ -183,6 +196,7 @@ export const StudentReviews = () => {
 
   const displayReviews = reviewsLoading ? [] : reviews;
 
+<<<<<<< Updated upstream
   const inferGenderFromName = (name: string): 'male' | 'female' => {
     const first = name.split(' ')[0]?.toLowerCase() ?? '';
     const femaleHints = ['a', 'i', 'y'];
@@ -200,6 +214,14 @@ export const StudentReviews = () => {
     if (c.includes('internship')) return 'Internship';
     if (c.includes('website') || c.includes('web')) return 'Website';
     return 'Course';
+=======
+  /** Avatar gender: use stored gender or infer from name for default avatar when no photo. */
+  const getAvatarGender = (review: StudentReview): 'male' | 'female' => {
+    if (review.gender) return review.gender;
+    const first = (review.name.split(' ')[0] ?? '').toLowerCase();
+    const femaleHints = ['a', 'i', 'y'];
+    return femaleHints.some((ch) => first.endsWith(ch)) ? 'female' : 'male';
+>>>>>>> Stashed changes
   };
 
   const getInitials = (name: string): string => {
@@ -209,6 +231,7 @@ export const StudentReviews = () => {
     return (parts[0][0] + parts[1][0]).toUpperCase();
   };
 
+<<<<<<< Updated upstream
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) {
@@ -228,6 +251,8 @@ export const StudentReviews = () => {
     reader.readAsDataURL(file);
   };
 
+=======
+>>>>>>> Stashed changes
   return (
     <section ref={sectionRef} className="py-12 sm:py-20 lg:py-28 bg-primary overflow-hidden" id="student-reviews">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -316,7 +341,11 @@ export const StudentReviews = () => {
                     </div>
                     <div className="p-4 pt-0 flex items-center justify-between gap-3 border-t border-border/50 flex-shrink-0">
                       <div className="flex items-center gap-3 min-w-0">
+<<<<<<< Updated upstream
                         {hasPhoto ? (
+=======
+                        {review.image && review.image !== '/placeholder.svg' ? (
+>>>>>>> Stashed changes
                           <img
                             src={review.image}
                             alt={`${review.name} - Savvy Axiss`}
@@ -326,10 +355,17 @@ export const StudentReviews = () => {
                         ) : (
                           <div
                             className={`w-11 h-11 rounded-full border-2 border-secondary/30 flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${
+<<<<<<< Updated upstream
                               gender === 'male' ? 'from-blue-500 to-cyan-500' : 'from-pink-500 to-rose-500'
                             }`}
                           >
                             <span className="text-xs font-semibold text-white">{initials}</span>
+=======
+                              getAvatarGender(review) === 'male' ? 'from-blue-500 to-cyan-500' : 'from-pink-500 to-rose-500'
+                            }`}
+                          >
+                            <span className="text-xs font-semibold text-white">{getInitials(review.name)}</span>
+>>>>>>> Stashed changes
                           </div>
                         )}
                         <div className="min-w-0">
@@ -393,20 +429,36 @@ export const StudentReviews = () => {
                     />
                   </div>
                   <div>
+<<<<<<< Updated upstream
                     <label htmlFor="review-category" className="block text-sm font-medium text-foreground mb-1">What are you reviewing? (required)</label>
                     <select
                       id="review-category"
                       name="category"
+=======
+                    <label htmlFor="review-gender" className="block text-sm font-medium text-foreground mb-1">Gender (required)</label>
+                    <select
+                      id="review-gender"
+                      name="gender"
+>>>>>>> Stashed changes
                       required
                       className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                     >
                       <option value="">Select...</option>
+<<<<<<< Updated upstream
                       {REVIEW_CATEGORIES.map((opt) => (
                         <option key={opt.value} value={opt.value}>
                           {opt.label}
                         </option>
                       ))}
                     </select>
+=======
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
+                    </select>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Used for your default profile picture if you don&apos;t upload a photo.
+                    </p>
+>>>>>>> Stashed changes
                   </div>
                   <div>
                     <label htmlFor="review-course" className="block text-sm font-medium text-foreground mb-1">Course or program (required)</label>
