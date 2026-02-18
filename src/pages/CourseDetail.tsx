@@ -343,7 +343,15 @@ const CourseDetail = () => {
                 <h2 id="instructor" className="text-2xl font-heading font-bold text-foreground mb-6">About the Instructor</h2>
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
-                    <InstructorAvatar gender={course.instructor.gender} />
+                    {course.instructor.image && course.instructor.image !== '/placeholder.svg' ? (
+                      <img
+                        src={course.instructor.image}
+                        alt={`${course.instructor.name} - Instructor at Savvy Axiss`}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <InstructorAvatar gender={course.instructor.gender} />
+                    )}
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-heading font-semibold text-foreground mb-1">
@@ -375,7 +383,7 @@ const CourseDetail = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-card p-6 rounded-xl border border-border sticky top-24"
+                className="bg-card p-6 rounded-xl border border-border mb-8"
               >
                 <div className="aspect-video rounded-lg overflow-hidden mb-6">
                   <img

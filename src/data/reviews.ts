@@ -4,6 +4,9 @@
  * Each review gets a stable id used for shareable links: /#review-{id}
  */
 
+/** Category selected when submitting a review (Course / Internship / Project / Website Development). */
+export type ReviewCategory = 'Course' | 'Internship' | 'Project' | 'Website Development';
+
 export interface StudentReview {
   id: string;
   name: string;
@@ -12,6 +15,8 @@ export interface StudentReview {
   content: string;
   rating: number;
   course: string;
+  /** Optional: category selected by student when submitting; used for the badge label. */
+  category?: ReviewCategory;
   /** Optional: when the review was added (display only) */
   dateAdded?: string;
 }
@@ -25,6 +30,7 @@ export const studentReviews: StudentReview[] = [
     content: 'The Python and MERN stack courses helped me land my first internship. Instructors are patient and the projects are very practical.',
     rating: 5,
     course: 'Python & MERN Stack',
+    category: 'Course',
     dateAdded: '2024',
   },
   {
@@ -35,6 +41,7 @@ export const studentReviews: StudentReview[] = [
     content: 'I did my final year project here. Got full support with code, documentation and deployment. Highly recommend for project support in Chennai.',
     rating: 5,
     course: 'Final Year Project',
+    category: 'Project',
     dateAdded: '2024',
   },
   {
@@ -45,6 +52,7 @@ export const studentReviews: StudentReview[] = [
     content: 'Excel and Digital Marketing training was exactly what I needed for my job. Affordable and flexible timings. Great for students.',
     rating: 5,
     course: 'Excel & Digital Marketing',
+    category: 'Course',
     dateAdded: '2024',
   },
   {
@@ -55,6 +63,7 @@ export const studentReviews: StudentReview[] = [
     content: 'Completed internship with real client projects. Certificate and experience helped me get placed. Savvy Axiss is one of the best in Chennai for students.',
     rating: 5,
     course: 'Internship Program',
+    category: 'Internship',
     dateAdded: '2024',
   },
 ];

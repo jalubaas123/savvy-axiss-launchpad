@@ -1,8 +1,8 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Star, Quote, Share2, MessageSquarePlus, X, Loader2, Link2 } from 'lucide-react';
+import { Star, Quote, MessageSquarePlus, X, Loader2 } from 'lucide-react';
 import { studentReviews as staticReviews } from '@/data/reviews';
-import type { StudentReview } from '@/data/reviews';
+import type { StudentReview, ReviewCategory } from '@/data/reviews';
 import {
   isReviewsScriptConfigured,
   fetchApprovedReviews,
@@ -15,6 +15,14 @@ import { toast } from 'sonner';
 const REVIEW_HASH_PREFIX = 'review-';
 const SUBMIT_REVIEW_HASH = 'submit-review';
 const POLL_INTERVAL_MS = 60_000; // Re-fetch approved reviews every 60 seconds
+
+/** Category options for the review form — student must select what they are reviewing. */
+const REVIEW_CATEGORIES: { value: ReviewCategory; label: string }[] = [
+  { value: 'Course', label: 'Course' },
+  { value: 'Internship', label: 'Internship' },
+  { value: 'Project', label: 'Project (Final Year / Academic)' },
+  { value: 'Website Development', label: 'Website Development' },
+];
 
 const getReviewLink = (id: string) => {
   const base = window.location.origin + window.location.pathname;
@@ -39,6 +47,7 @@ export const StudentReviews = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [reviewWordCount, setReviewWordCount] = useState(0);
   const [submitLinkCopied, setSubmitLinkCopied] = useState(false);
+  const [photoDataUrl, setPhotoDataUrl] = useState<string | null>(null);
   const useSheet = isReviewsScriptConfigured();
 
   const countWords = (text: string) =>
@@ -138,12 +147,18 @@ export const StudentReviews = () => {
     const formData = new FormData(form);
     const name = (formData.get('name') as string)?.trim() ?? '';
     const course = (formData.get('course') as string)?.trim() ?? '';
+    const category = (formData.get('category') as string)?.trim() ?? '';
     const ratingRaw = formData.get('rating');
     const rating = ratingRaw !== null && ratingRaw !== '' ? Number(ratingRaw) : 0;
     const review = (formData.get('review') as string)?.trim() ?? '';
 
     if (!name) { toast.error('Please enter your name.'); return; }
     if (!course) { toast.error('Please enter the course or program.'); return; }
+    const validCategories = REVIEW_CATEGORIES.map((c) => c.value);
+    if (!category || !validCategories.includes(category as ReviewCategory)) {
+      toast.error('Please select what you are reviewing (Course, Internship, Project, or Website Development).');
+      return;
+    }
     if (!review) { toast.error('Please enter your review.'); return; }
     if (rating < 1 || rating > 5 || !Number.isInteger(rating)) {
       toast.error('Please choose a rating between 1 and 5.');
@@ -168,6 +183,51 @@ export const StudentReviews = () => {
 
   const displayReviews = reviewsLoading ? [] : reviews;
 
+  const inferGenderFromName = (name: string): 'male' | 'female' => {
+    const first = name.split(' ')[0]?.toLowerCase() ?? '';
+    const femaleHints = ['a', 'i', 'y'];
+    if (femaleHints.some((ch) => first.endsWith(ch))) return 'female';
+    return 'male';
+  };
+
+  /** Display label for the category badge (use student-selected category if present, else infer from course). */
+  const getCategoryDisplayLabel = (review: StudentReview): string => {
+    if (review.category) {
+      return review.category === 'Website Development' ? 'Website' : review.category;
+    }
+    const c = review.course.toLowerCase();
+    if (c.includes('project')) return 'Project';
+    if (c.includes('internship')) return 'Internship';
+    if (c.includes('website') || c.includes('web')) return 'Website';
+    return 'Course';
+  };
+
+  const getInitials = (name: string): string => {
+    const parts = name.split(' ').filter(Boolean);
+    if (parts.length === 0) return '';
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[1][0]).toUpperCase();
+  };
+
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) {
+      setPhotoDataUrl(null);
+      return;
+    }
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please upload an image file.');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (typeof reader.result === 'string') {
+        setPhotoDataUrl(reader.result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <section ref={sectionRef} className="py-12 sm:py-20 lg:py-28 bg-primary overflow-hidden" id="student-reviews">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -189,7 +249,7 @@ export const StudentReviews = () => {
             What Our Students Say
           </h2>
           <p className="text-primary-foreground/70 max-w-2xl mx-auto mb-6">
-            Real reviews from students — share any review with the link below. Reviews are kept on the site forever.
+            Real reviews from students. Reviews are kept on the site forever.
           </p>
           <div className="inline-flex items-center gap-2 rounded-lg border border-secondary/30 bg-secondary/10 p-1.5">
             <button
@@ -199,23 +259,6 @@ export const StudentReviews = () => {
             >
               <MessageSquarePlus className="w-4 h-4" />
               Submit your review
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                const url = getSubmitReviewUrl();
-                navigator.clipboard.writeText(url).then(() => {
-                  setSubmitLinkCopied(true);
-                  toast.success('Review link copied! Share it with students.');
-                  setTimeout(() => setSubmitLinkCopied(false), 2000);
-                });
-              }}
-              className="inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/50 px-3 py-2.5 text-sm font-medium text-primary-foreground hover:bg-muted transition-colors"
-              title="Copy link to submit review (share with students)"
-              aria-label="Copy submit review URL"
-            >
-              <Link2 className="w-4 h-4" />
-              {submitLinkCopied ? 'Copied!' : 'Copy link'}
             </button>
           </div>
         </motion.div>
@@ -243,7 +286,12 @@ export const StudentReviews = () => {
                 No reviews yet. Be the first to leave one!
               </div>
             ) : (
-              displayReviews.map((review) => (
+              displayReviews.map((review) => {
+                const hasPhoto = !!review.image && review.image !== '/placeholder.svg';
+                const gender = inferGenderFromName(review.name);
+                const categoryLabel = getCategoryDisplayLabel(review);
+                const initials = getInitials(review.name);
+                return (
                 <div
                   key={review.id}
                   id={`${REVIEW_HASH_PREFIX}${review.id}`}
@@ -268,30 +316,34 @@ export const StudentReviews = () => {
                     </div>
                     <div className="p-4 pt-0 flex items-center justify-between gap-3 border-t border-border/50 flex-shrink-0">
                       <div className="flex items-center gap-3 min-w-0">
-                        <img
-                          src={review.image}
-                          alt={`${review.name} - Savvy Axiss`}
-                          loading="lazy"
-                          className="w-11 h-11 rounded-full object-cover border-2 border-secondary/30 flex-shrink-0"
-                        />
+                        {hasPhoto ? (
+                          <img
+                            src={review.image}
+                            alt={`${review.name} - Savvy Axiss`}
+                            loading="lazy"
+                            className="w-11 h-11 rounded-full object-cover border-2 border-secondary/30 flex-shrink-0"
+                          />
+                        ) : (
+                          <div
+                            className={`w-11 h-11 rounded-full border-2 border-secondary/30 flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${
+                              gender === 'male' ? 'from-blue-500 to-cyan-500' : 'from-pink-500 to-rose-500'
+                            }`}
+                          >
+                            <span className="text-xs font-semibold text-white">{initials}</span>
+                          </div>
+                        )}
                         <div className="min-w-0">
                           <h3 className="font-semibold text-foreground text-sm truncate">{review.name}</h3>
                           <p className="text-xs text-muted-foreground truncate">{review.role || review.course}</p>
                         </div>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => copyReviewLink(review.id)}
-                        className="inline-flex items-center gap-1 rounded-md border border-border bg-muted/50 px-2.5 py-1.5 text-xs font-medium text-foreground hover:bg-muted transition-colors flex-shrink-0"
-                        title="Copy review link"
-                      >
-                        <Share2 className="w-3 h-3" />
-                        {copiedId === review.id ? 'Copied!' : 'Share'}
-                      </button>
+                      <span className="inline-flex items-center rounded-full bg-secondary/10 text-secondary px-2 py-1 text-[10px] font-medium flex-shrink-0">
+                        {categoryLabel}
+                      </span>
                     </div>
                   </div>
                 </div>
-              ))
+              );})
             )}
           </div>
         </motion.div>
@@ -341,6 +393,22 @@ export const StudentReviews = () => {
                     />
                   </div>
                   <div>
+                    <label htmlFor="review-category" className="block text-sm font-medium text-foreground mb-1">What are you reviewing? (required)</label>
+                    <select
+                      id="review-category"
+                      name="category"
+                      required
+                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    >
+                      <option value="">Select...</option>
+                      {REVIEW_CATEGORIES.map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
                     <label htmlFor="review-course" className="block text-sm font-medium text-foreground mb-1">Course or program (required)</label>
                     <input
                       id="review-course"
@@ -349,8 +417,23 @@ export const StudentReviews = () => {
                       required
                       maxLength={200}
                       className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                      placeholder="e.g. Python & MERN Stack"
+                      placeholder="e.g. Python & MERN Stack, Final Year Project, Internship, Website"
                     />
+                  </div>
+                  <div>
+                    <label htmlFor="review-photo" className="block text-sm font-medium text-foreground mb-1">Photo (optional)</label>
+                    <input
+                      id="review-photo"
+                      name="photo-file"
+                      type="file"
+                      accept="image/*"
+                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm file:mr-3 file:py-1.5 file:px-3 file:border-0 file:text-sm file:font-medium file:bg-secondary/10 file:text-secondary hover:file:bg-secondary/20"
+                      onChange={handlePhotoChange}
+                    />
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Upload a clear face photo to show on your review (optional).
+                    </p>
+                    <input type="hidden" name="image" value={photoDataUrl ?? ''} />
                   </div>
                   <div>
                     <label htmlFor="review-rating" className="block text-sm font-medium text-foreground mb-1">Rating (1–5, required)</label>

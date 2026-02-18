@@ -42,7 +42,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Varsha Sekar',
       role: 'Director & Instructor',
-      image: '/placeholder.svg',
+      image: '/varsha.png',
       gender: 'female',
       rating: 4.95,
       students: 100,
@@ -92,7 +92,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Varsha Sekar',
       role: 'Director & Instructor',
-      image: '/placeholder.svg',
+      image: '/varsha.png',
       gender: 'female',
       rating: 4.95,
       students: 120,
@@ -144,9 +144,14 @@ export const courseDetails: Record<string, CourseDetail> = {
       role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
+      name: 'Sakthi Jayavel',
+      role: 'Co-Director & Instructor',
+      image: '/sakthi.png',
+      gender: 'male',
+
       rating: 4.9,
       students: 200,
-      bio: 'Rajalakshmi Venkatesan serves as Co-Director and Trainer at Savvy Axiss with expertise in web development and frontend technologies.',
+      bio: 'Sakthi Jayavel is Co-Director and Instructor at Savvy Axiss with strong experience in HTML and frontend fundamentals, helping students build solid foundations for web development.',
     },
     syllabus: {
       Beginner: [
@@ -194,9 +199,15 @@ export const courseDetails: Record<string, CourseDetail> = {
       role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
+
+      name: 'Sakthi Jayavel',
+      role: 'Co-Director & Instructor',
+      image: '/sakthi.png',
+      gender: 'male',
+
       rating: 4.9,
       students: 180,
-      bio: 'Rajalakshmi Venkatesan specializes in CSS and frontend design with extensive experience in creating beautiful user interfaces.',
+      bio: 'Sakthi Jayavel focuses on CSS and modern layout techniques, guiding students to create clean, responsive user interfaces.',
     },
     syllabus: {
       Beginner: [
@@ -240,13 +251,20 @@ export const courseDetails: Record<string, CourseDetail> = {
     objective: 'To master JavaScript from fundamentals to advanced concepts, enabling you to build interactive web applications and work with modern JavaScript frameworks.',
     skills: ['ES6+ Features', 'DOM Manipulation', 'Async Programming', 'Modern Frameworks'],
     instructor: {
+
       name: 'Rajalakshmi Venkatesan',
       role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
+
+      name: 'Sakthi Jayavel',
+      role: 'Co-Director & Instructor',
+      image: '/sakthi.png',
+      gender: 'male',
+
       rating: 4.9,
       students: 250,
-      bio: 'Rajalakshmi Venkatesan is an expert in JavaScript and modern web development with extensive experience in building interactive applications.',
+      bio: 'Sakthi Jayavel is an expert in JavaScript and modern web development with hands-on experience building interactive applications.',
     },
     syllabus: {
       Beginner: [
@@ -290,13 +308,20 @@ export const courseDetails: Record<string, CourseDetail> = {
     objective: 'To master React.js from fundamentals to advanced concepts, enabling you to build scalable, performant, and maintainable web applications using modern React patterns and best practices.',
     skills: ['React Components', 'Hooks & State Management', 'React Router', 'Context API', 'Performance Optimization'],
     instructor: {
+
       name: 'Rajalakshmi Venkatesan',
       role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
+
+      name: 'Sakthi Jayavel',
+      role: 'Co-Director & Instructor',
+      image: '/sakthi.png',
+      gender: 'male',
+
       rating: 4.9,
       students: 280,
-      bio: 'Rajalakshmi Venkatesan is an expert in React.js and modern frontend development with extensive experience in building scalable web applications.',
+      bio: 'Sakthi Jayavel teaches React.js and modern frontend development, helping students build scalable, production-ready web applications.',
     },
     syllabus: {
       Beginner: [
@@ -342,7 +367,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Shalini Baskaran',
       role: 'Founder & CEO',
-      image: '/placeholder.svg',
+      image: '/shalini.png',
       gender: 'female',
       rating: 4.95,
       students: 300,
@@ -380,7 +405,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Shalini Baskaran',
       role: 'Founder & CEO',
-      image: '/placeholder.svg',
+      image: '/shalini.png',
       gender: 'female',
       rating: 4.95,
       students: 180,
@@ -428,13 +453,20 @@ export const courseDetails: Record<string, CourseDetail> = {
     objective: 'To master the complete MERN stack development, enabling you to build scalable, production-ready full-stack web applications with modern tools and best practices.',
     skills: ['MongoDB Database Design', 'Express.js Backend Development', 'React Frontend Development', 'Node.js Server-Side Programming', 'RESTful APIs', 'Authentication & Authorization', 'Deployment & DevOps'],
     instructor: {
+
       name: 'Rajalakshmi Venkatesan',
       role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
+
+      name: 'Sakthi Jayavel',
+      role: 'Co-Director & Instructor',
+      image: '/sakthi.png',
+      gender: 'male',
+
       rating: 4.95,
       students: 320,
-      bio: 'Rajalakshmi Venkatesan is an expert in full-stack development with extensive experience in MERN stack and modern web technologies.',
+      bio: 'Sakthi Jayavel leads full-stack development training at Savvy Axiss, with strong experience across the MERN stack and modern deployment practices.',
     },
     syllabus: {
       Beginner: [
@@ -480,7 +512,7 @@ export const courseDetails: Record<string, CourseDetail> = {
     instructor: {
       name: 'Varsha Sekar',
       role: 'Director & Instructor',
-      image: '/placeholder.svg',
+      image: '/varsha.png',
       gender: 'female',
       rating: 4.95,
       students: 280,
@@ -528,13 +560,18 @@ export const courseDetails: Record<string, CourseDetail> = {
     objective: 'To transform learners from zero coding knowledge to confident AI-powered developers who can build, debug, and ship real-world applications. This course teaches effective AI collaboration, prompt engineering, and modern development workflows that leverage AI tools.',
     skills: ['AI-Assisted Development', 'Prompt Engineering', 'Full-Stack Development', 'AI Tool Mastery', 'Debugging with AI', 'Deployment & Shipping', 'Product Building'],
     instructor: {
+
       name: 'Rajalakshmi Venkatesan',
       role: 'Softskill Trainer',
       image: '/placeholder.svg',
       gender: 'female',
+      name: 'Sakthi Jayavel',
+      role: 'Co-Director & Instructor',
+      image: '/sakthi.png',
+      gender: 'male',
       rating: 4.9,
       students: 200,
-      bio: 'Rajalakshmi Venkatesan specializes in AI-powered development and modern coding workflows, helping students leverage AI tools to build real-world applications faster.',
+      bio: 'Sakthi Jayavel specializes in AI-powered development and modern coding workflows, helping students use tools like Cursor and ChatGPT to ship real-world applications faster.',
     },
     syllabus: {
       Beginner: [

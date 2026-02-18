@@ -7,9 +7,9 @@
  * If unset, the UI falls back to static reviews from data/reviews.ts.
  */
 
-import type { StudentReview } from '@/data/reviews';
+import type { StudentReview, ReviewCategory } from '@/data/reviews';
 
-// --- Sheet row shape (columns: id, name, course, rating, review, created_at, approved) ---
+// --- Sheet row shape (columns: id, name, course, rating, review, created_at, approved, category, image) ---
 export interface SheetReview {
   id: string;
   name: string;
@@ -18,6 +18,10 @@ export interface SheetReview {
   review: string;
   created_at: string;
   approved: boolean;
+  /** Category selected by student: Course | Internship | Project | Website Development */
+  category?: string;
+  /** Optional extra fields if Apps Script is updated to capture them */
+  image?: string;
 }
 
 // --- Payload for submitting a new review (no id, created_at, approved — set by script) ---
@@ -45,16 +49,30 @@ export function getReviewsScriptUrl(): string {
   return typeof SCRIPT_URL === 'string' && SCRIPT_URL.trim() ? SCRIPT_URL.trim() : '';
 }
 
-/** Map a sheet row to the display shape used by StudentReviews (id, name, role, image, content, rating, course, dateAdded). */
+const VALID_CATEGORIES: readonly ReviewCategory[] = ['Course', 'Internship', 'Project', 'Website Development'];
+
+function inferCategoryFromCourse(course: string): ReviewCategory {
+  const c = course.toLowerCase();
+  if (c.includes('project')) return 'Project';
+  if (c.includes('internship')) return 'Internship';
+  if (c.includes('website') || c.includes('web')) return 'Website Development';
+  return 'Course';
+}
+
+/** Map a sheet row to the display shape used by StudentReviews (id, name, role, image, content, rating, course, category, dateAdded). */
 function mapSheetToDisplay(row: SheetReview): StudentReview {
+  const category: ReviewCategory = row.category && VALID_CATEGORIES.includes(row.category as ReviewCategory)
+    ? (row.category as ReviewCategory)
+    : inferCategoryFromCourse(row.course);
   return {
     id: row.id,
     name: row.name,
-    role: '', // Sheet has no role column; optional to add later
-    image: '/placeholder.svg',
+    role: '',
+    image: row.image && row.image.trim().length > 0 ? row.image : '/placeholder.svg',
     content: row.review,
     rating: row.rating,
     course: row.course,
+    category,
     dateAdded: row.created_at ? new Date(row.created_at).getFullYear().toString() : undefined,
   };
 }
