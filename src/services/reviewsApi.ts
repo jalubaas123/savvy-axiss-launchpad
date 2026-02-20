@@ -7,15 +7,9 @@
  * If unset, the UI falls back to static reviews from data/reviews.ts.
  */
 
+import type { StudentReview, ReviewCategory, ReviewGender } from '@/data/reviews';
 
-import type { StudentReview, ReviewCategory } from '@/data/reviews';
-
-// --- Sheet row shape (columns: id, name, course, rating, review, created_at, approved, category, image) ---
-
-import type { StudentReview, ReviewGender } from '@/data/reviews';
-
-// --- Sheet row shape (columns: id, name, course, rating, review, created_at, approved, gender, image) ---
-
+// --- Sheet row shape (columns: id, name, course, rating, review, created_at, approved, category, gender, image) ---
 export interface SheetReview {
   id: string;
   name: string;
@@ -24,11 +18,8 @@ export interface SheetReview {
   review: string;
   created_at: string;
   approved: boolean;
-
   /** Category selected by student: Course | Internship | Project | Website Development */
   category?: string;
-  /** Optional extra fields if Apps Script is updated to capture them */
-
   /** Gender from form: male | female — used for default avatar when no image */
   gender?: string;
   image?: string;
@@ -69,12 +60,6 @@ function inferCategoryFromCourse(course: string): ReviewCategory {
   return 'Course';
 }
 
-/** Map a sheet row to the display shape used by StudentReviews (id, name, role, image, content, rating, course, category, dateAdded). */
-function mapSheetToDisplay(row: SheetReview): StudentReview {
-  const category: ReviewCategory = row.category && VALID_CATEGORIES.includes(row.category as ReviewCategory)
-    ? (row.category as ReviewCategory)
-    : inferCategoryFromCourse(row.course);
-/** Infer gender from name when not stored (backward compatibility). */
 function inferGenderFromName(name: string): ReviewGender {
   const first = (name.split(' ')[0] ?? '').toLowerCase();
   const femaleHints = ['a', 'i', 'y'];
@@ -82,29 +67,25 @@ function inferGenderFromName(name: string): ReviewGender {
   return 'male';
 }
 
-/** Map a sheet row to the display shape used by StudentReviews (id, name, role, image, content, rating, course, gender, dateAdded). */
+/** Map a sheet row to the display shape used by StudentReviews. */
 function mapSheetToDisplay(row: SheetReview): StudentReview {
+  const category: ReviewCategory =
+    row.category && VALID_CATEGORIES.includes(row.category as ReviewCategory)
+      ? (row.category as ReviewCategory)
+      : inferCategoryFromCourse(row.course);
   const gender: ReviewGender =
     row.gender === 'male' || row.gender === 'female' ? row.gender : inferGenderFromName(row.name);
-  const image =
-    row.image && row.image.trim().length > 0 ? row.image : '/placeholder.svg';
+  const image = row.image && row.image.trim().length > 0 ? row.image : '/placeholder.svg';
   return {
     id: row.id,
     name: row.name,
     role: '',
-
-    image: row.image && row.image.trim().length > 0 ? row.image : '/placeholder.svg',
-    content: row.review,
-    rating: row.rating,
-    course: row.course,
-    category,
-
     image,
     content: row.review,
     rating: row.rating,
     course: row.course,
+    category,
     gender,
-
     dateAdded: row.created_at ? new Date(row.created_at).getFullYear().toString() : undefined,
   };
 }
@@ -118,13 +99,14 @@ export function fetchApprovedReviews(): Promise<StudentReview[]> {
   if (!isReviewsScriptConfigured()) {
     return Promise.resolve([]);
   }
-  const url = `${SCRIPT_URL!.replace(/\/$/, '')}?callback=__reviewsJsonp`;
   return new Promise((resolve, reject) => {
     const callbackName = `__reviewsJsonp_${Date.now()}_${Math.random().toString(36).slice(2)}`;
     const timeout = setTimeout(() => {
       cleanup();
       reject(new Error('Failed to load reviews: timeout'));
     }, 15000);
+
+    const script = document.createElement('script');
 
     function cleanup() {
       clearTimeout(timeout);
@@ -141,7 +123,6 @@ export function fetchApprovedReviews(): Promise<StudentReview[]> {
       resolve(data.map(mapSheetToDisplay));
     };
 
-    const script = document.createElement('script');
     script.src = `${SCRIPT_URL!.replace(/\/$/, '')}?callback=${callbackName}`;
     script.onerror = () => {
       cleanup();

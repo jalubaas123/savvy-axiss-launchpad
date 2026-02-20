@@ -106,6 +106,9 @@ const CourseDetail = () => {
         <meta property="og:description" content={`${course.description} Learn in Chennai. ${courseInfo.duration}, certificate. Savvy Axiss, Maduravoyal.`} />
         <meta property="og:url" content={`${SEO_BASE_URL}/courses/${courseInfo.slug}`} />
         <meta property="og:type" content="website" />
+        <meta name="twitter:title" content={`${courseInfo.title} - Programming Course in Chennai | Savvy Axiss`} />
+        <meta name="twitter:description" content={`${course.description} Learn in Chennai. ${courseInfo.duration}, certificate. Savvy Axiss, Maduravoyal.`} />
+        <meta name="twitter:image" content={courseInfo.image ? `${SEO_BASE_URL}${courseInfo.image}` : `${SEO_BASE_URL}/og-image.png`} />
         <script type="application/ld+json">{JSON.stringify(courseSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(courseFAQs)}</script>

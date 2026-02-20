@@ -211,6 +211,9 @@ const Courses = () => {
         <meta property="og:title" content="Programming Courses in Chennai | Savvy Axiss" />
         <meta property="og:description" content="Python, Java, MERN, React, Digital Marketing in Chennai. Live training, certificate, placement support. Maduravoyal." />
         <meta property="og:url" content={`${SEO_BASE_URL}/courses`} />
+        <meta name="twitter:title" content="Programming Courses in Chennai | Savvy Axiss" />
+        <meta name="twitter:description" content="Python, Java, MERN, React, Digital Marketing in Chennai. Live training, certificate, placement support. Maduravoyal." />
+        <meta name="twitter:image" content={`${SEO_BASE_URL}/og-image.png`} />
         <script type="application/ld+json">{JSON.stringify(coursesBreadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(coursesFAQs)}</script>
       </Helmet>
