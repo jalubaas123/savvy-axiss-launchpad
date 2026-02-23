@@ -263,89 +263,17 @@ const essentialFeatures = [
   },
 ];
 
-// Pricing Packages (Enhanced)
-const packages = [
-  {
-    name: 'Starter',
-    price: '₹9,999',
-    originalPrice: '₹14,999',
-    description: 'Perfect for personal & small businesses',
-    features: [
-      'Up to 5 pages',
-      'Mobile-responsive design',
-      'Contact form',
-      'Social media integration',
-      'Basic SEO setup',
-      'Google Analytics',
-      'SSL certificate',
-      '1 year free hosting',
-      'Email support',
-      'Basic training',
-    ],
-    popular: false,
-    deliveryTime: '7-10 days',
-    idealFor: 'Startups, freelancers, small businesses'
-  },
-  {
-    name: 'Professional',
-    price: '₹24,999',
-    originalPrice: '₹34,999',
-    description: 'Ideal for growing businesses',
-    features: [
-      'Up to 10 pages',
-      'Custom design',
-      'Blog integration',
-      'Advanced SEO',
-      'Google Analytics & Search Console',
-      'WhatsApp chat widget',
-      'Social media integration',
-      'Contact & inquiry forms',
-      '2 years free hosting',
-      '3 months support',
-      'CMS training',
-      'Performance optimization',
-    ],
-    popular: true,
-    deliveryTime: '10-15 days',
-    idealFor: 'Growing businesses, service providers, agencies'
-  },
-  {
-    name: 'E-Commerce',
-    price: '₹49,999',
-    originalPrice: '₹69,999',
-    description: 'Complete online store solution',
-    features: [
-      'Unlimited pages',
-      'Full e-commerce functionality',
-      'Payment gateway integration (Razorpay/Stripe)',
-      'Product catalog (up to 100 products)',
-      'Shopping cart & checkout',
-      'Order management system',
-      'Inventory management',
-      'Admin dashboard',
-      'Customer accounts',
-      'Email notifications',
-      '2 years free hosting',
-      '6 months support',
-      'Advanced SEO',
-      'Performance optimization',
-    ],
-    popular: false,
-    deliveryTime: '15-20 days',
-    idealFor: 'Online stores, retailers, product sellers'
-  },
-];
-
-// Client testimonials — web development (profile images: professional headshots)
-const testimonials: Array<{ name: string; business: string; role: string; quote: string; rating: number; image: string; results: string }> = [
+// Client testimonials — web development (using same profile style as StudentReviews)
+const testimonials: Array<{ name: string; business: string; role: string; quote: string; rating: number; image: string; results: string; gender?: 'male' | 'female' }> = [
   {
     name: 'S. Prakash',
     business: 'Prakash Auto Spares, Maduravoyal',
     role: 'Small business owner',
-    quote: 'Savvy Axiss built our business website in 2 weeks. We now get inquiries daily through the contact form and our Google presence has clearly improved.',
+    quote: 'Savvy Axiss built our business website in 2 weeks. We now get inquiries daily through contact form and our Google presence has clearly improved.',
     rating: 5,
     image: '/placeholder.svg',
     results: '40% more inquiries in 3 months',
+    gender: 'male'
   },
   {
     name: 'Priya Lakshmi',
@@ -355,6 +283,7 @@ const testimonials: Array<{ name: string; business: string; role: string; quote:
     rating: 5,
     image: '/placeholder.svg',
     results: 'Online orders up 60%',
+    gender: 'female'
   },
   {
     name: 'Arun M.',
@@ -364,8 +293,25 @@ const testimonials: Array<{ name: string; business: string; role: string; quote:
     rating: 5,
     image: '/placeholder.svg',
     results: 'Faster lead generation',
+    gender: 'male'
   },
 ];
+
+// Helper function to get avatar gender (same as StudentReviews)
+const getAvatarGender = (testimonial: typeof testimonials[0]): 'male' | 'female' => {
+  if (testimonial.gender) return testimonial.gender;
+  const first = (testimonial.name.split(' ')[0] ?? '').toLowerCase();
+  const femaleHints = ['a', 'i', 'y'];
+  return femaleHints.some((ch) => first.endsWith(ch)) ? 'female' : 'male';
+};
+
+// Helper function to get initials (same as StudentReviews)
+const getInitials = (name: string): string => {
+  const parts = name.split(' ').filter(Boolean);
+  if (parts.length === 0) return '';
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[1][0]).toUpperCase();
+};
 
 // FAQ
 const faqs = [
@@ -387,15 +333,15 @@ const faqs = [
   },
   {
     question: 'What about hosting and domain?',
-    answer: 'We include free hosting for 1-2 years depending on your package. You can use your existing domain or we can help you purchase a new one. Domain registration is separate.'
+    answer: 'We include free hosting for 1-2 years depending on your project scope. You can use your existing domain or we can help you purchase a new one. Domain registration is separate.'
   },
   {
     question: 'Do you provide ongoing support?',
-    answer: 'Yes! All packages include support periods (1-6 months depending on package). We also offer monthly maintenance plans for ongoing updates, backups, and technical support.'
+    answer: 'Yes! All solutions include support periods (1-6 months depending on project scope). We also offer monthly maintenance plans for ongoing updates, backups, and technical support.'
   },
   {
     question: 'Can you integrate payment gateways?',
-    answer: 'Yes! We integrate popular payment gateways like Razorpay, Stripe, PayPal, and others. E-commerce packages include payment integration by default.'
+    answer: 'Yes! We integrate popular payment gateways like Razorpay, Stripe, PayPal, and others. E-commerce solutions include payment integration by default.'
   },
   {
     question: 'Will my website rank on Google?',
@@ -929,7 +875,7 @@ export default function WebDevelopment() {
       </div>
     </section>
 
-    {/* Pricing */}
+    {/* Custom Solutions Section - Replacing Pricing */}
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
@@ -939,13 +885,14 @@ export default function WebDevelopment() {
           className="text-center mb-16"
         >
           <Badge className="mb-4 bg-emerald-500/10 text-emerald-600 border-emerald-500/20">
-            Transparent Pricing
+            Custom Solutions
           </Badge>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-            Choose Your Package
+            Tailored Website Solutions for Your Business
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Affordable packages with no hidden costs. All prices include hosting, SSL, and support.
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Every business is unique. We create custom website solutions that match your specific needs, goals, and budget. 
+            From simple business sites to complex e-commerce platforms, we have the expertise to deliver.
           </p>
         </motion.div>
 
@@ -954,51 +901,137 @@ export default function WebDevelopment() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
         >
-          {packages.map((pkg, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card className={`relative h-full border-2 ${pkg.popular ? 'border-emerald-500 shadow-2xl scale-105' : 'border-border'} transition-all duration-300`}>
-                {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-emerald-600 text-white px-4 py-1">Most Popular</Badge>
-                  </div>
-                )}
-                <CardHeader className="text-center pb-4">
-                  <CardTitle className="text-2xl mb-2">{pkg.name}</CardTitle>
-                  <CardDescription className="mb-4">{pkg.description}</CardDescription>
-                  <div className="mb-4">
-                    <span className="text-5xl font-bold text-foreground">{pkg.price}</span>
-                    {pkg.originalPrice && (
-                      <span className="text-lg text-muted-foreground line-through ml-2">{pkg.originalPrice}</span>
-                    )}
-                  </div>
-                  <Badge variant="outline" className="text-xs">
-                    Delivery: {pkg.deliveryTime}
-                  </Badge>
-                  <p className="text-xs text-muted-foreground mt-2">{pkg.idealFor}</p>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {pkg.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    className="w-full"
-                    variant={pkg.popular ? 'default' : 'outline'}
-                    size="lg"
-                    asChild
-                  >
-                    <Link to="/contact">Get Started</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          <motion.div variants={itemVariants}>
+            <Card className="h-full border-2 hover:border-emerald-500/50 transition-all duration-300">
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-4">
+                  <Briefcase className="w-8 h-8 text-white" />
+                </div>
+                <CardTitle className="text-xl mb-2">Small Business Websites</CardTitle>
+                <CardDescription>Professional websites for small businesses and startups</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">Custom design & branding</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">Mobile-responsive design</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">SEO optimization</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">Contact forms & integration</span>
+                  </li>
+                </ul>
+                <Button className="w-full" variant="outline" asChild>
+                  <Link to="/contact">Get Quote</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
+            <Card className="h-full border-2 border-emerald-500 shadow-xl scale-105 transition-all duration-300">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                <Badge className="bg-emerald-600 text-white px-4 py-1">Most Popular</Badge>
+              </div>
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-4">
+                  <Building2 className="w-8 h-8 text-white" />
+                </div>
+                <CardTitle className="text-xl mb-2">Corporate Websites</CardTitle>
+                <CardDescription>Advanced solutions for growing companies and enterprises</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">Advanced functionality</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">Database integration</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">User portals & dashboards</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">API integrations</span>
+                  </li>
+                </ul>
+                <Button className="w-full" asChild>
+                  <Link to="/contact">Get Quote</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
+            <Card className="h-full border-2 hover:border-emerald-500/50 transition-all duration-300">
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-4">
+                  <ShoppingCart className="w-8 h-8 text-white" />
+                </div>
+                <CardTitle className="text-xl mb-2">E-Commerce Platforms</CardTitle>
+                <CardDescription>Complete online stores with payment and inventory management</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">Shopping cart & checkout</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">Payment gateway integration</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">Inventory management</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground">Order tracking system</span>
+                  </li>
+                </ul>
+                <Button className="w-full" variant="outline" asChild>
+                  <Link to="/contact">Get Quote</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <p className="text-muted-foreground mb-4">
+            Need a custom solution? Contact us for a personalized quote based on your specific requirements.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button variant="default" size="lg" className="bg-emerald-600 hover:bg-emerald-700" asChild>
+              <Link to="/contact">Get Custom Quote</Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <a href="https://wa.me/917299817996?text=Hi, I need a custom website solution for my business" target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon className="w-4 h-4 mr-2" />
+                Chat on WhatsApp
+              </a>
+            </Button>
+          </div>
         </motion.div>
       </div>
     </section>
@@ -1036,11 +1069,21 @@ export default function WebDevelopment() {
                 <Card className="h-full border-2 hover:border-emerald-500/50 transition-all duration-300">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4 mb-4">
-                      <img
-                        src={testimonial.image}
-                        alt={`${testimonial.name} - Client testimonial - Savvy Axiss`}
-                        className="w-16 h-16 rounded-full object-cover"
-                      />
+                      {testimonial.image && testimonial.image !== '/placeholder.svg' ? (
+                        <img
+                          src={testimonial.image}
+                          alt={`${testimonial.name} - Client testimonial - Savvy Axiss`}
+                          className="w-16 h-16 rounded-full object-cover border-2 border-emerald-500/30"
+                        />
+                      ) : (
+                        <div
+                          className={`w-16 h-16 rounded-full border-2 border-emerald-500/30 flex items-center justify-center bg-gradient-to-br ${
+                            getAvatarGender(testimonial) === 'male' ? 'from-blue-500 to-cyan-500' : 'from-pink-500 to-rose-500'
+                          }`}
+                        >
+                          <span className="text-sm font-semibold text-white">{getInitials(testimonial.name)}</span>
+                        </div>
+                      )}
                       <div className="flex-1">
                         <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
                         <p className="text-sm text-muted-foreground">{testimonial.business}</p>
