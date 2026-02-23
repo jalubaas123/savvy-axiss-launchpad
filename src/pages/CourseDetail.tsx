@@ -345,12 +345,12 @@ const CourseDetail = () => {
               >
                 <h2 id="instructor" className="text-2xl font-heading font-bold text-foreground mb-6">About the Instructor</h2>
                 <div className="flex flex-col md:flex-row gap-6">
-                  <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
+                  <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
                     {course.instructor.image && course.instructor.image !== '/placeholder.svg' ? (
                       <img
                         src={course.instructor.image}
                         alt={`${course.instructor.name} - Instructor at Savvy Axiss`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-top"
                       />
                     ) : (
                       <InstructorAvatar gender={course.instructor.gender} />

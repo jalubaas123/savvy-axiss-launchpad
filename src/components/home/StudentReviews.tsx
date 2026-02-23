@@ -49,7 +49,8 @@ export const StudentReviews = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [reviewWordCount, setReviewWordCount] = useState(0);
   const [submitLinkCopied, setSubmitLinkCopied] = useState(false);
-  const [photoDataUrl, setPhotoDataUrl] = useState<string | null>(null);
+  const [currentScrollIndex, setCurrentScrollIndex] = useState(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const useSheet = isReviewsScriptConfigured();
 
   const countWords = (text: string) =>
@@ -108,6 +109,92 @@ export const StudentReviews = () => {
       setShowSubmitForm(true);
     }
   }, []);
+
+  // Pause auto-scroll on hover
+  const handleMouseEnter = () => setIsAutoScrolling(false);
+  const handleMouseLeave = () => setIsAutoScrolling(true);
+
+  // Handle dot click to scroll to specific review
+  const handleDotClick = (index: number) => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const cardWidth = 320;
+      const gap = 24;
+      const scrollPosition = index * (cardWidth + gap);
+      
+      container.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+      });
+      
+      setCurrentScrollIndex(index);
+    }
+  };
+
+  const displayReviews = reviewsLoading ? [] : reviews;
+
+  // Auto-scroll reviews functionality
+  useEffect(() => {
+    if (!isAutoScrolling || reviewsLoading || reviewsError || displayReviews.length === 0) return;
+
+    const interval = setInterval(() => {
+      if (scrollContainerRef.current) {
+        const container = scrollContainerRef.current;
+        const scrollWidth = container.scrollWidth;
+        const clientWidth = container.clientWidth;
+        const maxScrollLeft = scrollWidth - clientWidth;
+        
+        if (maxScrollLeft <= 0) {
+          clearInterval(interval);
+          return;
+        }
+
+        let nextIndex;
+        if (currentScrollIndex >= displayReviews.length - 1) {
+          // If at the last review, loop back to the first
+          nextIndex = 0;
+          // Instant scroll to start for seamless loop
+          container.scrollTo({ left: 0, behavior: 'instant' });
+          // Then smooth scroll to first card
+          setTimeout(() => {
+            container.scrollTo({ left: 0, behavior: 'smooth' });
+          }, 50);
+        } else {
+          // Normal progression to next review
+          nextIndex = currentScrollIndex + 1;
+          const cardWidth = 320; // Width of each review card
+          const gap = 24; // Gap between cards
+          const scrollPosition = nextIndex * (cardWidth + gap);
+          
+          container.scrollTo({
+            left: Math.min(scrollPosition, maxScrollLeft),
+            behavior: 'smooth'
+          });
+        }
+        
+        setCurrentScrollIndex(nextIndex);
+      }
+    }, 2500); // Change review every 2.5 seconds (faster)
+
+    return () => clearInterval(interval);
+  }, [isAutoScrolling, reviewsLoading, reviewsError, displayReviews.length, currentScrollIndex]);
+
+  // Update current index based on scroll position
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const cardWidth = 320;
+      const gap = 24;
+      const scrollLeft = container.scrollLeft;
+      const index = Math.round(scrollLeft / (cardWidth + gap));
+      setCurrentScrollIndex(Math.min(index, displayReviews.length - 1));
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [displayReviews.length]);
 
   // Scroll to review when page loads with #review-{id}
   useEffect(() => {
@@ -192,8 +279,6 @@ export const StudentReviews = () => {
     setSubmitLoading(false);
   };
 
-  const displayReviews = reviewsLoading ? [] : reviews;
-
   /** Display label for the category badge (use student-selected category if present, else infer from course). */
   const getCategoryDisplayLabel = (review: StudentReview): string => {
     if (review.category) {
@@ -222,25 +307,7 @@ export const StudentReviews = () => {
     return (parts[0][0] + parts[1][0]).toUpperCase();
   };
 
-  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) {
-      setPhotoDataUrl(null);
-      return;
-    }
-    if (!file.type.startsWith('image/')) {
-      toast.error('Please upload an image file.');
-      return;
-    }
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      if (typeof reader.result === 'string') {
-        setPhotoDataUrl(reader.result);
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
+  
   return (
     <section ref={sectionRef} className="py-12 sm:py-20 lg:py-28 bg-primary overflow-hidden" id="student-reviews">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -285,6 +352,8 @@ export const StudentReviews = () => {
           <div
             ref={scrollContainerRef}
             className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             {reviewsLoading ? (
               <div className="flex-shrink-0 w-full flex items-center justify-center py-12 text-primary-foreground/70">
@@ -309,55 +378,73 @@ export const StudentReviews = () => {
                     className="flex-shrink-0 w-[min(100%,300px)] sm:w-[320px] snap-center"
                   >
                     <div className="bg-card rounded-xl border border-border hover:border-secondary/30 transition-all duration-300 flex flex-col h-[280px] overflow-hidden shadow-sm">
-                      <div className="p-4 flex-1 flex flex-col min-h-0">
-                        <Quote className="w-8 h-8 text-secondary/30 mb-2 flex-shrink-0" />
-                        <p className="text-foreground/80 text-sm leading-snug line-clamp-4 flex-1 min-h-0">
-                          &ldquo;{review.content}&rdquo;
-                        </p>
-                        <div className="flex items-center gap-1 mt-3 flex-shrink-0">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`w-3.5 h-3.5 ${
-                                i < review.rating ? 'fill-warning text-warning' : 'text-muted-foreground'
-                              }`}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                      <div className="p-4 pt-0 flex items-center justify-between gap-3 border-t border-border/50 flex-shrink-0">
-                        <div className="flex items-center gap-3 min-w-0">
-                          {hasPhoto ? (
-                            <img
-                              src={review.image}
-                              alt={`${review.name} - Savvy Axiss`}
-                              loading="lazy"
-                              className="w-11 h-11 rounded-full object-cover border-2 border-secondary/30 flex-shrink-0"
-                            />
-                          ) : (
-                            <div
-                              className={`w-11 h-11 rounded-full border-2 border-secondary/30 flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${
-                                getAvatarGender(review) === 'male' ? 'from-blue-500 to-cyan-500' : 'from-pink-500 to-rose-500'
-                              }`}
-                            >
-                              <span className="text-xs font-semibold text-white">{getInitials(review.name)}</span>
-                            </div>
-                          )}
-                          <div className="min-w-0">
-                            <h3 className="font-semibold text-foreground text-sm truncate">{review.name}</h3>
-                            <p className="text-xs text-muted-foreground truncate">{review.role || review.course}</p>
-                          </div>
-                        </div>
-                        <span className="inline-flex items-center rounded-full bg-secondary/10 text-secondary px-2 py-1 text-[10px] font-medium flex-shrink-0">
-                          {categoryLabel}
-                        </span>
+                    <div className="p-4 flex-1 flex flex-col min-h-0">
+                      <Quote className="w-8 h-8 text-secondary/30 mb-2 flex-shrink-0" />
+                      <p className="text-foreground/80 text-sm leading-snug line-clamp-4 flex-1 min-h-0">
+                        &ldquo;{review.content}&rdquo;
+                      </p>
+                      <div className="flex items-center gap-1 mt-3 flex-shrink-0">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`w-3.5 h-3.5 ${
+                              i < review.rating ? 'fill-warning text-warning' : 'text-muted-foreground'
+                            }`}
+                          />
+                        ))}
                       </div>
                     </div>
+                    <div className="p-4 pt-0 flex items-center justify-between gap-3 border-t border-border/50 flex-shrink-0">
+                      <div className="flex items-center gap-3 min-w-0">
+                        {hasPhoto ? (
+                          <img
+                            src={review.image}
+                            alt={`${review.name} - Savvy Axiss`}
+                            loading="lazy"
+                            className="w-11 h-11 rounded-full object-cover border-2 border-secondary/30 flex-shrink-0"
+                          />
+                        ) : (
+                          <div
+                            className={`w-11 h-11 rounded-full border-2 border-secondary/30 flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${
+                              getAvatarGender(review) === 'male' ? 'from-blue-500 to-cyan-500' : 'from-pink-500 to-rose-500'
+                            }`}
+                          >
+                            <span className="text-xs font-semibold text-white">{getInitials(review.name)}</span>
+                          </div>
+                        )}
+                        <div className="min-w-0">
+                          <h3 className="font-semibold text-foreground text-sm truncate">{review.name}</h3>
+                          <p className="text-xs text-muted-foreground truncate">{review.role || review.course}</p>
+                        </div>
+                      </div>
+                      <span className="inline-flex items-center rounded-full bg-secondary/10 text-secondary px-2 py-1 text-[10px] font-medium flex-shrink-0">
+                        {categoryLabel}
+                      </span>
+                    </div>
+                  </div>
                   </div>
                 );
               })
             )}
           </div>
+          
+          {/* Pagination dots */}
+          {!reviewsLoading && !reviewsError && displayReviews.length > 1 && (
+            <div className="flex justify-center items-center gap-2 mt-6">
+              {displayReviews.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleDotClick(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    currentScrollIndex === index
+                      ? 'bg-secondary w-8'
+                      : 'bg-secondary/30 hover:bg-secondary/50'
+                  }`}
+                  aria-label={`Go to review ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </motion.div>
 
         {showSubmitForm && (
@@ -447,21 +534,6 @@ export const StudentReviews = () => {
                       className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                       placeholder="e.g. Python & MERN Stack, Final Year Project, Internship, Website"
                     />
-                  </div>
-                  <div>
-                    <label htmlFor="review-photo" className="block text-sm font-medium text-foreground mb-1">Photo (optional)</label>
-                    <input
-                      id="review-photo"
-                      name="photo-file"
-                      type="file"
-                      accept="image/*"
-                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm file:mr-3 file:py-1.5 file:px-3 file:border-0 file:text-sm file:font-medium file:bg-secondary/10 file:text-secondary hover:file:bg-secondary/20"
-                      onChange={handlePhotoChange}
-                    />
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      Upload a clear face photo to show on your review (optional).
-                    </p>
-                    <input type="hidden" name="image" value={photoDataUrl ?? ''} />
                   </div>
                   <div>
                     <label htmlFor="review-rating" className="block text-sm font-medium text-foreground mb-1">Rating (1–5, required)</label>
