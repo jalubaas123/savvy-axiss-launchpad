@@ -2,9 +2,6 @@
  * Reviews API — Google Sheets via Apps Script Web App.
  * Read: GET script URL → approved reviews as JSON.
  * Write: POST script URL → append row (approved = FALSE); admin approves in Sheet.
- *
- * Set VITE_REVIEWS_SCRIPT_URL in .env to your deployed Apps Script Web App URL.
- * If unset, the UI falls back to static reviews from data/reviews.ts.
  */
 
 import type { StudentReview, ReviewCategory, ReviewGender } from '@/data/reviews';
@@ -33,7 +30,7 @@ export interface SubmitReviewPayload {
   review: string;
 }
 
-const SCRIPT_URL = import.meta.env.VITE_REVIEWS_SCRIPT_URL as string | undefined;
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzY66BQGBLjzGROam7nIaxzsXzHEVzXsfpJ9Diq2PwTLM34Yt7fZ-FSoU99IsS-Avow/exec";
 
 /** Max length for review text (frontend + Apps Script). */
 export const REVIEW_MAX_LENGTH = 400;
