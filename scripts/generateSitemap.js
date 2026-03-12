@@ -21,18 +21,25 @@ const staticPages = [
   { url: '/web-development', priority: 0.9, changefreq: 'monthly' },
   { url: '/internship', priority: 0.9, changefreq: 'monthly' },
   { url: '/contact', priority: 0.7, changefreq: 'yearly' },
+  { url: '/apply', priority: 0.8, changefreq: 'monthly' },
+  { url: '/enroll', priority: 0.7, changefreq: 'monthly' },
 ];
 
-// Course slugs from src/pages/Courses.tsx allCourses (baseSlug + level suffix b/i/a, or vibe-codingb)
+// Course slugs from actual createCourse calls in src/pages/Courses.tsx
 const courseSlugs = [
-  'pythonb', 'pythoni', 'pythona', 'javab', 'javai', 'javaa',
-  'htmlb', 'htmli', 'htmla', 'cssb', 'cssi', 'cssa',
-  'javascriptb', 'javascripti', 'javascripta', 'reactb', 'reacti', 'reacta',
-  'excelb', 'exceli', 'excela', 'mysqlb', 'mysqli', 'mysqla',
-  'mongodbb', 'mongodbi', 'mongodba', 'digital-marketingb', 'digital-marketingi', 'digital-marketinga',
-  'mern-fullstackb', 'mern-fullstacki', 'mern-fullstacka',
-  'python-fullstackb', 'python-fullstacki', 'python-fullstacka',
-  'vibe-codingb',
+  'python-beginner', 'python-intermediate', 'python-advanced',
+  'java-beginner', 'java-intermediate', 'java-advanced',
+  'html-beginner', 'html-intermediate', 'html-advanced',
+  'css-beginner', 'css-intermediate', 'css-advanced',
+  'javascript-beginner', 'javascript-intermediate', 'javascript-advanced',
+  'react-beginner', 'react-intermediate', 'react-advanced',
+  'excel-beginner', 'excel-intermediate', 'excel-advanced',
+  'mysql-beginner', 'mysql-intermediate', 'mysql-advanced',
+  'mongodb-beginner', 'mongodb-intermediate', 'mongodb-advanced',
+  'digital-marketing-beginner', 'digital-marketing-intermediate', 'digital-marketing-advanced',
+  'mern-fullstack-beginner', 'mern-fullstack-intermediate', 'mern-fullstack-advanced',
+  'python-fullstack-beginner', 'python-fullstack-intermediate', 'python-fullstack-advanced',
+  'vibe-coding',
 ];
 
 // Project slugs from src/data/projectsData.ts
