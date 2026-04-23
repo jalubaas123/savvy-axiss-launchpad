@@ -40,6 +40,7 @@ const getSubmitReviewUrl = () => {
 export const StudentReviews = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
   const [showSubmitForm, setShowSubmitForm] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -51,6 +52,7 @@ export const StudentReviews = () => {
   const [submitLinkCopied, setSubmitLinkCopied] = useState(false);
   const [currentScrollIndex, setCurrentScrollIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  const [uploadedImage, setUploadedImage] = useState('');
   const useSheet = isReviewsScriptConfigured();
 
   const countWords = (text: string) =>
@@ -225,7 +227,61 @@ export const StudentReviews = () => {
     });
   };
 
+  const copySubmitReviewLink = () => {
+    const url = getSubmitReviewUrl();
+    navigator.clipboard.writeText(url).then(() => {
+      setSubmitLinkCopied(true);
+      toast.success('Review form link copied.');
+      setTimeout(() => setSubmitLinkCopied(false), 2000);
+    });
+  };
+
   // Submit via form POST to script URL in hidden iframe — avoids fetch() and CORS.
+  const closeSubmitForm = () => {
+    setShowSubmitForm(false);
+    setUploadedImage('');
+    setReviewWordCount(0);
+    formRef.current?.reset();
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) {
+      setUploadedImage('');
+      return;
+    }
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error('Please upload a JPG, PNG, or WebP image.');
+      e.target.value = '';
+      return;
+    }
+
+    const maxFileSizeBytes = 700 * 1024;
+    if (file.size > maxFileSizeBytes) {
+      toast.error('Profile picture must be smaller than 700 KB.');
+      e.target.value = '';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = typeof reader.result === 'string' ? reader.result : '';
+      if (!result) {
+        toast.error('Could not read the selected image.');
+        e.target.value = '';
+        return;
+      }
+      setUploadedImage(result);
+    };
+    reader.onerror = () => {
+      toast.error('Could not read the selected image.');
+      e.target.value = '';
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!useSheet) {
@@ -274,7 +330,7 @@ export const StudentReviews = () => {
 
     setSubmitLoading(true);
     form.submit();
-    setShowSubmitForm(false);
+    closeSubmitForm();
     toast.success('Thanks! Your review will appear after approval.');
     setSubmitLoading(false);
   };
@@ -309,8 +365,8 @@ export const StudentReviews = () => {
 
   
   return (
-    <section ref={sectionRef} className="py-12 sm:py-20 lg:py-28 bg-primary overflow-hidden" id="student-reviews">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} className="py-14 sm:py-20 lg:py-28 2xl:py-32 bg-primary overflow-hidden" id="student-reviews">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1680px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -325,20 +381,27 @@ export const StudentReviews = () => {
           <div className="flex justify-center mb-4">
             <div className="w-16 h-0.5 bg-gradient-to-r from-secondary to-accent rounded-full" />
           </div>
-          <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary-foreground mb-4">
+          <h2 className="text-2xl md:text-3xl xl:text-4xl 2xl:text-[2.8rem] font-heading font-semibold text-primary-foreground mb-4">
             What Our Students Say
           </h2>
-          <p className="text-primary-foreground/70 max-w-2xl mx-auto mb-6">
-            Real reviews from students. Reviews are kept on the site forever.
+          <p className="text-primary-foreground/70 max-w-3xl mx-auto mb-6 text-sm sm:text-base xl:text-lg">
+            Real reviews from students.
           </p>
           <div className="inline-flex items-center gap-2 rounded-lg border border-secondary/30 bg-secondary/10 p-1.5">
             <button
               type="button"
               onClick={() => setShowSubmitForm(true)}
-              className="inline-flex items-center gap-2 rounded-md bg-secondary px-5 py-2.5 text-sm font-medium text-secondary-foreground hover:bg-secondary/90 transition-colors"
+              className="inline-flex items-center gap-2 rounded-md bg-secondary px-5 xl:px-6 py-2.5 xl:py-3 text-sm xl:text-base font-medium text-secondary-foreground hover:bg-secondary/90 transition-colors"
             >
               <MessageSquarePlus className="w-4 h-4" />
               Submit your review
+            </button>
+            <button
+              type="button"
+              onClick={copySubmitReviewLink}
+              className="inline-flex items-center rounded-md border border-secondary/30 bg-transparent px-4 xl:px-5 py-2.5 xl:py-3 text-sm xl:text-base font-medium text-primary-foreground hover:bg-white/5 transition-colors"
+            >
+              {submitLinkCopied ? 'Link copied' : 'Copy form link'}
             </button>
           </div>
         </motion.div>
@@ -351,7 +414,7 @@ export const StudentReviews = () => {
         >
           <div
             ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth"
+            className="flex gap-6 xl:gap-8 overflow-x-auto scrollbar-hide pb-2 snap-x snap-mandatory scroll-smooth"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
@@ -375,37 +438,37 @@ export const StudentReviews = () => {
                   <div
                     key={review.id}
                     id={`${REVIEW_HASH_PREFIX}${review.id}`}
-                    className="flex-shrink-0 w-[min(100%,300px)] sm:w-[320px] snap-center"
+                    className="flex-shrink-0 w-[min(100%,320px)] sm:w-[340px] xl:w-[360px] 2xl:w-[380px] snap-center"
                   >
-                    <div className="bg-card rounded-xl border border-border hover:border-secondary/30 transition-all duration-300 flex flex-col h-[280px] overflow-hidden shadow-sm">
-                    <div className="p-4 flex-1 flex flex-col min-h-0">
-                      <Quote className="w-8 h-8 text-secondary/30 mb-2 flex-shrink-0" />
-                      <p className="text-foreground/80 text-sm leading-snug line-clamp-4 flex-1 min-h-0">
+                    <div className="bg-card rounded-xl border border-border hover:border-secondary/30 transition-all duration-300 flex flex-col h-[300px] xl:h-[320px] overflow-hidden shadow-sm">
+                    <div className="p-5 xl:p-6 flex-1 flex flex-col min-h-0">
+                      <Quote className="w-8 h-8 xl:w-9 xl:h-9 text-secondary/30 mb-2 flex-shrink-0" />
+                      <p className="text-foreground/80 text-sm xl:text-base leading-snug xl:leading-7 line-clamp-5 flex-1 min-h-0">
                         &ldquo;{review.content}&rdquo;
                       </p>
-                      <div className="flex items-center gap-1 mt-3 flex-shrink-0">
+                      <div className="flex items-center gap-1 mt-4 flex-shrink-0">
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
-                            className={`w-3.5 h-3.5 ${
+                            className={`w-3.5 h-3.5 xl:w-4 xl:h-4 ${
                               i < review.rating ? 'fill-warning text-warning' : 'text-muted-foreground'
                             }`}
                           />
                         ))}
                       </div>
                     </div>
-                    <div className="p-4 pt-0 flex items-center justify-between gap-3 border-t border-border/50 flex-shrink-0">
+                    <div className="p-5 xl:p-6 pt-0 flex items-center justify-between gap-3 border-t border-border/50 flex-shrink-0">
                       <div className="flex items-center gap-3 min-w-0">
                         {hasPhoto ? (
                           <img
                             src={review.image}
                             alt={`${review.name} - Savvy Axiss`}
                             loading="lazy"
-                            className="w-11 h-11 rounded-full object-cover border-2 border-secondary/30 flex-shrink-0"
+                            className="w-11 h-11 xl:w-12 xl:h-12 rounded-full object-cover border-2 border-secondary/30 flex-shrink-0"
                           />
                         ) : (
                           <div
-                            className={`w-11 h-11 rounded-full border-2 border-secondary/30 flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${
+                            className={`w-11 h-11 xl:w-12 xl:h-12 rounded-full border-2 border-secondary/30 flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${
                               getAvatarGender(review) === 'male' ? 'from-blue-500 to-cyan-500' : 'from-pink-500 to-rose-500'
                             }`}
                           >
@@ -413,11 +476,11 @@ export const StudentReviews = () => {
                           </div>
                         )}
                         <div className="min-w-0">
-                          <h3 className="font-semibold text-foreground text-sm truncate">{review.name}</h3>
-                          <p className="text-xs text-muted-foreground truncate">{review.role || review.course}</p>
+                          <h3 className="font-semibold text-foreground text-sm xl:text-base truncate">{review.name}</h3>
+                          <p className="text-xs xl:text-sm text-muted-foreground truncate">{review.role || review.course}</p>
                         </div>
                       </div>
-                      <span className="inline-flex items-center rounded-full bg-secondary/10 text-secondary px-2 py-1 text-[10px] font-medium flex-shrink-0">
+                      <span className="inline-flex items-center rounded-full bg-secondary/10 text-secondary px-2.5 py-1 text-[10px] xl:text-xs font-medium flex-shrink-0">
                         {categoryLabel}
                       </span>
                     </div>
@@ -448,7 +511,7 @@ export const StudentReviews = () => {
         </motion.div>
 
         {showSubmitForm && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowSubmitForm(false)}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={closeSubmitForm}>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -459,7 +522,7 @@ export const StudentReviews = () => {
                 <h3 className="text-lg font-semibold text-foreground">Submit your review</h3>
                 <button
                   type="button"
-                  onClick={() => setShowSubmitForm(false)}
+                  onClick={closeSubmitForm}
                   className="rounded-md p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                   aria-label="Close"
                 >
@@ -469,10 +532,11 @@ export const StudentReviews = () => {
               <div className="p-6">
                 <p className="text-sm text-muted-foreground mb-4">
                   {useSheet
-                    ? 'Your review will be sent for approval and appear here once approved. Keep it short (max ' + REVIEW_MAX_WORDS + ' words).'
+                    ? 'Your review will be sent for approval and appear here once approved. You can write up to ' + REVIEW_MAX_WORDS + ' words.'
                     : 'Reviews are not configured. Set VITE_REVIEWS_SCRIPT_URL to enable submissions (see README).'}
                 </p>
                 <form
+                  ref={formRef}
                   onSubmit={handleSubmit}
                   action={getReviewsScriptUrl()}
                   method="POST"
@@ -522,6 +586,40 @@ export const StudentReviews = () => {
                     <p className="mt-1 text-xs text-muted-foreground">
                       Used for your default profile picture if you don&apos;t upload a photo.
                     </p>
+                  </div>
+                  <div>
+                    <label htmlFor="review-image" className="block text-sm font-medium text-foreground mb-1">Profile picture (optional)</label>
+                    <input
+                      id="review-image"
+                      type="file"
+                      accept="image/png,image/jpeg,image/webp"
+                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm file:mr-3 file:rounded-md file:border-0 file:bg-secondary/10 file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-secondary"
+                      onChange={handleImageChange}
+                    />
+                    <input type="hidden" name="image" value={uploadedImage} />
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Upload a square photo if possible. JPG, PNG, or WebP up to 700 KB.
+                    </p>
+                    {uploadedImage && (
+                      <div className="mt-3 flex items-center gap-3 rounded-lg border border-border bg-muted/30 p-3">
+                        <img
+                          src={uploadedImage}
+                          alt="Selected profile preview"
+                          className="h-12 w-12 rounded-full object-cover border border-border"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setUploadedImage('');
+                            const input = document.getElementById('review-image') as HTMLInputElement | null;
+                            if (input) input.value = '';
+                          }}
+                          className="text-sm font-medium text-secondary hover:text-secondary/80"
+                        >
+                          Remove photo
+                        </button>
+                      </div>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="review-course" className="block text-sm font-medium text-foreground mb-1">Course / Domain </label>
@@ -586,7 +684,7 @@ export const StudentReviews = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => setShowSubmitForm(false)}
+                      onClick={closeSubmitForm}
                       className="rounded-md border border-border px-4 py-2.5 text-sm font-medium text-foreground hover:bg-muted transition-colors"
                     >
                       Cancel

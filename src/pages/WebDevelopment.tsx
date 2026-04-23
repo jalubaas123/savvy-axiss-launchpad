@@ -471,7 +471,7 @@ export default function WebDevelopment() {
               </Link>
             </Button>
             <Button size="lg" className="bg-[#25D366] hover:bg-[#20BA5A] text-white border-0" asChild>
-              <a href="https://wa.me/917299817996?text=Hi, I need a website for my business" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/919384902501?text=Hi, I need a website for my business" target="_blank" rel="noopener noreferrer">
                 <WhatsAppIcon className="w-4 h-4 mr-2" />
                 Chat on WhatsApp
               </a>
@@ -620,7 +620,7 @@ export default function WebDevelopment() {
               <Link to="/contact">Get a free quote</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <a href="https://wa.me/917299817996?text=Hi, I need a website for my business in Chennai" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/919384902501?text=Hi, I need a website for my business in Chennai" target="_blank" rel="noopener noreferrer">
                 <WhatsAppIcon className="w-4 h-4 mr-2" />
                 Chat on WhatsApp
               </a>
@@ -1026,7 +1026,7 @@ export default function WebDevelopment() {
               <Link to="/contact">Get Custom Quote</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <a href="https://wa.me/917299817996?text=Hi, I need a custom website solution for my business" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/919384902501?text=Hi, I need a custom website solution for my business" target="_blank" rel="noopener noreferrer">
                 <WhatsAppIcon className="w-4 h-4 mr-2" />
                 Chat on WhatsApp
               </a>
@@ -1185,14 +1185,14 @@ export default function WebDevelopment() {
               className="border-white text-white hover:bg-white/10"
               asChild
             >
-              <a href="tel:+917299817996">Call: +91 72998 17996</a>
+              <a href="tel:+919710797226">Call: +91 97107 97226</a>
             </Button>
             <Button
               size="lg"
               className="bg-[#25D366] hover:bg-[#20BA5A] text-white border-0"
               asChild
             >
-              <a href="https://wa.me/917299817996?text=Hi, I need a website for my business" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/919384902501?text=Hi, I need a website for my business" target="_blank" rel="noopener noreferrer">
                 <WhatsAppIcon className="w-4 h-4 mr-2" />
                 WhatsApp Us
               </a>

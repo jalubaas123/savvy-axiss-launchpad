@@ -33,9 +33,9 @@ export interface SubmitReviewPayload {
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzY66BQGBLjzGROam7nIaxzsXzHEVzXsfpJ9Diq2PwTLM34Yt7fZ-FSoU99IsS-Avow/exec";
 
 /** Max length for review text (frontend + Apps Script). */
-export const REVIEW_MAX_LENGTH = 400;
-/** Max words for review (keeps cards compact and professional). */
-export const REVIEW_MAX_WORDS = 50;
+export const REVIEW_MAX_LENGTH = 3000;
+/** Max words for review submissions. */
+export const REVIEW_MAX_WORDS = 500;
 
 /** Whether the Google Sheets integration is configured. */
 export function isReviewsScriptConfigured(): boolean {

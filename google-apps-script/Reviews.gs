@@ -136,7 +136,7 @@ function doPost(e) {
     if (!review) return createJsonResponse({ success: false, error: 'Review is required' }, 200);
     if (gender !== 'male' && gender !== 'female') return createJsonResponse({ success: false, error: 'Gender is required (male or female)' }, 200);
     if (isNaN(rating) || rating < 1 || rating > 5) return createJsonResponse({ success: false, error: 'Rating must be 1–5' }, 200);
-    if (review.length > 400) return createJsonResponse({ success: false, error: 'Review must be at most 400 characters (about 50 words)' }, 200);
+    if (review.length > 3000) return createJsonResponse({ success: false, error: 'Review must be at most 3000 characters (about 500 words)' }, 200);
 
     var id = 'rev_' + new Date().getTime();
     var created_at = new Date().toISOString();
