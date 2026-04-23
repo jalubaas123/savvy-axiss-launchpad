@@ -524,7 +524,7 @@ export const StudentReviews = () => {
                     </p>
                   </div>
                   <div>
-                    <label htmlFor="review-course" className="block text-sm font-medium text-foreground mb-1">Course or program (required)</label>
+                    <label htmlFor="review-course" className="block text-sm font-medium text-foreground mb-1">Course / Domain </label>
                     <input
                       id="review-course"
                       name="course"
